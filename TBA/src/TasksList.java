@@ -1,34 +1,69 @@
+/**
+ * Represents a list of taks.
+ *
+ * @author A89262
+ * @author A48091
+ * @author A89266
+ * @version 20190406
+ */
+
 import java.util.ArrayList;
 
 public class TasksList{
-
-    //Instance variables
     private String description;
     private User creator;
     private ArrayList<Task> tasks;
 
-    //Getters
+    /**
+     * Returns the tasks list's description.
+     *
+     * @return description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Returns the tasks list's creator.
+     *
+     * @return creator
+     */
     public User getCreator() {
         return creator;
     }
 
+    /**
+     * Returns the tasks list.
+     *
+     * @return tasks
+     */
     public ArrayList<Task> getTasks() {
         return tasks;
     }
 
-    //Setters
+    /**
+     * Update the task's description.
+     *
+     * @param description a new description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Update the task's creator.
+     *
+     * @param creator a new creator
+     */
     public void setCreator(User creator) {
         this.creator = creator;
     }
 
+    /**
+     * Update the tasks list.
+     *
+     * @param tasks a new tasks list
+     */
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
