@@ -9,12 +9,50 @@
  */
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class User{
     private String name;
     private String email;
     private String password;
     private ArrayList<Project> projects;
+
+    /**
+     * User's default constructor.
+     */
+    public User(){
+        this.name = "";
+        this.email = "";
+        this.password = "";
+        this.projects = new ArrayList<Project>();
+    }
+
+    /**
+     * User's parametrized constructor.
+     *
+     * @param name user's name
+     * @param email user's email
+     * @param password user's password
+     * @param projects list of user's projects
+     */
+    public User(String name, String email, String password, ArrayList<Project> projects) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.projects = projects;
+    }
+
+    /**
+     * User's copy constructor.
+     *
+     * @param user a user
+     */
+    public User(User user){
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.projects = user.getProjects();
+    }
 
     /**
      * Returns the user's name.
@@ -49,7 +87,7 @@ public class User{
      * @return projects
      */
     public ArrayList<Project> getProjects() {
-        return projects;
+        return projects.stream().map(Project::new).collect(Collectors.toCollection(ArrayList::new)); //Data protection
     }
 
     /**

@@ -15,6 +15,39 @@ public class TasksList{
     private ArrayList<Task> tasks;
 
     /**
+     * TasksList's default constructor
+     */
+    public TasksList(){
+        this.description = "";
+        this.creator = new User();
+        this.tasks = new ArrayList<Task>();
+    }
+
+    /**
+     *  TasksList's Parametrized constructor
+     *
+     * @param description tasks list's description
+     * @param creator tasks list's creator
+     * @param tasks tasks list's tasks
+     */
+    public TasksList(String description, User creator, ArrayList<Task> tasks) {
+        this.description = description;
+        this.creator = creator;
+        this.tasks = tasks;
+    }
+
+    /**
+     * TasksList's copy constructor
+     *
+     * @param tasksList a tasks list
+     */
+    public TasksList(TasksList tasksList){
+        this.description = tasksList.getDescription();
+        this.creator = tasksList.getCreator();
+        this.tasks = tasksList.getTasks();
+    }
+
+    /**
      * Returns the tasks list's description.
      *
      * @return description

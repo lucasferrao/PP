@@ -22,6 +22,65 @@ public class Task{
 	private TasksPriority priority;
 
 	/**
+	 * Task's default constructor
+	 */
+	public Task(){
+		this.title = "";
+		this.creator = new User();
+		this.responsable = new User();
+		this.description = "";
+		this.taskState = State.NotStarted;
+		this.beginDate = LocalDate.MIN;
+		this.endDate = LocalDate.MIN;
+		this.limiteDate = LocalDate.MIN;
+		this.priority = TasksPriority.Low;
+	}
+
+	/**
+	 * Task's parametrized constructor
+	 *
+	 * @param title task's title
+	 * @param creator task's creator
+	 * @param responsable task's responsable
+	 * @param description task's description
+	 * @param taskState task's state
+	 * @param beginDate task's begin date
+	 * @param endDate task's end date
+	 * @param limiteDate task's limite date
+	 * @param priority task's priority
+	 */
+	public Task(String title, User creator, User responsable, String description,
+				State taskState, LocalDate beginDate, LocalDate endDate,
+				LocalDate limiteDate, TasksPriority priority) {
+		this.title = title;
+		this.creator = creator;
+		this.responsable = responsable;
+		this.description = description;
+		this.taskState = taskState;
+		this.beginDate = beginDate;
+		this.endDate = endDate;
+		this.limiteDate = limiteDate;
+		this.priority = priority;
+	}
+
+	/**
+	 * Task's copy constructor
+	 *
+	 * @param task a task
+	 */
+	public Task(Task task){
+		this.title = task.getTitle();
+		this.creator = task.getCreator();
+		this.responsable = task.getResponsable();
+		this.description = task.getDescription();
+		this.taskState = task.getTaskState();
+		this.beginDate = task.getBeginDate();
+		this.endDate = task.getEndDate();
+		this.limiteDate = task.getLimiteDate();
+		this.priority = task.getPriority();
+	}
+
+	/**
 	 * Returns the task's title.
 	 *
 	 * @return title

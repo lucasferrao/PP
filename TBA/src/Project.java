@@ -25,6 +25,61 @@ public class Project{
 	private ArrayList<Collaborator> users;
 
 	/**
+	 * Project's default constructor
+	 */
+	public Project(){
+		this.title = "";
+		this.description = "";
+		this.beginDate = LocalDate.MIN;
+		this.endDate = LocalDate.MIN;
+		this.lists = new ArrayList<TasksList>();
+		this.owner = new Manager();
+		this.projectState = State.NotStarted;
+		this.users = new ArrayList<Collaborator>();
+	}
+
+	/**
+	 * Project's parametrized constructor
+	 *
+	 * @param title project's title
+	 * @param description project's description
+	 * @param beginDate project's begin date
+	 * @param endDate project's end date
+	 * @param lists project's lists
+	 * @param owner project's owner
+	 * @param projectState project's state
+	 * @param users project's users
+	 */
+	public Project(String title, String description, LocalDate beginDate,
+				   LocalDate endDate, ArrayList<TasksList> lists, Manager owner,
+				   State projectState, ArrayList<Collaborator> users){
+		this.title = title;
+		this.description = description;
+		this.beginDate = beginDate;
+		this.endDate = endDate;
+		this.lists = lists;
+		this.owner = owner;
+		this.projectState = projectState;
+		this.users = users;
+	}
+
+	/**
+	 * Project's copy constructor
+	 *
+	 * @param project a project
+	 */
+	public Project(Project project){
+		this.title = project.getTitle();
+		this.description = project.getDescription();
+		this.beginDate = project.getBeginDate();
+		this.endDate = project.getEndDate();
+		this.lists = project.getLists();
+		this.owner = project.getOwner();
+		this.projectState = project.getProjectState();
+		this.users = project.getUsers();
+	}
+
+	/**
 	 * Returns the project title.
 	 *
 	 * @return title
