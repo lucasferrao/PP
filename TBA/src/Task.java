@@ -18,7 +18,7 @@ public class Task{
 	private State taskState;
 	private LocalDate beginDate; // justify
 	private LocalDate endDate;
-	private LocalDate limiteDate;
+	private LocalDate limitDate;
 	private TasksPriority priority;
 
 	/**
@@ -32,7 +32,7 @@ public class Task{
 		this.taskState = State.NotStarted;
 		this.beginDate = LocalDate.MIN;
 		this.endDate = LocalDate.MIN;
-		this.limiteDate = LocalDate.MIN;
+		this.limitDate = LocalDate.MIN;
 		this.priority = TasksPriority.Low;
 	}
 
@@ -46,12 +46,12 @@ public class Task{
 	 * @param taskState task's state
 	 * @param beginDate task's begin date
 	 * @param endDate task's end date
-	 * @param limiteDate task's limite date
+	 * @param limitDate task's limite date
 	 * @param priority task's priority
 	 */
 	public Task(String title, User creator, User responsable, String description,
 				State taskState, LocalDate beginDate, LocalDate endDate,
-				LocalDate limiteDate, TasksPriority priority) {
+				LocalDate limitDate, TasksPriority priority) {
 		this.title = title;
 		this.creator = creator;
 		this.responsable = responsable;
@@ -59,7 +59,7 @@ public class Task{
 		this.taskState = taskState;
 		this.beginDate = beginDate;
 		this.endDate = endDate;
-		this.limiteDate = limiteDate;
+		this.limitDate = limitDate;
 		this.priority = priority;
 	}
 
@@ -76,7 +76,7 @@ public class Task{
 		this.taskState = task.getTaskState();
 		this.beginDate = task.getBeginDate();
 		this.endDate = task.getEndDate();
-		this.limiteDate = task.getLimiteDate();
+		this.limitDate = task.getLimitDate();
 		this.priority = task.getPriority();
 	}
 
@@ -146,10 +146,10 @@ public class Task{
 	/**
 	 * Returns the task's limite date.
 	 *
-	 * @return limite date
+	 * @return limit date
 	 */
-	public LocalDate getLimiteDate() {
-		return limiteDate;
+	public LocalDate getLimitDate() {
+		return limitDate;
 	}
 
 	/**
@@ -229,8 +229,8 @@ public class Task{
 	 *
 	 * @param limiteDate a new limite date
 	 */
-	public void setLimiteDate(LocalDate limiteDate) {
-		this.limiteDate = limiteDate;
+	public void setLimitDate(LocalDate limiteDate) {
+		this.limitDate = limitDate;
 	}
 
 	/**
