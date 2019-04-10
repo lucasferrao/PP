@@ -46,7 +46,7 @@ public class Task{
 	 * @param taskState task's state
 	 * @param beginDate task's begin date
 	 * @param endDate task's end date
-	 * @param limitDate task's limite date
+	 * @param limitDate task's limit date
 	 * @param priority task's priority
 	 */
 	public Task(String title, User creator, User responsable, String description,
@@ -144,7 +144,7 @@ public class Task{
 	}
 
 	/**
-	 * Returns the task's limite date.
+	 * Returns the task's limit date.
 	 *
 	 * @return limit date
 	 */
@@ -225,11 +225,11 @@ public class Task{
 	}
 
 	/**
-	 * Update the task's limite date.
+	 * Update the task's limit date.
 	 *
-	 * @param limiteDate a new limite date
+	 * @param limitDate a new limit date
 	 */
-	public void setLimitDate(LocalDate limiteDate) {
+	public void setLimitDate(LocalDate limitDate) {
 		this.limitDate = limitDate;
 	}
 
