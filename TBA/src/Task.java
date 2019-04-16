@@ -13,7 +13,7 @@ import java.time.LocalDate;
 public class Task{
 	private String title;
 	private User creator;
-	private User responsable;
+	private User coordinator;
 	private String description;
 	private State taskState;
 	private LocalDate beginDate; // justify
@@ -27,7 +27,7 @@ public class Task{
 	public Task(){
 		this.title = "";
 		this.creator = new User();
-		this.responsable = new User();
+		this.coordinator = new User();
 		this.description = "";
 		this.taskState = State.NotStarted;
 		this.beginDate = LocalDate.MIN;
@@ -41,7 +41,7 @@ public class Task{
 	 *
 	 * @param title task's title
 	 * @param creator task's creator
-	 * @param responsable task's responsable
+	 * @param coordinator task's coordinator
 	 * @param description task's description
 	 * @param taskState task's state
 	 * @param beginDate task's begin date
@@ -49,12 +49,12 @@ public class Task{
 	 * @param limitDate task's limit date
 	 * @param priority task's priority
 	 */
-	public Task(String title, User creator, User responsable, String description,
+	public Task(String title, User creator, User coordinator, String description,
 				State taskState, LocalDate beginDate, LocalDate endDate,
 				LocalDate limitDate, TasksPriority priority) {
 		this.title = title;
 		this.creator = creator;
-		this.responsable = responsable;
+		this.coordinator = coordinator;
 		this.description = description;
 		this.taskState = taskState;
 		this.beginDate = beginDate;
@@ -71,7 +71,7 @@ public class Task{
 	public Task(Task task){
 		this.title = task.getTitle();
 		this.creator = task.getCreator();
-		this.responsable = task.getResponsable();
+		this.coordinator = task.getCoordinator();
 		this.description = task.getDescription();
 		this.taskState = task.getTaskState();
 		this.beginDate = task.getBeginDate();
@@ -99,12 +99,12 @@ public class Task{
 	}
 
 	/**
-	 * Returns the task's responsable.
+	 * Returns the task's coordinator.
 	 *
-	 * @return responsable
+	 * @return coordinator
 	 */
-	public User getResponsable() {
-		return responsable;
+	public User getCoordinator() {
+		return coordinator;
 	}
 
 	/**
@@ -180,12 +180,12 @@ public class Task{
 	}
 
 	/**
-	 * Update the task's responsable.
+	 * Update the task's coordinator.
 	 *
-	 * @param responsable a new responsable
+	 * @param coordinator a new coordinator
 	 */
-	public void setResponsable(User responsable) {
-		this.responsable = responsable;
+	public void setCoordinator(User coordinator) {
+		this.coordinator = coordinator;
 	}
 
 	/**
@@ -240,5 +240,27 @@ public class Task{
 	 */
 	public void setPriority(TasksPriority priority) {
 		this.priority = priority;
+	}
+
+	/**
+	 * Is a way to show a task's information on the screen
+	 *
+	 * @return task's information
+	 */
+	public String toString(){
+		StringBuilder s = new StringBuilder();
+
+		s.append("Task\n");
+		s.append("Task's title: " + this.title + ".\n");
+		s.append("Task's creator: " + this.creator.toString() + ".\n");
+		s.append("Task's coordinator: " + this.coordinator.toString() + ".\n");
+		s.append("Task's description: " + this.description + ".\n");
+		s.append("Task's state: " + this.taskState + ".\n");
+		s.append("Task's begin date: " + this.beginDate + ".\n");
+		s.append("Task's end date: " + this.endDate + ".\n");
+		s.append("Task's limit date: " + this.limitDate + ".\n");
+		s.append("Task's priority: " + this.priority + ".\n");
+
+		return s.toString();
 	}
 }

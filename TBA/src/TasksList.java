@@ -100,4 +100,23 @@ public class TasksList{
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
+
+    /**
+     * Is a way to show a tasks list's information on the screen
+     *
+     * @return tasks list's information
+     */
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+
+        s.append("Tasks List\n");
+        s.append("Task's description: " + this.description + ".\n");
+        s.append("Task's creator: " + this.creator + ".\n");
+        s.append("Tasks:\n");
+        for(Task t: this.tasks){
+            s.append(" - " + t.toString() + ".\n");
+        }
+
+        return s.toString();
+    }
 }

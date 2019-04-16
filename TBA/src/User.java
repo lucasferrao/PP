@@ -125,4 +125,23 @@ public class User{
     public void setProjects(ArrayList<Project> projects) {
         this.projects = projects;
     }
+
+    /**
+     * Is a way to show a user's information on the screen
+     *
+     * @return user's information
+     */
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+
+        s.append("User\n");
+        s.append("User's name: " + this.name + ".\n");
+        s.append("User's email: " + this.email + ".\n");
+        s.append("User's projects:\n");
+        for(Project p: this.projects){
+            s.append(" - " + p.toString() + ".\n");
+        }
+
+        return s.toString();
+    }
 }

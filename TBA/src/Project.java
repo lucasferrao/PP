@@ -222,4 +222,31 @@ public class Project{
 	public void setUsers(ArrayList<Collaborator> users) {
 		this.users = users;
 	}
+
+	/**
+	 * Is a way to show a project's information on the screen
+	 *
+	 * @return project's information
+	 */
+	public String toString(){
+		StringBuilder s = new StringBuilder();
+
+		s.append("Project\n");
+		s.append("Project's title: " + this.title + ".\n");
+		s.append("Project's description: " + this.description + ".\n");
+		s.append("Project's begin date: " + this.beginDate + ".\n");
+		s.append("Project's end date: " + this.endDate + ".\n");
+		s.append("Project's lists:\n");
+		for(TasksList t: this.lists){
+			s.append(" - " + t.toString() + ".\n");
+		}
+		s.append("Project's owner: " + this.owner.toString() + ".\n");
+		s.append("Project's state: " + this.projectState + ".\n");
+		s.append("Project's users:\n");
+		for(Collaborator c: this.users){
+			s.append(" - " + c.toString() + ".\n");
+		}
+
+		return s.toString();
+	}
 }

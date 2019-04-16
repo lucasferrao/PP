@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Collaborator extends superclass User and respresents
  * a project collaborator.
@@ -10,4 +12,47 @@
 
 public class Collaborator extends User{
 
+    /**
+     * Collaborator's default constructor.
+     */
+    public Collaborator(){
+        super();
+    }
+
+    /**
+     * Collaborator's parametrized constructor.
+     *
+     * @param name Collaborator's name
+     * @param email Collaborator's email
+     * @param password Collaborator's password
+     * @param projects list of Collaborator's projects
+     */
+    public Collaborator(String name, String email, String password, ArrayList<Project> projects){
+        super(name, email, password, projects);
+    }
+
+    /**
+     * Collaborator's copy constructor.
+     *
+     * @param collaborator a collaborator
+     */
+    public Collaborator(Collaborator collaborator){
+        super(collaborator);
+    }
+
+    /**
+     * Is a way to show a collaborator's information on the screen
+     *
+     * @return collaborator's information
+     */
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+
+        s.append("Collaborator\n");
+        s.append("Collaborator's name: " + getName() + ".\n");
+        s.append("Collaborator's email: " + getEmail() + ".\n");
+        s.append("Collaborator's projects: " + getProjects() + ".\n");
+
+        return s.toString();
+    }
 }
