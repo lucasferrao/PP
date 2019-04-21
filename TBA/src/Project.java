@@ -224,7 +224,7 @@ public class Project{
 	}
 
 	/**
-	 * Is a way to show a project's information on the screen
+	 * Is a way to show a project's information on the screen.
 	 *
 	 * @return project's information
 	 */
@@ -248,5 +248,30 @@ public class Project{
 		}
 
 		return s.toString();
+	}
+
+	/**
+	 * Compare if it is the same project.
+	 *
+	 * @return boolean indicating if two objects are the same
+	 */
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null) {
+			return false;
+		}
+		if (o instanceof Project) {
+			Project test = (Project) o;
+			if ((test.title.equals(this.title)) && (test.description.equals(this.description)) &&
+					(test.beginDate.equals(this.beginDate)) && (test.endDate.equals(this.endDate)) &&
+					(test.lists.equals(this.lists)) && (test.owner.equals(this.owner)) &&
+					(test.projectState.equals(this.projectState))
+					&& (test.users.equals(this.users))){
+				return true;
+			}
+		}
+		return false;
 	}
 }

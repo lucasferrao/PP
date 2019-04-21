@@ -119,4 +119,26 @@ public class TasksList{
 
         return s.toString();
     }
+
+    /**
+     * Compare if it is the same tasks list.
+     *
+     * @return boolean indicating if two objects are the same
+     */
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (o instanceof TasksList) {
+            TasksList test = (TasksList) o;
+            if ((test.description.equals(this.description)) && (test.creator.equals(this.creator)) &&
+                    (test.tasks.equals(this.tasks))){
+                return true;
+            }
+        }
+        return false;
+    }
 }

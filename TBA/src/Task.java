@@ -263,4 +263,29 @@ public class Task{
 
 		return s.toString();
 	}
+
+	/**
+	 * Compare if it is the same task.
+	 *
+	 * @return boolean indicating if two objects are the same
+	 */
+	public boolean equals(Object o){
+		if(this == o){
+			return true;
+		}
+		if(o == null){
+			return false;
+		}
+		if(o instanceof Task){
+			Task test = (Task) o;
+			if((test.title.equals(this.title)) && (test.creator.equals(this.creator)) &&
+					(test.coordinator.equals(this.coordinator)) && (test.description.equals(this.description)) &&
+					(test.taskState.equals(this.taskState)) && (test.beginDate.equals(this.beginDate)) &&
+							(test.endDate.equals(this.endDate)) && (test.limitDate.equals(this.limitDate)) &&
+							(test.priority.equals(this.priority))){
+				return true;
+			}
+		}
+		return false;
+	}
 }

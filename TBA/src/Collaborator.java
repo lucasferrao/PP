@@ -55,4 +55,26 @@ public class Collaborator extends User{
 
         return s.toString();
     }
+
+    /**
+     * Compare if it is the same collaborator.
+     *
+     * @return boolean indicating if two objects are the same
+     */
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (o instanceof User) {
+            User test = (User) o;
+            if ((test.getName().equals(this.getName())) && (test.getEmail().equals(this.getEmail())) &&
+                    (test.getPassword().equals(this.getPassword())) && (test.getProjects().equals(this.getProjects()))){
+                return true;
+            }
+        }
+        return false;
+    }
 }

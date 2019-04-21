@@ -144,4 +144,25 @@ public class User{
 
         return s.toString();
     }
+
+    /**
+     * Compare if it is the same user.
+     *
+     * @return boolean indicating if two objects are the same
+     */
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+        if(o == null){
+            return false;
+        }
+        if(o instanceof User){
+            User test = (User) o;
+            if((test.name.equals(this.name)) && (test.email.equals(this.email)) &&(test.projects.equals(projects))){
+                return true;
+            }
+        }
+        return false;
+    }
 }
