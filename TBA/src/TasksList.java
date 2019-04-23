@@ -1,5 +1,5 @@
 /**
- * Represents a list of taks.
+ * Represents a list of tasks.
  *
  * @author A89262
  * @author A48091
@@ -15,7 +15,7 @@ public class TasksList{
     private ArrayList<Task> tasks;
 
     /**
-     * TasksList's default constructor
+     * TasksList's default constructor.
      */
     public TasksList(){
         this.description = "";
@@ -24,7 +24,7 @@ public class TasksList{
     }
 
     /**
-     *  TasksList's Parametrized constructor
+     * TasksList's Parametrized constructor.
      *
      * @param description tasks list's description
      * @param creator tasks list's creator
@@ -37,7 +37,7 @@ public class TasksList{
     }
 
     /**
-     * TasksList's copy constructor
+     * TasksList's copy constructor.
      *
      * @param tasksList a tasks list
      */
@@ -126,10 +126,10 @@ public class TasksList{
      * @return boolean indicating if two objects are the same
      */
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if (o == null || this.getClass() != o.getClass()) {
+        if(o == null || this.getClass() != o.getClass()) {
             return false;
         }
 

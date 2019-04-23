@@ -25,7 +25,7 @@ public class Project{
 	private ArrayList<Collaborator> users;
 
 	/**
-	 * Project's default constructor
+	 * Project's default constructor.
 	 */
 	public Project(){
 		this.title = "";
@@ -39,7 +39,7 @@ public class Project{
 	}
 
 	/**
-	 * Project's parametrized constructor
+	 * Project's parametrized constructor.
 	 *
 	 * @param title project's title
 	 * @param description project's description
@@ -64,7 +64,7 @@ public class Project{
 	}
 
 	/**
-	 * Project's copy constructor
+	 * Project's copy constructor.
 	 *
 	 * @param project a project
 	 */
@@ -125,7 +125,7 @@ public class Project{
 	}
 
 	/**
-	 * Returns the project's onwer.
+	 * Returns the project's owner.
 	 *
 	 * @return owner
 	 */
@@ -199,7 +199,7 @@ public class Project{
 	/**
 	 * Update the project's owner.
 	 *
-	 * @param owner a new onwer
+	 * @param owner a new owner
 	 */
 	public void setOwner(Manager owner) {
 		this.owner = owner;
@@ -256,10 +256,10 @@ public class Project{
 	 * @return boolean indicating if two objects are the same
 	 */
 	public boolean equals(Object o) {
-		if (this == o) {
+		if(this == o) {
 			return true;
 		}
-		if (o == null || this.getClass() != o.getClass()) {
+		if(o == null || this.getClass() != o.getClass()) {
 			return false;
 		}
 		Project test = (Project) o;

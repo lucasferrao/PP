@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Collaborator extends superclass User and respresents
+ * Collaborator extends superclass User and represents
  * a project collaborator.
  *
  * @author A89262
@@ -41,7 +41,7 @@ public class Collaborator extends User{
     }
 
     /**
-     * Is a way to show a collaborator's information on the screen
+     * Is a way to show a collaborator's information on the screen.
      *
      * @return collaborator's information
      */

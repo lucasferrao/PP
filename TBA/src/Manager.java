@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * Manager extends superclass User and respresents
+ * Manager extends superclass User and represents
  * the project owner.
  *
  * @author A89262
@@ -62,10 +62,10 @@ public class Manager extends User{
      * @return boolean indicating if two objects are the same
      */
     public boolean equals(Object o) {
-        if (this == o) {
+        if(this == o) {
             return true;
         }
-        if ((o == null) || this.getClass() != o.getClass()) {
+        if((o == null) || this.getClass() != o.getClass()) {
             return false;
         }
 

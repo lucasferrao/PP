@@ -127,7 +127,7 @@ public class User{
     }
 
     /**
-     * Is a way to show a user's information on the screen
+     * Is a way to show a user's information on the screen.
      *
      * @return user's information
      */

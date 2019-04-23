@@ -243,7 +243,7 @@ public class Task{
 	}
 
 	/**
-	 * Is a way to show a task's information on the screen
+	 * Is a way to show a task's information on the screen.
 	 *
 	 * @return task's information
 	 */
