@@ -102,7 +102,7 @@ public class TasksList{
     }
 
     /**
-     * Is a way to show a tasks list's information on the screen
+     * Displays a tasks list's information on the screen
      *
      * @return tasks list's information
      */

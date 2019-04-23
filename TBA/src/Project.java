@@ -143,7 +143,7 @@ public class Project{
 	}
 
 	/**
-	 * Returns a list of a project collaborators.
+	 * Returns a list of a project contributors.
 	 *
 	 * @return users
 	 */
@@ -224,7 +224,7 @@ public class Project{
 	}
 
 	/**
-	 * Is a way to show a project's information on the screen.
+	 * Displays the project information on the screen.
 	 *
 	 * @return project's information
 	 */
@@ -272,7 +272,7 @@ public class Project{
 	}
 
 	/**
-	 * Make a copy of Project.
+	 * Make a copy of a project.
 	 *
 	 * @return a clone of this instance
 	 */

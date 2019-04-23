@@ -41,7 +41,7 @@ public class Manager extends User{
     }
 
     /**
-     * Is a way to show a manager's information on the screen
+     * Displays a manager's information on the screen.
      *
      * @return manager's information
      */
@@ -57,7 +57,7 @@ public class Manager extends User{
     }
 
     /**
-     * Compare if it is the same manager.
+     * Compares if it's the same manager.
      *
      * @return boolean indicating if two objects are the same
      */
@@ -75,7 +75,7 @@ public class Manager extends User{
     }
 
     /**
-     * Make a copy of Manager.
+     * Makes a copy of a manager.
      *
      * @return a clone of this instance
      */

@@ -16,7 +16,7 @@ public class Task{
 	private User coordinator;
 	private String description;
 	private State taskState;
-	private LocalDate beginDate; // justify
+	private LocalDate beginDate;
 	private LocalDate endDate;
 	private LocalDate limitDate;
 	private TasksPriority priority;
