@@ -259,19 +259,24 @@ public class Project{
 		if (this == o) {
 			return true;
 		}
-		if (o == null) {
+		if (o == null || this.getClass() != o.getClass()) {
 			return false;
 		}
-		if (o instanceof Project) {
-			Project test = (Project) o;
-			if ((test.title.equals(this.title)) && (test.description.equals(this.description)) &&
-					(test.beginDate.equals(this.beginDate)) && (test.endDate.equals(this.endDate)) &&
-					(test.lists.equals(this.lists)) && (test.owner.equals(this.owner)) &&
-					(test.projectState.equals(this.projectState))
-					&& (test.users.equals(this.users))){
-				return true;
-			}
-		}
-		return false;
+		Project test = (Project) o;
+
+		return test.title.equals(this.title) && test.description.equals(this.description) &&
+					test.beginDate.equals(this.beginDate) && test.endDate.equals(this.endDate) &&
+					test.lists.equals(this.lists) && test.owner.equals(this.owner) &&
+					test.projectState.equals(this.projectState)
+					&& test.users.equals(this.users);
+	}
+
+	/**
+	 * Make a copy of Project.
+	 *
+	 * @return a clone of this instance
+	 */
+	public Project clone(){
+		return new Project(this);
 	}
 }

@@ -154,15 +154,22 @@ public class User{
         if(this == o){
             return true;
         }
-        if(o == null){
+        if(o == null || this.getClass() != o.getClass()){
             return false;
         }
-        if(o instanceof User){
-            User test = (User) o;
-            if((test.name.equals(this.name)) && (test.email.equals(this.email)) &&(test.projects.equals(projects))){
-                return true;
-            }
-        }
-        return false;
+
+        User test = (User) o;
+
+        return test.name.equals(this.name) && test.email.equals(this.email) && test.password.equals(this.password)
+                && test.projects.equals(projects);
+    }
+
+    /**
+     * Make a copy of User.
+     *
+     * @return a clone of this instance
+     */
+    public User clone(){
+        return new User(this);
     }
 }

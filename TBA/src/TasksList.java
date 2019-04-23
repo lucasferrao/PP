@@ -129,16 +129,23 @@ public class TasksList{
         if (this == o) {
             return true;
         }
-        if (o == null) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        if (o instanceof TasksList) {
-            TasksList test = (TasksList) o;
-            if ((test.description.equals(this.description)) && (test.creator.equals(this.creator)) &&
-                    (test.tasks.equals(this.tasks))){
-                return true;
-            }
-        }
-        return false;
+
+        TasksList test = (TasksList) o;
+
+        return test.description.equals(this.description) && test.creator.equals(this.creator) &&
+                    test.tasks.equals(this.tasks);
+    }
+
+    /**
+     * Make a copy of TasksList.
+     *
+     * @return a clone of this instance
+     */
+    public TasksList clone(){
+        return new TasksList(this);
     }
 }
+

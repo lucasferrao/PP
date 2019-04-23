@@ -65,16 +65,21 @@ public class Manager extends User{
         if (this == o) {
             return true;
         }
-        if (o == null) {
+        if ((o == null) || this.getClass() != o.getClass()) {
             return false;
         }
-        if (o instanceof User) {
-            User test = (User) o;
-            if ((test.getName().equals(this.getName())) && (test.getEmail().equals(this.getEmail())) &&
-                    (test.getPassword().equals(this.getPassword())) && (test.getProjects().equals(this.getProjects()))){
-                return true;
-            }
-        }
-        return false;
+
+        Manager test = (Manager) o;
+
+        return super.equals(test);
+    }
+
+    /**
+     * Make a copy of Manager.
+     *
+     * @return a clone of this instance
+     */
+    public Manager clone(){
+        return new Manager(this);
     }
 }

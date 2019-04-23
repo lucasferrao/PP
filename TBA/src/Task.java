@@ -273,19 +273,25 @@ public class Task{
 		if(this == o){
 			return true;
 		}
-		if(o == null){
+		if(o == null || this.getClass() != o.getClass()){
 			return false;
 		}
-		if(o instanceof Task){
-			Task test = (Task) o;
-			if((test.title.equals(this.title)) && (test.creator.equals(this.creator)) &&
-					(test.coordinator.equals(this.coordinator)) && (test.description.equals(this.description)) &&
-					(test.taskState.equals(this.taskState)) && (test.beginDate.equals(this.beginDate)) &&
-							(test.endDate.equals(this.endDate)) && (test.limitDate.equals(this.limitDate)) &&
-							(test.priority.equals(this.priority))){
-				return true;
-			}
-		}
-		return false;
+
+		Task test = (Task) o;
+
+		return test.title.equals(this.title) && test.creator.equals(this.creator) &&
+					test.coordinator.equals(this.coordinator) && test.description.equals(this.description) &&
+					test.taskState.equals(this.taskState) && test.beginDate.equals(this.beginDate) &&
+							test.endDate.equals(this.endDate) && test.limitDate.equals(this.limitDate) &&
+							test.priority.equals(this.priority);
+	}
+
+	/**
+	 * Make a copy of Task.
+	 *
+	 * @return a clone of this instance
+	 */
+	public Task clone(){
+		return new Task(this);
 	}
 }
