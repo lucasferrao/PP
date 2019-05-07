@@ -1,9 +1,7 @@
+package GUI.src;
 
+import Backend.UsersList;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -166,13 +164,9 @@ public class CreateAccPage extends javax.swing.JFrame {
 
     private void createAccLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createAccLabelMouseClicked
         // TODO add your handling code here:
-        try {
-         
-        Desktop.getDesktop().browse(new URI("http://www.codejava.net"));
-         
-    } catch (IOException | URISyntaxException e1) {
-        e1.printStackTrace();
-    }
+        this.dispose();
+        new LogInPage().setVisible(true);
+
     }//GEN-LAST:event_createAccLabelMouseClicked
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
@@ -187,7 +181,7 @@ public class CreateAccPage extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -233,5 +227,6 @@ public class CreateAccPage extends javax.swing.JFrame {
     private javax.swing.JLabel nameLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JLabel passwordLabel;
+    private UsersList usersList;
     // End of variables declaration//GEN-END:variables
 }
