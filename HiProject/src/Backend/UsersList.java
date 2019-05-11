@@ -1,5 +1,6 @@
 package Backend;
 
+import Exceptions.UserDoesntExistException;
 import Exceptions.UserNullException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -117,23 +118,6 @@ public class UsersList {
     }
 
     /**
-     * Method that authenticates a user.
-     *
-     * @param email user's identifier
-     * @param password user's password
-     * @throws UserNullException
-     */
-    public boolean login(String email, String password) throws UserNullException {
-        User u = this.users.get(email);
-
-        if(u == null){
-            throw new NullPointerException("User with email " + email + " doesn't exists!");
-        }else{
-            return u.getPassword().equals(password);
-        }
-    }
-
-    /**
      * Method that changes the profile's settings.
      *
      * @param email user's identifier
@@ -155,6 +139,24 @@ public class UsersList {
     public void addUserProject(String email, Project p){
         User u = this.users.get(email);
         u.addProject(p);
+    }
+
+
+    /**
+    * Method that checks if a user with the given username exists.
+    *
+    * @param email user's identifier
+    */
+    public boolean exists(String email) {
+        return users.containsKey(email);
+    }
+
+    public User getUser(String email) throws UserDoesntExistException {
+        if (users.containsKey(email)){
+            return users.get(email);
+        }else{
+            throw new UserDoesntExistException("This user doesn't exist.");
+        }
     }
 
 }

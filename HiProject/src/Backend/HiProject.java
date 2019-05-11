@@ -1,17 +1,6 @@
 package Backend;
 
-import Exceptions.UserNullException;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.*;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * HiProject main application class.
@@ -25,6 +14,7 @@ import java.util.Map;
 public class HiProject {
     private ProjectsList projects;
     private UsersList users;
+    private User connectedUser;
 
     /**
      * HiProject's default constructor.
@@ -71,6 +61,15 @@ public class HiProject {
      */
     public UsersList getUsers() {
         return users.clone();
+    }
+
+    /**
+     * Returns the connected user.
+     *
+     * @return connectedUser
+     */
+    public User getConnectedUser() {
+        return connectedUser;
     }
 
     /**
@@ -150,18 +149,6 @@ public class HiProject {
     }
 
     /**
-     * Method that checks if exists a user with this email and password.
-     *
-     * @param email user's identifier
-     * @param password user's password
-     * @return true if the email and password combines
-     * @throws UserNullException
-     */
-    /*public boolean login(String email, String password) throws UserNullException {
-        return this.users.login(email, password);
-    }*/
-
-    /**
      * Method that changes the profile's settings.
      *
      * @param email user's identifier
@@ -187,75 +174,23 @@ public class HiProject {
         this.users.addUserProject(owner.getEmail(), p);
     }
 
-    public static void serializeJson(String file, Object obj) {
-
-        if (obj instanceof UsersList) {
-            UsersList usersList = (UsersList) obj;
-            Map<String, User> users = usersList.getUsers();
-            if (usersList.getUsers().isEmpty()) {
-                return;
-            } else {
-                FileWriter writer;
-                try {
-                    writer = new FileWriter(file);
-                    Gson gson = new GsonBuilder().create();
-                    String jsonObj = gson.toJson(users);
-
-                    writer.write(jsonObj);
-                    writer.close();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
+    public boolean authenticateUser(String email, String password) {
+        try{
+            if (users.exists(email)) {
+                User u = users.getUser(email);
+                if (u.getPassword().equals(password)) {
+                    connectedUser = u;
+                    return true;
                 }
             }
-        }
-
-        /*FileWriter writer;
-        try {
-            writer = new FileWriter(file);
-            Gson gson = new Gson();
-            String jsonObj = gson.toJson(obj);
-
-            writer.write(jsonObj);
-            writer.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-    }
-
-    public static boolean login(String email, String password) {
-
-        Gson gson = new Gson();
-        Type type = new TypeToken<Map<String, User>>(){}.getType();
-        String content = "";
-        try
-        {
-            content = new String ( Files.readAllBytes( Paths.get("C:\\Users\\Raphael\\Desktop\\PP\\HiProject\\src\\Estado\\UsersList.json")));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        Map<String, User> clonedMap = gson.fromJson(content, type);
-
-        System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(clonedMap));
-
-        UsersList usersList = new UsersList(clonedMap);
-        User u = usersList.getUsers().get(email);
-
-        return u.getPassword().equals(password);
-
+         }catch (Exception e) {
+                e.printStackTrace();
+            }
+        return false;
     }
 
     public static void main(String[] args) {
 
-        //Teste para verificar o funcionamento da serialização em json, apagar depois.
-        UsersList usersList = new UsersList();
-        usersList.addUser(new User("Lucas", "lucas@gmail.com", "password", new ArrayList<Project>()));
-        usersList.addUser(new User("Joca", "jocagay@gmail.com", "password", new ArrayList<Project>()));
-        serializeJson("C:\\Users\\Raphael\\Desktop\\PP\\HiProject\\src\\Estado\\UsersList.json", usersList);
-        System.out.println(login("lucas@gmail.com", "password"));
     }
 
 
