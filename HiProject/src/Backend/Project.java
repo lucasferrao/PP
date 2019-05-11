@@ -11,10 +11,11 @@ package Backend; /**
  * @version 20190406
  */
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Project{
+public class Project implements Serializable {
 	private String title;
 	private String description;
 	private LocalDate beginDate;

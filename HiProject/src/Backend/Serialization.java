@@ -2,7 +2,7 @@ package Backend;
 
 import java.io.*;
 
-public class Serialization {
+public class Serialization implements Serializable {
     private final File file;
 
     public Serialization(String file) {

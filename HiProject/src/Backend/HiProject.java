@@ -1,5 +1,6 @@
 package Backend;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -11,10 +12,11 @@ import java.time.LocalDate;
  * @version 20190406
  */
 
-public class HiProject {
+public class HiProject implements Serializable {
     private ProjectsList projects;
     private UsersList users;
     private User connectedUser;
+    private final Serialization serialization = new Serialization("C:\\Users\\Raphael\\Desktop\\PP\\HiProject\\src\\Estado\\HiProject.data");
 
     /**
      * HiProject's default constructor.
@@ -146,6 +148,7 @@ public class HiProject {
     public void registerNewUser(String name, String email, String password){
         User u = new User(name, email, password);
         this.users.addUser(u);
+        serialization.save(this);
     }
 
     /**
@@ -174,8 +177,17 @@ public class HiProject {
         this.users.addUserProject(owner.getEmail(), p);
     }
 
+    /**
+     * Method that authenticates a user.
+     *
+     * @param email user's email
+     * @param password user's password
+     *
+     * @return boolean indicating if the user exists
+     */
     public boolean authenticateUser(String email, String password) {
         try{
+            users = serialization.load().users;
             if (users.exists(email)) {
                 User u = users.getUser(email);
                 if (u.getPassword().equals(password)) {
@@ -188,10 +200,4 @@ public class HiProject {
             }
         return false;
     }
-
-    public static void main(String[] args) {
-
-    }
-
-
 }

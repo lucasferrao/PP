@@ -10,10 +10,11 @@
 
 package Backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class User {
+public class User implements Serializable {
     private String name;
     private String email;
     private String password;

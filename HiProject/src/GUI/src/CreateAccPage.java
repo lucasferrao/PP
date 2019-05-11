@@ -5,7 +5,9 @@ import Backend.Project;
 import Backend.User;
 import Backend.UsersList;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /*
@@ -19,7 +21,6 @@ import java.util.ArrayList;
  * @author Raphael
  */
 public class CreateAccPage extends javax.swing.JFrame {
-    private UsersList usersList;
 
     /**
      * Creates new form Homepage
@@ -51,7 +52,7 @@ public class CreateAccPage extends javax.swing.JFrame {
         confirmPasswordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Create an Account");
+        setTitle("Log in to HiProject");
         setBackground(new java.awt.Color(73, 200, 235));
         setMinimumSize(new java.awt.Dimension(800, 700));
         setName("LogInFrame"); // NOI18N
@@ -101,6 +102,12 @@ public class CreateAccPage extends javax.swing.JFrame {
 
         confirmPasswordLabel.setFont(new java.awt.Font("Verdana Pro Light", 0, 20)); // NOI18N
         confirmPasswordLabel.setText("Confirm Password");
+
+        confirmPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmPasswordFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -179,13 +186,30 @@ public class CreateAccPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void createAccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccButtonActionPerformed
-        User user = new User(nameTextField.getText(), emailTextField.getText(), new String(passwordField.getPassword()), new ArrayList<Project>());
-        usersList = new UsersList();
-        usersList.addUser(user);
-
-
+        HiProject hiProject = new HiProject();
+        if (nameTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please insert a name.");
+            nameTextField.requestFocus();
+        } else if (emailTextField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please insert an email.");
+            emailTextField.requestFocus();
+        } else if (passwordField.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(null, "Please insert a password.");
+            passwordField.requestFocus();
+        } else if (!Arrays.equals(confirmPasswordField.getPassword(), passwordField.getPassword())) {
+            JOptionPane.showMessageDialog(null, "The passwords have to be the same!", "Authentication", JOptionPane.WARNING_MESSAGE);
+            confirmPasswordField.requestFocus();
+        } else {
+            hiProject.registerNewUser(nameTextField.getText(), emailTextField.getText(), new String(passwordField.getPassword()));
+            dispose();
+            //then opens homepage with this user logged in
+        }
 
     }//GEN-LAST:event_createAccButtonActionPerformed
+
+    private void confirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordFieldActionPerformed
+        createAccButtonActionPerformed(evt);
+    }//GEN-LAST:event_confirmPasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments

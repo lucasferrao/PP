@@ -2,6 +2,8 @@ package Backend;
 
 import Exceptions.UserDoesntExistException;
 import Exceptions.UserNullException;
+
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,7 +16,7 @@ import java.util.stream.Collectors;
  * @version 20190406
  */
 
-public class UsersList {
+public class UsersList implements Serializable {
     private Map<String, User> users;
 
     /**

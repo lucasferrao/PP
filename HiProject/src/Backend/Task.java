@@ -10,9 +10,10 @@
 
 package Backend;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Task{
+public class Task implements Serializable {
 	private String title;
 	private User creator;
 	private User coordinator;

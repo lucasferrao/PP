@@ -1,5 +1,7 @@
 package Backend;
 
+import java.io.Serializable;
+
 /**
  * Represents the priority of a task.
  *
@@ -9,7 +11,7 @@ package Backend;
  * @version 20190406
  */
 
-public enum TasksPriority{
+public enum TasksPriority implements Serializable {
 	High,
 	Medium,
 	Low

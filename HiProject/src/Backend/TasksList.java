@@ -9,9 +9,10 @@
 
 package Backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TasksList{
+public class TasksList implements Serializable {
     private String description;
     private User creator;
     private ArrayList<Task> tasks;

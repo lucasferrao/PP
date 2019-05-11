@@ -1,5 +1,6 @@
 package Backend;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
  * @version 20190406
  */
 
-public class ProjectsList {
+public class ProjectsList implements Serializable {
     private List<Project> projects;
 
     /**

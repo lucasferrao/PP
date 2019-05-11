@@ -9,7 +9,9 @@
 
 package Backend;
 
-public enum State{
+import java.io.Serializable;
+
+public enum State implements Serializable {
 	NotStarted,
 	Started,
 	Finished

@@ -196,6 +196,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="confirmPasswordField">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmPasswordFieldActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
