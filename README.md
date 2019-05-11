@@ -1,6 +1,6 @@
 # HiProject
 
-OOP University project for a project management program.
+OOP University project for a management program.
 
 
 ## Contributing
