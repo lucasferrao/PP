@@ -1,4 +1,6 @@
-# TBA
+# HiProject
+
+OOP University project for a project management program.
 
 
 ## Contributing
