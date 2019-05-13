@@ -7,9 +7,13 @@
  * @version 20190406
  */
 
+<<<<<<< HEAD:HiProject/src/Backend/TasksList.java
 package Backend;
 
 import java.io.Serializable;
+=======
+import java.time.LocalDate;
+>>>>>>> lucas-projects:HiProject/src/TasksList.java
 import java.util.ArrayList;
 
 public class TasksList implements Serializable {
@@ -136,6 +140,7 @@ public class TasksList implements Serializable {
         if(this == o) {
             return true;
         }
+
         if(o == null || this.getClass() != o.getClass()) {
             return false;
         }
@@ -155,6 +160,25 @@ public class TasksList implements Serializable {
     @Override
     public TasksList clone(){
         return new TasksList(this);
+    }
+
+    /**
+     * Method that adds tasks to a task list.
+     *
+     * @param task
+     */
+    public void addTasks(Task task){
+        this.tasks.add(task);
+    }
+
+    /**
+     * Method that change the task's state.
+     *
+     * @param task
+     * @param state
+     */
+    public void changeTaskState(Task task, State state){
+        task.setTaskState(state);
     }
 }
 

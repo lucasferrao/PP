@@ -2,6 +2,14 @@ package Backend;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+<<<<<<< HEAD:HiProject/src/Backend/HiProject.java
+=======
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+>>>>>>> lucas-projects:HiProject/src/HiProject.java
 
 /**
  * HiProject main application class.
@@ -141,13 +149,14 @@ public class HiProject implements Serializable {
     /**
      * Method that registers a new user.
      *
-     * @param name the name of the new user
-     * @param email the email of the new user
-     * @param password the password of the new user
+     * @param name
+     * @param email
+     * @param email
      */
     public void registerNewUser(String name, String email, String password){
         User u = new User(name, email, password);
         this.users.addUser(u);
+<<<<<<< HEAD:HiProject/src/Backend/HiProject.java
         serialization.save(this);
     }
 
@@ -199,5 +208,7 @@ public class HiProject implements Serializable {
                 e.printStackTrace();
             }
         return false;
+=======
+>>>>>>> lucas-projects:HiProject/src/HiProject.java
     }
 }

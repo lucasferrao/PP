@@ -23,9 +23,8 @@ public class UsersList implements Serializable {
      * UsersList's default constructor.
      */
     public UsersList(){
-        this.users = new HashMap<>();
+        this.users = new HashMap<String, User>();
     }
-
 
     /**
      * UsersList's parametrized constructor.
@@ -110,6 +109,10 @@ public class UsersList implements Serializable {
         return new UsersList(this);
     }
 
+    public boolean exist(String email) {
+        return users.containsKey(email);
+    }
+
     /**
      * Method the add a user.
      *
@@ -120,6 +123,18 @@ public class UsersList implements Serializable {
     }
 
     /**
+<<<<<<< HEAD:HiProject/src/Backend/UsersList.java
+=======
+     * Method to get a user.
+     *
+     * @param email a user's email
+     */
+    public User getUser(String email){
+        return this.users.get(email);
+    }
+
+    /**
+>>>>>>> lucas-projects:HiProject/src/UsersList.java
      * Method that changes the profile's settings.
      *
      * @param email user's identifier
