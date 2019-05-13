@@ -7,12 +7,26 @@
     <option name="height" value="1044" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.LogInPage">
+    <configuration name="CreateAccPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GUI.src.CreateAccPage" />
+      <module name="HiProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="GUI.src.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LogInPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GUI.src.LogInPage" />
       <module name="HiProject" />
@@ -29,6 +43,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.LogInPage" />
+        <item itemvalue="Application.CreateAccPage" />
       </list>
     </recent_temporary>
   </component>
