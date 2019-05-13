@@ -2,7 +2,9 @@ import Exceptions.UserNullException;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -133,50 +135,12 @@ public class HiProject implements Serializable{
     /**
      * Method that registers a new user.
      *
-     * @param name the name of the new user
-     * @param email the email of the new user
-     * @param password the password of the new user
+     * @param name
+     * @param email
+     * @param email
      */
     public void registerNewUser(String name, String email, String password){
         User u = new User(name, email, password);
         this.users.addUser(u);
-    }
-
-    /**
-     * Method that checks if exists a user with this email and password.
-     *
-     * @param email user's identifier
-     * @param password user's password
-     * @return true if the email and password combines
-     * @throws UserNullException
-     */
-    public boolean login(String email, String password) throws UserNullException {
-        return this.users.login(email, password);
-    }
-
-    /**
-     * Method that changes the profile's settings.
-     *
-     * @param email user's identifier
-     * @param name new user's name
-     * @param password new user's password
-     */
-    public void editProfile(String email, String name, String password){
-        this.users.editProfile(email, name, password);
-    }
-
-    /**
-     * Method that creates a project.
-     *
-     * @param title project's title
-     * @param description project's description
-     * @param endDate project's end date
-     * @param email project's owner email
-     */
-    public void createProject(String title, String description, LocalDate endDate, String email){
-        Manager owner = new Manager();     // ?????
-        Project p = new Project(title, description, endDate, owner);
-        this.projects.addProject(p);
-        this.users.addUserProject(owner.getEmail(), p);
     }
 }

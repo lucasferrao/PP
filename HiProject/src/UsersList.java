@@ -18,9 +18,8 @@ public class UsersList{
      * UsersList's default constructor.
      */
     public UsersList(){
-        this.users = new HashMap<>();
+        this.users = new HashMap<String, User>();
     }
-
 
     /**
      * UsersList's parametrized constructor.
@@ -104,6 +103,10 @@ public class UsersList{
         return new UsersList(this);
     }
 
+    public boolean exist(String email) {
+        return users.containsKey(email);
+    }
+
     /**
      * Method the add a user.
      *
@@ -114,20 +117,12 @@ public class UsersList{
     }
 
     /**
-     * Method that authenticates a user.
+     * Method to get a user.
      *
-     * @param email user's identifier
-     * @param password user's password
-     * @throws UserNullException
+     * @param email a user's email
      */
-    public boolean login(String email, String password) throws UserNullException{
-        User u = this.users.get(email);
-
-        if(u == null){
-            throw new UserNullException("User with email " + email + " doesn't exists!");
-        }else{
-            return u.getPassword().equals(password);
-        }
+    public User getUser(String email){
+        return this.users.get(email);
     }
 
     /**
