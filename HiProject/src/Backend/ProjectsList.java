@@ -1,6 +1,7 @@
 package Backend;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,27 +15,27 @@ import java.util.stream.Collectors;
  */
 
 public class ProjectsList implements Serializable {
-    private List<Project> projects;
+    private Map<Integer, Project> projects;
 
     /**
      * ProjectsList's default constructor.
      */
     public ProjectsList(){
-        this.projects = new ArrayList<Project>();
+        this.projects = new HashMap<Integer, Project>();
     }
 
-
     /**
-     * ProjectsList's default constructor.
+     * ProjectsList's parametrized constructor.
      *
      * @param projects list of projects
      */
-    public ProjectsList(List<Project> projects){
-        setProjects(projects);
+    public ProjectsList(Map<Integer, Project> projects){
+        this.projects.putAll(projects);
+        this.projects.forEach((k,v) -> v = v.clone());
     }
 
     /**
-     * ProjectsList's default constructor.
+     * ProjectsList's copy constructor.
      *
      * @param projectsList a projects list
      */
@@ -47,9 +48,8 @@ public class ProjectsList implements Serializable {
      *
      * @return projects
      */
-    public ArrayList<Project> getProjects(){
-        return projects.stream().
-                collect(Collectors.toCollection(ArrayList::new));     //Security (encapsulation)
+    public Map<Integer, Project> getProjects(){
+        return projects.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));
     }
 
     /**
@@ -57,9 +57,9 @@ public class ProjectsList implements Serializable {
      *
      * @param projects new projects list
      */
-    public void setProjects(List<Project> projects){
-        this.projects = projects.stream().
-                collect(Collectors.toCollection(ArrayList::new));
+    public void setProjects(Map<Integer, Project> projects){
+        this.projects.putAll(projects);
+        this.projects.forEach((k,v) -> v = v.clone());
     }
 
     /**
@@ -72,6 +72,14 @@ public class ProjectsList implements Serializable {
     @Override
     public boolean equals(Object o){
         if(this == o){
+            return true;
+        }
+
+        if(o instanceof Contributor){
+            return true;
+        }
+
+        if(o instanceof Manager){
             return true;
         }
 
@@ -92,7 +100,7 @@ public class ProjectsList implements Serializable {
     @Override
     public String toString() {
         return "ProjectsList{" +
-                "projects =" + projects +
+                "projects = " + projects +
                 '}';
     }
 
@@ -112,6 +120,133 @@ public class ProjectsList implements Serializable {
      * @param p new project
      */
     public void addProject(Project p){
-        this.projects.add(p);
+        this.projects.put(p.getProjectID(), p);
+    }
+
+    /**
+     * Method that edit a project.
+     *
+     * @param projectID the project that has that ID
+     * @param title new title
+     * @param description new description
+     * @param endDate new end date
+     */
+    public void editProject(int projectID, String title, String description, LocalDate endDate){
+        Project p = this.projects.get(projectID);
+        p.setTitle(title);
+        p.setDescription(description);
+        p.setEndDate(endDate);
+    }
+
+    /**
+     * Method to get a project.
+     *
+     * @param projectID the project that has that ID
+     */
+    public Project getProject(int projectID){
+       return this.projects.get(projectID);
+    }
+
+    /**
+     * Method that add contributors to a project.
+     *
+     * @param contributor
+     */
+    public void addContributors(int projectID, Contributor contributor, ArrayList<Contributor> contributors){
+        Project p = this.getProject(projectID);
+        Manager owner = p.getOwner();
+
+        if(owner.equals(contributor)){
+            for(Contributor e : contributors) {
+                p.getContributors().add(e);
+            }
+        }
+    }
+
+    /**
+     * Method that adds a tasks list to a project.
+     *
+     * @param projectID
+     * @param tasksList
+     */
+    public void addTasksList(int projectID, TasksList tasksList){
+        Project p = this.getProject(projectID);
+        p.getLists().add(tasksList);
+    }
+
+    /**
+     * Method that returns the number of completed projects.
+     *
+     * @return finishedProject
+     */
+    public int completedProjects(){
+        int finishedProject = 0;
+        for(Map.Entry<Integer, Project> e : projects.entrySet()){
+            State projectState = e.getValue().getProjectState();
+            if(projectState.equals(State.Finished)){
+                finishedProject++;
+            }
+        }
+
+        return finishedProject;
+    }
+
+    /**
+     * Method that returns the number of ongoing projects.
+     *
+     * @return ongoingProjects
+     */
+    public int ongoingProjects(){
+        int ongoingProjects = 0;
+        LocalDate now = LocalDate.now();
+        for(Map.Entry<Integer, Project> e : projects.entrySet()){
+            State projectState = e.getValue().getProjectState();
+            LocalDate projectEndDate = e.getValue().getEndDate();
+            if(projectState.equals(State.Started) && projectEndDate.isBefore(now)){
+                ongoingProjects++;
+            }
+        }
+
+        return ongoingProjects;
+    }
+
+    /**
+     * Method that returns the number of late projects.
+     *
+     * @return lateProjects
+     */
+    public int lateProjects(){
+        int lateProjects = 0;
+        LocalDate now = LocalDate.now();
+        for(Map.Entry<Integer, Project> e : projects.entrySet()){
+            State projectState = e.getValue().getProjectState();
+            LocalDate projectEndDate = e.getValue().getEndDate();
+            if(!projectState.equals(State.Finished) && projectEndDate.isAfter(now)){
+                lateProjects++;
+            }
+        }
+
+        return lateProjects;
+    }
+
+    /**
+     * Method that returns the three most delayed projects.
+     *
+     * @return ArrayList<Project> delayedProjects
+     */
+    public ArrayList<Project> delayedProjects(){
+        List<Project> delayedProjects = new ArrayList<Project>();
+        LocalDate now = LocalDate.now();
+        for(Map.Entry<Integer, Project> e : projects.entrySet()){
+            LocalDate projectEndDate = e.getValue().getEndDate();
+            State projectState = e.getValue().getProjectState();
+            if(!projectState.equals(State.Finished) && !projectEndDate.isAfter(now)){
+                delayedProjects.add((Project) e.getValue());
+            }
+        }
+
+        return (ArrayList<Project>) delayedProjects.stream().
+                sorted(Comparator.comparing(Project :: getEndDate)).limit(3).
+                collect(Collectors.toList());
     }
 }

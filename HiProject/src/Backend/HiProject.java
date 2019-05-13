@@ -2,7 +2,6 @@ package Backend;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
 /**
  * HiProject main application class.
  *
@@ -141,9 +140,9 @@ public class HiProject implements Serializable {
     /**
      * Method that registers a new user.
      *
-     * @param name the name of the new user
-     * @param email the email of the new user
-     * @param password the password of the new user
+     * @param name
+     * @param email
+     * @param email
      */
     public void registerNewUser(String name, String email, String password){
         User u = new User(name, email, password);

@@ -1,5 +1,6 @@
 package Backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * @version 20190406
  */
 
-public class Manager extends User{
+public class Manager extends User implements Serializable {
 
     /**
      * Manager's default constructor.

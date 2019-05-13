@@ -23,9 +23,8 @@ public class UsersList implements Serializable {
      * UsersList's default constructor.
      */
     public UsersList(){
-        this.users = new HashMap<>();
+        this.users = new HashMap<String, User>();
     }
-
 
     /**
      * UsersList's parametrized constructor.
@@ -108,6 +107,10 @@ public class UsersList implements Serializable {
     @Override
     public UsersList clone(){
         return new UsersList(this);
+    }
+
+    public boolean exist(String email) {
+        return users.containsKey(email);
     }
 
     /**
