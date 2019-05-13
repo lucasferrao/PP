@@ -229,27 +229,21 @@ public class ProjectsList {
     /**
      * Method that returns the three most delayed projects.
      *
-     *
+     * @return ArrayList<Project> delayedProjects
      */
     public ArrayList<Project> delayedProjects(){
         List<Project> delayedProjects = new ArrayList<Project>();
         LocalDate now = LocalDate.now();
-        LocalDate lateProject = delayedProjects.get(0).getEndDate();
         for(Map.Entry<Integer, Project> e : projects.entrySet()){
             LocalDate projectEndDate = e.getValue().getEndDate();
-            if(projectEndDate.isAfter(now)){
-                delayedProjects.add((Project) e);
+            State projectState = e.getValue().getProjectState();
+            if(!projectState.equals(State.Finished) && !projectEndDate.isAfter(now)){
+                delayedProjects.add((Project) e.getValue());
             }
         }
 
-        for(Project e : delayedProjects){
-            LocalDate late = e.getEndDate();
-            if(late.isAfter(lateProject)){
-                lateProject = late;
-            }
-        }
-
-
-        return lateProject;
+        return (ArrayList<Project>) delayedProjects.stream().
+                sorted(Comparator.comparing(Project :: getEndDate)).limit(3).
+                collect(Collectors.toList());
     }
 }
