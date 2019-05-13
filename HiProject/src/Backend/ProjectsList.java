@@ -17,13 +17,8 @@ import java.util.stream.Collectors;
  * @version 20190406
  */
 
-<<<<<<< HEAD:HiProject/src/Backend/ProjectsList.java
-public class ProjectsList implements Serializable {
-    private List<Project> projects;
-=======
 public class ProjectsList {
     private Map<Integer, Project> projects;
->>>>>>> lucas-projects:HiProject/src/ProjectsList.java
 
     /**
      * ProjectsList's default constructor.
