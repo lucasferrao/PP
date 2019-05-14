@@ -18,7 +18,7 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String password;
-    private ArrayList<Project> projects;
+    private ProjectsList projects;
 
     /**
      * User's default constructor.
@@ -27,7 +27,7 @@ public class User implements Serializable {
         this.name = "";
         this.email = "";
         this.password = "";
-        this.projects = new ArrayList<Project>();
+        this.projects = new ProjectsList();
     }
 
     /**
@@ -38,7 +38,7 @@ public class User implements Serializable {
      * @param password user's password
      * @param projects list of user's projects
      */
-    public User(String name, String email, String password, ArrayList<Project> projects) {
+    public User(String name, String email, String password, ProjectsList projects) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -56,7 +56,7 @@ public class User implements Serializable {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.projects = new ArrayList<Project>();
+        this.projects = new ProjectsList();
     }
 
     /**
@@ -103,8 +103,8 @@ public class User implements Serializable {
      *
      * @return projects
      */
-    public ArrayList<Project> getProjects() {
-        return projects.stream().map(Project::new).collect(Collectors.toCollection(ArrayList::new)); //Data protection
+    public ProjectsList getProjects() {
+        return projects.clone();
     }
 
     /**
@@ -139,8 +139,8 @@ public class User implements Serializable {
      *
      * @param projects a new projects list
      */
-    public void setProjects(ArrayList<Project> projects) {
-        this.projects = projects;
+    public void setProjects(ProjectsList projects) {
+        this.projects = projects.clone();
     }
 
     /**
@@ -156,7 +156,7 @@ public class User implements Serializable {
         s.append("User's name: " + this.name + ".\n");
         s.append("User's email: " + this.email + ".\n");
         s.append("User's projects:\n");
-        for(Project p: this.projects){
+        for(Project p : this.projects.getProjects().values()){
             s.append(" - " + p.toString() + ".\n");
         }
 
@@ -201,6 +201,6 @@ public class User implements Serializable {
      * @param p new project
      */
     public void addProject(Project p){
-        this.projects.add(p);
+        this.projects.addProject(p);
     }
 }
