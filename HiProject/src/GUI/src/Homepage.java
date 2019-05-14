@@ -1,25 +1,21 @@
-package GUI.src;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package GUI.src;
 
 import Backend.User;
-
-import java.io.Serializable;
 
 /**
  *
  * @author joaod
  */
-public class Homepage extends javax.swing.JFrame implements Serializable {
+public class Homepage extends javax.swing.JFrame {
     private static User connectedUser;
 
     /**
      * Creates new form Homepage
-     * @param connectedUser
      */
     public Homepage(User connectedUser) {
         Homepage.connectedUser = connectedUser;
@@ -36,6 +32,7 @@ public class Homepage extends javax.swing.JFrame implements Serializable {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         dashboardPanel = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -63,19 +60,28 @@ public class Homepage extends javax.swing.JFrame implements Serializable {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Homepage");
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 355, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(298, Short.MAX_VALUE))
         );
 
         dashboardPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
@@ -98,15 +104,15 @@ public class Homepage extends javax.swing.JFrame implements Serializable {
 
         completedProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         completedProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        completedProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().getProjects().size()));
+        completedProjectsValueLabel.setText("completedProjectsValueLabel");
 
         ongoingProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ongoingProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ongoingProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().getProjects().size()));
+        ongoingProjectsValueLabel.setText("ongoingProjectsValueLabel");
 
         lateProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lateProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lateProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().getProjects().size()));
+        lateProjectsValueLabel.setText("lateProjectsValueLabel");
 
         inNeedOfAttentionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         inNeedOfAttentionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -164,7 +170,7 @@ public class Homepage extends javax.swing.JFrame implements Serializable {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inoaProject1ValueLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inoaProject1ValueLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(inNeedOfAttentionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(inoaProject2ValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -243,6 +249,11 @@ public class Homepage extends javax.swing.JFrame implements Serializable {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("User Profile");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Exit");
@@ -275,11 +286,13 @@ public class Homepage extends javax.swing.JFrame implements Serializable {
                 .addComponent(dashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1018, 849));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        NewProject newp = new NewProject(connectedUser);
+        newp.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -289,6 +302,11 @@ public class Homepage extends javax.swing.JFrame implements Serializable {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         System.exit(1);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        ManageUserAccount mua = new ManageUserAccount(connectedUser);
+        mua.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,6 +357,7 @@ public class Homepage extends javax.swing.JFrame implements Serializable {
     private javax.swing.JLabel inoaProject1ValueLabel;
     private javax.swing.JLabel inoaProject2ValueLabel;
     private javax.swing.JLabel inoaProject3ValueLabel;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
