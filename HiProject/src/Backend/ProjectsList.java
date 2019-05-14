@@ -249,4 +249,29 @@ public class ProjectsList implements Serializable {
                 sorted(Comparator.comparing(Project :: getEndDate)).limit(3).
                 collect(Collectors.toList());
     }
+
+    /**
+     * Method that gives the biggest project.
+     *
+     * @return biggestProject
+     */
+    public Project biggestProject(){
+        double total = 0.0;
+        double biggestTotal = 0.0;
+        Project biggestProject = new Project();
+
+        for(Map.Entry<Integer, Project> e : projects.entrySet()){
+            total = 1.5 * e.getValue().getContributors().size();
+           for(TasksList t : e.getValue().getLists()){
+               total += t.getTasks().size();
+           }
+
+           if(total >= biggestTotal){
+               biggestTotal = total;
+               biggestProject = e.getValue();
+           }
+        }
+
+        return  biggestProject;
+    }
 }
