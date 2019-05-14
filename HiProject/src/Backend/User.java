@@ -74,7 +74,7 @@ public class User implements Serializable {
     /**
      * Returns the user's name.
      *
-     * @return name
+     * @return user's name
      */
     public String getName() {
         return name;
@@ -83,7 +83,7 @@ public class User implements Serializable {
     /**
      * Returns the user's email.
      *
-     * @return email
+     * @return user's email
      */
     public String getEmail() {
         return email;
@@ -92,7 +92,7 @@ public class User implements Serializable {
     /**
      * Returns the user's password.
      *
-     * @return password
+     * @return user's password
      */
     public String getPassword() {
         return password;
@@ -101,7 +101,7 @@ public class User implements Serializable {
     /**
      * Returns the user's projects list.
      *
-     * @return projects
+     * @return user's projects
      */
     public ProjectsList getProjects() {
         return projects.clone();

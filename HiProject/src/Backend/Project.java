@@ -114,7 +114,7 @@ public class Project implements Serializable {
 	/**
 	 * Method that returns the project's ID.
 	 *
-	 * @return projectID
+	 * @return project's ID
 	 */
 	public static int getAndIncNextID(){
 		return Project.nextID++;
@@ -123,7 +123,7 @@ public class Project implements Serializable {
 	/**
 	 * Returns the project's ID.
 	 *
-	 * @return projectID
+	 * @return project's ID
 	 */
 	public int getProjectID(){
 		return this.projectID;
@@ -132,7 +132,7 @@ public class Project implements Serializable {
 	/**
 	 * Returns the project title.
 	 *
-	 * @return title
+	 * @return project's title
 	 */
 	public String getTitle() {
 		return title;
@@ -141,7 +141,7 @@ public class Project implements Serializable {
 	/**
 	 * Returns the project description.
 	 *
-	 * @return description
+	 * @return project's description
 	 */
 	public String getDescription() {
 		return description;
@@ -150,7 +150,7 @@ public class Project implements Serializable {
 	/**
 	 * Returns the project begin date.
 	 *
-	 * @return begin date
+	 * @return project's begin date
 	 */
 	public LocalDate getBeginDate() {
 		return beginDate;
@@ -159,7 +159,7 @@ public class Project implements Serializable {
 	/**
 	 * Returns the project end date.
 	 *
-	 * @return end date
+	 * @return project's end date
 	 */
 	public LocalDate getEndDate() {
 		return endDate;
@@ -177,7 +177,7 @@ public class Project implements Serializable {
 	/**
 	 * Returns the project's owner.
 	 *
-	 * @return owner
+	 * @return project's owner
 	 */
 	public Manager getOwner() {
 		return owner;
@@ -186,7 +186,7 @@ public class Project implements Serializable {
 	/**
 	 * Returns the project state.
 	 *
-	 * @return projectState
+	 * @return project state
 	 */
 	public State getProjectState() {
 		return projectState;
@@ -204,7 +204,7 @@ public class Project implements Serializable {
 	/**
 	 * Returns the next project's ID.
 	 *
-	 * @return nextID
+	 * @return next project ID
 	 */
 	public static int getNextID(){
 		return Project.nextID;
@@ -370,7 +370,7 @@ public class Project implements Serializable {
 	/**
 	 * Method that verifies which tasks are late.
 	 *
-	 * @return latestTasks
+	 * @return late tasks
 	 */
 	public TasksList lateTasks(){
 		List<Task> latestTasks = new ArrayList<Task>();

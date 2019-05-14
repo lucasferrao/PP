@@ -99,7 +99,7 @@ public class ProjectsList implements Serializable {
      */
     @Override
     public String toString() {
-        return "ProjectsList{" +
+        return "Projects list{" +
                 "projects = " + projects +
                 '}';
     }
@@ -150,7 +150,7 @@ public class ProjectsList implements Serializable {
     /**
      * Method that add contributors to a project.
      *
-     * @param contributor
+     * @param contributor new contributors
      */
     public void addContributors(int projectID, Contributor contributor, ArrayList<Contributor> contributors){
         Project p = this.getProject(projectID);
@@ -166,8 +166,8 @@ public class ProjectsList implements Serializable {
     /**
      * Method that adds a tasks list to a project.
      *
-     * @param projectID
-     * @param tasksList
+     * @param projectID a project's ID
+     * @param tasksList a list of tasks
      */
     public void addTasksList(int projectID, TasksList tasksList){
         Project p = this.getProject(projectID);
@@ -177,7 +177,7 @@ public class ProjectsList implements Serializable {
     /**
      * Method that returns the number of completed projects.
      *
-     * @return finishedProject
+     * @return the finished projects
      */
     public int completedProjects(){
         int finishedProject = 0;
@@ -194,7 +194,7 @@ public class ProjectsList implements Serializable {
     /**
      * Method that returns the number of ongoing projects.
      *
-     * @return ongoingProjects
+     * @return the ongoing projects
      */
     public int ongoingProjects(){
         int ongoingProjects = 0;
@@ -213,7 +213,7 @@ public class ProjectsList implements Serializable {
     /**
      * Method that returns the number of late projects.
      *
-     * @return lateProjects
+     * @return the late projects
      */
     public int lateProjects(){
         int lateProjects = 0;
@@ -232,7 +232,7 @@ public class ProjectsList implements Serializable {
     /**
      * Method that returns the three most delayed projects.
      *
-     * @return ArrayList<Project> delayedProjects
+     * @return the delayed projects
      */
     public ArrayList<Project> delayedProjects(){
         List<Project> delayedProjects = new ArrayList<Project>();
@@ -253,7 +253,7 @@ public class ProjectsList implements Serializable {
     /**
      * Method that gives the biggest project.
      *
-     * @return biggestProject
+     * @return the biggest project
      */
     public Project biggestProject(){
         double total = 0.0;

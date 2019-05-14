@@ -86,7 +86,7 @@ public class Task implements Serializable {
 	/**
 	 * Returns the task's title.
 	 *
-	 * @return title
+	 * @return task's title
 	 */
 	public String getTitle() {
 		return title;
@@ -95,7 +95,7 @@ public class Task implements Serializable {
 	/**
 	 * Returns the task's creator.
 	 *
-	 * @return creator
+	 * @return task's creator
 	 */
 	public User getCreator() {
 		return creator;
@@ -104,7 +104,7 @@ public class Task implements Serializable {
 	/**
 	 * Returns the task's coordinator.
 	 *
-	 * @return coordinator
+	 * @return task's coordinator
 	 */
 	public User getCoordinator() {
 		return coordinator;
@@ -113,7 +113,7 @@ public class Task implements Serializable {
 	/**
 	 * Returns the task's description.
 	 *
-	 * @return description
+	 * @return task's description
 	 */
 	public String getDescription() {
 		return description;
@@ -122,7 +122,7 @@ public class Task implements Serializable {
 	/**
 	 * Returns the task's state.
 	 *
-	 * @return task state
+	 * @return task's state
 	 */
 	public State getTaskState() {
 		return taskState;
@@ -131,7 +131,7 @@ public class Task implements Serializable {
 	/**
 	 * Returns the task's begin date.
 	 *
-	 * @return begin date
+	 * @return task's begin date
 	 */
 	public LocalDate getBeginDate() {
 		return beginDate;
@@ -140,7 +140,7 @@ public class Task implements Serializable {
 	/**
 	 * Returns the task's end date.
 	 *
-	 * @return end date
+	 * @return task's end date
 	 */
 	public LocalDate getEndDate() {
 		return endDate;
@@ -149,7 +149,7 @@ public class Task implements Serializable {
 	/**
 	 * Returns the task's limit date.
 	 *
-	 * @return limit date
+	 * @return task's limit date
 	 */
 	public LocalDate getLimitDate() {
 		return limitDate;
@@ -158,7 +158,7 @@ public class Task implements Serializable {
 	/**
 	 * Returns the task's priority.
 	 *
-	 * @return priority
+	 * @return task's priority
 	 */
 	public TasksPriority getPriority() {
 		return priority;

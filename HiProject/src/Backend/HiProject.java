@@ -1,5 +1,7 @@
 package Backend;
 
+import Exceptions.UserDoesntExistException;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 /**
@@ -15,7 +17,7 @@ public class HiProject implements Serializable {
     private ProjectsList projects;
     private UsersList users;
     private User connectedUser;
-    private final Serialization serialization = new Serialization("C:\\Users\\Raphael\\Desktop\\PP\\HiProject\\src\\Estado\\HiProject.data");
+    private final Serialization serialization = new Serialization("C:\\Users\\Lucas\\Desktop\\PP\\HiProject\\src\\Estado\\HiProject.data");
 
     /**
      * HiProject's default constructor.
@@ -140,9 +142,9 @@ public class HiProject implements Serializable {
     /**
      * Method that registers a new user.
      *
-     * @param name
-     * @param email
-     * @param email
+     * @param name user's name
+     * @param email user's email
+     * @param password user's password
      */
     public void registerNewUser(String name, String email, String password){
         User u = new User(name, email, password);
@@ -170,10 +172,15 @@ public class HiProject implements Serializable {
      * @param email project's owner email
      */
     public void createProject(String title, String description, LocalDate endDate, String email){
-        Manager owner = new Manager();     // ?????
-        Project p = new Project(title, description, endDate, owner);
-        this.projects.addProject(p);
-        this.users.addUserProject(owner.getEmail(), p);
+        try{
+            Manager owner = (Manager) this.users.getUser(email);
+            Project p = new Project(title, description, endDate, owner);
+            this.projects.addProject(p);
+            this.users.addUserProject(owner.getEmail(), p);
+        } catch(UserDoesntExistException e){
+
+        }
+
     }
 
     /**

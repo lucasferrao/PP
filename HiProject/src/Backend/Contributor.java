@@ -30,7 +30,7 @@ public class Contributor extends User implements Serializable {
      * @param password Contributor's password
      * @param projects list of Contributor's projects
      */
-    public Contributor(String name, String email, String password, ArrayList<Project> projects) {
+    public Contributor(String name, String email, String password, ProjectsList projects) {
         super(name, email, password, projects);
     }
 

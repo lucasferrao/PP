@@ -53,7 +53,7 @@ public class TasksList implements Serializable {
     /**
      * Returns the tasks list's description.
      *
-     * @return description
+     * @return tasks list's description
      */
     public String getDescription() {
         return description;
@@ -62,7 +62,7 @@ public class TasksList implements Serializable {
     /**
      * Returns the tasks list's creator.
      *
-     * @return creator
+     * @return tasks list's creator
      */
     public User getCreator() {
         return creator;
@@ -71,7 +71,7 @@ public class TasksList implements Serializable {
     /**
      * Returns the tasks list.
      *
-     * @return tasks
+     * @return a list of tasks
      */
     public ArrayList<Task> getTasks() {
         return tasks;
@@ -161,7 +161,7 @@ public class TasksList implements Serializable {
     /**
      * Method that adds tasks to a task list.
      *
-     * @param task
+     * @param task new tasks
      */
     public void addTasks(Task task){
         this.tasks.add(task);
@@ -170,8 +170,8 @@ public class TasksList implements Serializable {
     /**
      * Method that change the task's state.
      *
-     * @param task
-     * @param state
+     * @param task a task
+     * @param state new task's state
      */
     public void changeTaskState(Task task, State state){
         task.setTaskState(state);
