@@ -104,7 +104,8 @@ public class User implements Serializable {
      * @return projects
      */
     public ArrayList<Project> getProjects() {
-        return projects.stream().map(Project::new).collect(Collectors.toCollection(ArrayList::new)); //Data protection
+        /*return projects.stream().map(Project::new).collect(Collectors.toCollection(ArrayList::new)); //Data protection*/
+        return projects;
     }
 
     /**

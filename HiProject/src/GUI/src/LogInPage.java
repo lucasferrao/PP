@@ -2,6 +2,7 @@ package GUI.src;
 
 import Backend.HiProject;
 import Backend.UsersList;
+import Exceptions.UserDoesntExistException;
 
 import javax.swing.*;
 
@@ -38,7 +39,12 @@ public class LogInPage extends javax.swing.JFrame {
             emailTextField.requestFocus();
         } else {
             dispose();
-            //then opens homepage with this user logged in
+            try {
+                hiProject.setConnectedUser(hiProject.getUsers().getUser(emailTextField.getText()));
+            } catch (UserDoesntExistException e) {
+                e.printStackTrace();
+            }
+            new Homepage(hiProject.getConnectedUser()).setVisible(true);
         }
 
     }

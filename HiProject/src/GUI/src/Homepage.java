@@ -1,19 +1,28 @@
+package GUI.src;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
+import Backend.User;
+
+import java.io.Serializable;
+
 /**
  *
  * @author joaod
  */
-public class Homepage extends javax.swing.JFrame {
+public class Homepage extends javax.swing.JFrame implements Serializable {
+    private static User connectedUser;
 
     /**
      * Creates new form Homepage
+     * @param connectedUser
      */
-    public Homepage() {
+    public Homepage(User connectedUser) {
+        Homepage.connectedUser = connectedUser;
         initComponents();
     }
 
@@ -89,15 +98,15 @@ public class Homepage extends javax.swing.JFrame {
 
         completedProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         completedProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        completedProjectsValueLabel.setText("completedProjectsValueLabel");
+        completedProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().size()));
 
         ongoingProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ongoingProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ongoingProjectsValueLabel.setText("ongoingProjectsValueLabel");
+        ongoingProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().size()));
 
         lateProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lateProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lateProjectsValueLabel.setText("lateProjectsValueLabel");
+        lateProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().size()));
 
         inNeedOfAttentionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         inNeedOfAttentionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -278,7 +287,7 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        System.exit(1);// TODO add your handling code here:
+        System.exit(1);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
@@ -311,7 +320,7 @@ public class Homepage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Homepage().setVisible(true);
+                new Homepage(connectedUser).setVisible(true);
             }
         });
     }

@@ -109,10 +109,6 @@ public class UsersList implements Serializable {
         return new UsersList(this);
     }
 
-    public boolean exist(String email) {
-        return users.containsKey(email);
-    }
-
     /**
      * Method the add a user.
      *
@@ -145,7 +141,6 @@ public class UsersList implements Serializable {
         User u = this.users.get(email);
         u.addProject(p);
     }
-
 
     /**
     * Method that checks if a user with the given username exists.

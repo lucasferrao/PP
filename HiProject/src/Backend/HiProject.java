@@ -15,7 +15,7 @@ public class HiProject implements Serializable {
     private ProjectsList projects;
     private UsersList users;
     private User connectedUser;
-    private final Serialization serialization = new Serialization("C:\\Users\\Raphael\\Desktop\\PP\\HiProject\\src\\Estado\\HiProject.data");
+    private final Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
 
     /**
      * HiProject's default constructor.
@@ -92,11 +92,16 @@ public class HiProject implements Serializable {
     }
 
 
+    public void setConnectedUser(User connectedUser) {
+        this.connectedUser = connectedUser;
+    }
+
     /**
      * Displays a HiProject's information on the screen.
      *
      * @return HiProject's information
      */
+
     @Override
     public String toString(){
         StringBuilder s = new StringBuilder();
