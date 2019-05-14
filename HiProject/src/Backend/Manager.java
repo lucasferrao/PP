@@ -30,7 +30,7 @@ public class Manager extends User implements Serializable {
      * @param password user's password
      * @param projects list of user's projects
      */
-    public Manager(String name, String email, String password, ArrayList<Project> projects){
+    public Manager(String name, String email, String password, ProjectsList projects){
         super(name, email, password, projects);
     }
 

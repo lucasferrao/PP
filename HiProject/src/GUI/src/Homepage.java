@@ -98,15 +98,15 @@ public class Homepage extends javax.swing.JFrame implements Serializable {
 
         completedProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         completedProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        completedProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().size()));
+        completedProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().getProjects().size()));
 
         ongoingProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ongoingProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ongoingProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().size()));
+        ongoingProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().getProjects().size()));
 
         lateProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lateProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lateProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().size()));
+        lateProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().getProjects().size()));
 
         inNeedOfAttentionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         inNeedOfAttentionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
