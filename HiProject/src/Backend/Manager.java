@@ -22,6 +22,11 @@ public class Manager extends User implements Serializable {
         super();
     }
 
+
+    public Manager(User toManager) {
+        super(toManager);
+    }
+
     /**
      * Manager's parametrized constructor.
      *
