@@ -43,6 +43,10 @@ public class Manager extends User implements Serializable {
         super(manager);
     }
 
+    public Manager(User toManager){
+        super(toManager);
+    }
+
     /**
      * Displays a manager's information on the screen.
      *

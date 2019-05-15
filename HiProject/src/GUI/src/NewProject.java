@@ -4,17 +4,20 @@
  * and open the template in the editor.
  */
 package GUI.src;
+
 import Backend.*;
+import Exceptions.UserDoesntExistException;
 
 import javax.swing.*;
 import java.time.LocalDate;
 
 /**
- *
  * @author joaod
  */
 public class NewProject extends javax.swing.JFrame {
     private static User connectedUser;
+    private HiProject hiProject;
+    private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
 
     /**
      * Creates new form NewProject
@@ -89,59 +92,59 @@ public class NewProject extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(createProjectButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(90, 90, 90))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(newProjectEndDateLabel)
-                    .addComponent(newProjectTitleLabel)
-                    .addComponent(newProjectDescriptionLabel))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                    .addComponent(newProjectTitleValueField)
-                    .addComponent(newProjectEndDateValueField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(createProjectButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                                .addComponent(exitButton)
+                                .addGap(90, 90, 90))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(newProjectEndDateLabel)
+                                        .addComponent(newProjectTitleLabel)
+                                        .addComponent(newProjectDescriptionLabel))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                                        .addComponent(newProjectTitleValueField)
+                                        .addComponent(newProjectEndDateValueField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newProjectTitleLabel)
-                    .addComponent(newProjectTitleValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(newProjectDescriptionLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newProjectEndDateLabel)
-                    .addComponent(newProjectEndDateValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createProjectButton)
-                    .addComponent(exitButton))
-                .addGap(36, 36, 36))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(newProjectTitleLabel)
+                                        .addComponent(newProjectTitleValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(newProjectDescriptionLabel)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(newProjectEndDateLabel)
+                                        .addComponent(newProjectEndDateValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(35, 35, 35)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(createProjectButton)
+                                        .addComponent(exitButton))
+                                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(416, 398));
@@ -149,19 +152,21 @@ public class NewProject extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProjectButtonActionPerformed
+        hiProject = serialization.load();
         if (newProjectTitleValueField.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Please insert a project title.");
-                newProjectTitleValueField.requestFocus();
-            } else if (newProjectDescriptionValueField.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Please insert a project description.");
-                newProjectTitleValueField.requestFocus();
-            } else if (newProjectEndDateValueField.getDate().isBefore(LocalDate.now().plusDays(1))) {
-                JOptionPane.showMessageDialog(null, "Please insert a valid project end date.\nThe project cannot end today or any day before.");
-                newProjectTitleValueField.requestFocus();
-            } else {
-                connectedUser.addProject(new Project(newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(), newProjectEndDateValueField.getDate(), new Manager(connectedUser)));
-                dispose();
-            }
+            JOptionPane.showMessageDialog(null, "Please insert a project title.");
+            newProjectTitleValueField.requestFocus();
+        } else if (newProjectDescriptionValueField.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Please insert a project description.");
+            newProjectTitleValueField.requestFocus();
+        } else if (newProjectEndDateValueField.getDate().isBefore(LocalDate.now().plusDays(1))) {
+            JOptionPane.showMessageDialog(null, "Please insert a valid project end date.\nThe project cannot end today or any day before.");
+            newProjectTitleValueField.requestFocus();
+        } else {
+            /*hiProject.getUsers().getUser(connectedUser.getEmail()).addProject(new Project(newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(), newProjectEndDateValueField.getDate(), new Manager(connectedUser)));*/
+            hiProject.addProjectAndSerialize(connectedUser, new Project(newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(), newProjectEndDateValueField.getDate(), new Manager(connectedUser)));
+            dispose();
+        }
     }//GEN-LAST:event_createProjectButtonActionPerformed
 
     private void newProjectEndDateValueLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProjectEndDateValueLabelActionPerformed

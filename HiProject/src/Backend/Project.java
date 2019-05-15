@@ -90,7 +90,7 @@ public class Project implements Serializable {
         this.endDate = endDate;
 		this.lists = new ArrayList<TasksList>();
 		this.owner = owner;
-		this.projectState = State.NotStarted;
+		this.projectState = State.Started;
 		this.contributors = new ArrayList<Contributor>();
 	}
 

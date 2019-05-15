@@ -1,5 +1,7 @@
 package Backend;
 
+import Exceptions.UserDoesntExistException;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 /**
@@ -204,4 +206,15 @@ public class HiProject implements Serializable {
             }
         return false;
     }
+
+    public void addProjectAndSerialize(User user, Project project) {
+        try {
+            User u = users.getUser(user.getEmail());
+            u.addProject(project);
+            serialization.save(this);
+        } catch (UserDoesntExistException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -7,6 +7,8 @@ package GUI.src;
 
 import Backend.User;
 
+import javax.swing.*;
+
 /**
  *
  * @author joaod
@@ -104,15 +106,15 @@ public class Homepage extends javax.swing.JFrame {
 
         completedProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         completedProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        completedProjectsValueLabel.setText("completedProjectsValueLabel");
+        completedProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().completedProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
 
         ongoingProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ongoingProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ongoingProjectsValueLabel.setText("ongoingProjectsValueLabel");
+        ongoingProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().ongoingProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
 
         lateProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lateProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lateProjectsValueLabel.setText("lateProjectsValueLabel");
+        lateProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().lateProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
 
         inNeedOfAttentionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         inNeedOfAttentionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -293,6 +295,7 @@ public class Homepage extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         NewProject newp = new NewProject(connectedUser);
         newp.setVisible(true);
+        SwingUtilities.updateComponentTreeUI(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
