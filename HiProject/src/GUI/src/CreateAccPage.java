@@ -4,6 +4,7 @@ import Backend.HiProject;
 import Backend.Project;
 import Backend.User;
 import Backend.UsersList;
+import Exceptions.UserDoesntExistException;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -202,7 +203,12 @@ public class CreateAccPage extends javax.swing.JFrame {
         } else {
             hiProject.registerNewUser(nameTextField.getText(), emailTextField.getText(), new String(passwordField.getPassword()));
             dispose();
-            //then opens homepage with this user logged in
+            try {
+                hiProject.setConnectedUser(hiProject.getUsers().getUser(emailTextField.getText()));
+            } catch (UserDoesntExistException e) {
+                e.printStackTrace();
+            }
+            new Homepage(hiProject.getConnectedUser()).setVisible(true);
         }
 
     }//GEN-LAST:event_createAccButtonActionPerformed

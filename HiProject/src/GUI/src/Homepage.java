@@ -22,6 +22,7 @@ public class Homepage extends javax.swing.JFrame {
     public Homepage(User connectedUser) {
         Homepage.connectedUser = connectedUser;
         initComponents();
+        System.out.println(connectedUser.getProjects().getProjects().values());
     }
 
     /**
