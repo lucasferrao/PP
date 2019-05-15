@@ -202,7 +202,7 @@ public class ProjectsList implements Serializable {
         for(Map.Entry<Integer, Project> e : projects.entrySet()){
             State projectState = e.getValue().getProjectState();
             LocalDate projectEndDate = e.getValue().getEndDate();
-            if(projectState.equals(State.Started) && projectEndDate.isBefore(now)){
+            if(projectState.equals(State.Started) && projectEndDate.isAfter(now)){
                 ongoingProjects++;
             }
         }
@@ -221,7 +221,7 @@ public class ProjectsList implements Serializable {
         for(Map.Entry<Integer, Project> e : projects.entrySet()){
             State projectState = e.getValue().getProjectState();
             LocalDate projectEndDate = e.getValue().getEndDate();
-            if(!projectState.equals(State.Finished) && projectEndDate.isAfter(now)){
+            if(!projectState.equals(State.Finished) && projectEndDate.isBefore(now)){
                 lateProjects++;
             }
         }

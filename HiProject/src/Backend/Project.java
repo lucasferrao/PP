@@ -81,12 +81,12 @@ public class Project implements Serializable {
 	 * @param endDate project's end date
 	 * @param owner project's owner
 	 */
-	public Project(String title, String description,
+	public Project(String title, String description, LocalDate beginDate,
 				   LocalDate endDate, Manager owner){
 		this.projectID = Project.getAndIncNextID();
 		this.title = title;
 		this.description = description;
-		this.beginDate = LocalDate.now();
+		this.beginDate = beginDate;
         this.endDate = endDate;
 		this.lists = new ArrayList<TasksList>();
 		this.owner = owner;

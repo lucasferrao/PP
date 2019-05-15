@@ -58,6 +58,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="newProjectStartDateLabel" min="-2" max="-2" attributes="0"/>
                       <Component id="newProjectEndDateLabel" min="-2" max="-2" attributes="0"/>
                       <Component id="newProjectTitleLabel" min="-2" max="-2" attributes="0"/>
                       <Component id="newProjectDescriptionLabel" min="-2" max="-2" attributes="0"/>
@@ -67,6 +68,7 @@
                       <Component id="jScrollPane1" pref="278" max="32767" attributes="0"/>
                       <Component id="newProjectTitleValueField" alignment="0" max="32767" attributes="0"/>
                       <Component id="newProjectEndDateValueField" alignment="0" max="32767" attributes="0"/>
+                      <Component id="newProjectStartDateValueField" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -82,13 +84,15 @@
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="newProjectDescriptionLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="jScrollPane1" pref="126" max="32767" attributes="0"/>
+                      <Component id="newProjectDescriptionLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="98" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="newProjectStartDateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="newProjectStartDateValueField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="newProjectEndDateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="newProjectEndDateValueField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -106,10 +110,10 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="newProjectTitleLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Title"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Title"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="newProjectTitleValueField">
@@ -119,18 +123,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="newProjectDescriptionLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Description"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Description"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="newProjectEndDateLabel">
           <Properties>
+            <Property name="text" type="java.lang.String" value="End Date"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="End Date"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="exitButton">
@@ -175,6 +179,21 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="newProjectStartDateLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Start Date"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="14" style="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="newProjectStartDateValueField">
+          <Properties>
+            <Property name="date" type="java.time.LocalDate" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="LocalDate.now()" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

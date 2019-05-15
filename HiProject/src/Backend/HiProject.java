@@ -176,9 +176,9 @@ public class HiProject implements Serializable {
      * @param endDate project's end date
      * @param email project's owner email
      */
-    public void createProject(String title, String description, LocalDate endDate, String email){
+    public void createProject(String title, String description, LocalDate startDate, LocalDate endDate, String email){
         Manager owner = new Manager();     // ?????
-        Project p = new Project(title, description, endDate, owner);
+        Project p = new Project(title, description, startDate, endDate, owner);
         this.projects.addProject(p);
         this.users.addUserProject(owner.getEmail(), p);
     }
