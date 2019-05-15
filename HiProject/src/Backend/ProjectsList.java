@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @version 20190406
  */
 
-public class ProjectsList implements Serializable {
+public class ProjectsList implements Cloneable, Serializable {
     private Map<Integer, Project> projects;
 
     /**
@@ -30,8 +30,9 @@ public class ProjectsList implements Serializable {
      * @param projects list of projects
      */
     public ProjectsList(Map<Integer, Project> projects){
-        this.projects.putAll(projects);
-        this.projects.forEach((k,v) -> v = v.clone());
+        //this.projects.putAll(projects);
+        //this.projects.forEach((k,v) -> v = v.clone());
+        this.projects = projects;
     }
 
     /**
@@ -111,6 +112,7 @@ public class ProjectsList implements Serializable {
      */
     @Override
     public ProjectsList clone(){
+
         return new ProjectsList(this);
     }
 
