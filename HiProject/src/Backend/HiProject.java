@@ -4,6 +4,9 @@ import Exceptions.UserDoesntExistException;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  * HiProject main application class.
  *
