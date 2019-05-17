@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @version 20190406
  */
 
-public class ProjectsList implements Cloneable, Serializable {
+public class ProjectsList implements Serializable {
     private Map<Integer, Project> projects;
 
     /**

@@ -15,6 +15,8 @@ import java.time.LocalDate;
  */
 public class ManageUserAccount extends javax.swing.JFrame {
     private static User connectedUser;
+    private HiProject hiProject;
+    private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
 
     /**
      * Creates new form ManageUserAccount
@@ -164,7 +166,9 @@ public class ManageUserAccount extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesButtonActionPerformed
-        // TODO add your handling code here:
+        hiProject = serialization.load();
+        hiProject.editUserProfileAndSerialize(connectedUser, userNameField.getText(), userEmailField.getText(), new String(confirmPasswordField.getPassword()));
+        dispose();
     }//GEN-LAST:event_saveChangesButtonActionPerformed
 
     private void exitDontSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitDontSaveButtonActionPerformed
