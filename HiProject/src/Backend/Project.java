@@ -29,13 +29,14 @@ public class Project implements Serializable {
 	private State projectState;
 	private ArrayList<Contributor> contributors;
 
-	private static int nextID = 1;
+	/*private static int nextID = 1;*/
 
 	/**
 	 * Project's default constructor.
 	 */
 	public Project(){
-		this.projectID = Project.getAndIncNextID();
+		/*this.projectID = Project.getAndIncNextID();*/
+		this.projectID = 0;
 		this.title = "";
 		this.description = "";
 		this.beginDate = LocalDate.MIN;
@@ -81,9 +82,9 @@ public class Project implements Serializable {
 	 * @param endDate project's end date
 	 * @param owner project's owner
 	 */
-	public Project(String title, String description, LocalDate beginDate,
+	public Project(int nextId, String title, String description, LocalDate beginDate,
 				   LocalDate endDate, Manager owner){
-		this.projectID = Project.getAndIncNextID();
+		this.projectID = nextId;
 		this.title = title;
 		this.description = description;
 		this.beginDate = beginDate;
@@ -116,9 +117,9 @@ public class Project implements Serializable {
 	 *
 	 * @return projectID
 	 */
-	public static int getAndIncNextID(){
+	/*public static int getAndIncNextID(){
 		return Project.nextID++;
-	}
+	}*/
 
 	/**
 	 * Returns the project's ID.
@@ -206,9 +207,9 @@ public class Project implements Serializable {
 	 *
 	 * @return nextID
 	 */
-	public static int getNextID(){
+	/*public static int getNextID(){
 		return Project.nextID;
-	}
+	}*/
 
 	/**
 	 * Updates the project's ID.
@@ -296,9 +297,9 @@ public class Project implements Serializable {
 	 *
 	 * @param nextID
 	 */
-	public static void setNextID(int nextID){
+	/*public static void setNextID(int nextID){
 		Project.nextID = nextID;
-	}
+	}*/
 
 	/**
 	 * Displays a project's information on the screen.

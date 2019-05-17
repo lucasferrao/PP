@@ -132,21 +132,11 @@ public class UsersList implements Serializable {
     }
 
     /**
-     * Method that add a project to a user.
-     *
-     * @param email user's identifier
-     * @param p new project
-     */
-    public void addUserProject(String email, Project p){
-        User u = this.users.get(email);
-        u.addProject(p);
-    }
-
-    /**
     * Method that checks if a user with the given username exists.
     *
     * @param email user's identifier
     */
+
     public boolean exists(String email) {
         return users.containsKey(email);
     }

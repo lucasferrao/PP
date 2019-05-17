@@ -1,6 +1,7 @@
 package GUI.src;
 
 import Backend.HiProject;
+import Backend.Serialization;
 import Backend.UsersList;
 import Exceptions.UserDoesntExistException;
 
@@ -18,6 +19,7 @@ import javax.swing.*;
  */
 @SuppressWarnings("Duplicates")
 public class LogInPage extends javax.swing.JFrame {
+    private static Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
 
     /**
      * Creates new form Homepage
@@ -27,7 +29,7 @@ public class LogInPage extends javax.swing.JFrame {
     }
 
     private void authenticate() {
-        HiProject hiProject = new HiProject();
+        HiProject hiProject = serialization.load();
         if (emailTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please insert an email.");
             emailTextField.requestFocus();

@@ -14,7 +14,7 @@ import java.time.LocalDate;
 /**
  * @author joaod
  */
-public class NewProject extends javax.swing.JFrame {
+public class NewProject extends javax.swing.JDialog {
     private static User connectedUser;
     private HiProject hiProject;
     private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
@@ -23,6 +23,7 @@ public class NewProject extends javax.swing.JFrame {
      * Creates new form NewProject
      */
     public NewProject(User connectedUser) {
+        setModalityType(ModalityType.APPLICATION_MODAL);
         NewProject.connectedUser = connectedUser;
         initComponents();
     }
@@ -177,7 +178,7 @@ public class NewProject extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Please insert a valid project end date.\nThe project cannot end before or on the same day it starts.");
                 newProjectTitleValueField.requestFocus();
             } else {
-                hiProject.addProjectAndSerialize(connectedUser, new Project(newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
+                hiProject.addProjectAndSerialize(connectedUser, new Project(connectedUser.getNextId(), newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
                         newProjectStartDateValueField.getDate(), newProjectEndDateValueField.getDate(), new Manager(connectedUser)));
                 dispose();
             }
