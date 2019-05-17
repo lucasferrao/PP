@@ -156,7 +156,7 @@
         <Component class="com.github.lgooddatepicker.components.DatePicker" name="newProjectEndDateValueField">
           <Properties>
             <Property name="date" type="java.time.LocalDate" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="LocalDate.now()" type="code"/>
+              <Connection code="LocalDate.now().plusDays(1)" type="code"/>
             </Property>
           </Properties>
         </Component>
