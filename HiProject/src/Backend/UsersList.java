@@ -51,7 +51,8 @@ public class UsersList implements Serializable {
      * @return Map with users
      */
     public Map<String, User> getUsers() {
-        return users.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));
+        /*return users.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));*/
+        return users;
     }
 
     /**
@@ -108,10 +109,6 @@ public class UsersList implements Serializable {
         return new UsersList(this);
     }
 
-    public boolean exist(String email) {
-        return users.containsKey(email);
-    }
-
     /**
      * Method the add a user.
      *
@@ -135,22 +132,11 @@ public class UsersList implements Serializable {
     }
 
     /**
-     * Method that add a project to a user.
-     *
-     * @param email user's identifier
-     * @param p new project
-     */
-    public void addUserProject(String email, Project p){
-        User u = this.users.get(email);
-        u.addProject(p);
-    }
-
-
-    /**
     * Method that checks if a user with the given username exists.
     *
     * @param email user's identifier
     */
+
     public boolean exists(String email) {
         return users.containsKey(email);
     }

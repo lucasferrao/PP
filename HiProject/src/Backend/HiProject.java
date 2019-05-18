@@ -4,6 +4,9 @@ import Exceptions.UserDoesntExistException;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  * HiProject main application class.
  *
@@ -14,16 +17,16 @@ import java.time.LocalDate;
  */
 
 public class HiProject implements Serializable {
-    private ProjectsList projects;
+    /*private ProjectsList projects;*/
     private UsersList users;
     private User connectedUser;
-    private final Serialization serialization = new Serialization("C:\\Users\\Lucas\\Desktop\\PP\\HiProject\\src\\Estado\\HiProject.data");
+    private final Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
 
     /**
      * HiProject's default constructor.
      */
     public HiProject(){
-        this.projects = new ProjectsList();
+        /*this.projects = new ProjectsList();*/
         this.users = new UsersList();
     }
 
@@ -34,7 +37,7 @@ public class HiProject implements Serializable {
      * @param usersList a users list
      */
     public HiProject(ProjectsList projectList, UsersList usersList){
-        this.projects = projectList.clone();
+        /*this.projects = projectList.clone();*/
         this.users = usersList.clone();
     }
 
@@ -44,7 +47,7 @@ public class HiProject implements Serializable {
      * @param hiProject HiProject being replicated
      */
     public HiProject(HiProject hiProject){
-        this.projects = hiProject.getProjects();
+        /*this.projects = hiProject.getProjects();*/
         this.users = hiProject.getUsers();
     }
 
@@ -53,9 +56,9 @@ public class HiProject implements Serializable {
      *
      * @return projects
      */
-    public ProjectsList getProjects() {
+    /*public ProjectsList getProjects() {
         return projects.clone();
-    }
+    }*/
 
     /**
      * Returns a users list.
@@ -80,9 +83,9 @@ public class HiProject implements Serializable {
      *
      * @param projects a new projects list
      */
-    public void setProjects(ProjectsList projects) {
+    /*public void setProjects(ProjectsList projects) {
         this.projects = projects.clone();
-    }
+    }*/
 
     /**
      * Updates a users list.
@@ -94,11 +97,16 @@ public class HiProject implements Serializable {
     }
 
 
+    public void setConnectedUser(User connectedUser) {
+        this.connectedUser = connectedUser;
+    }
+
     /**
      * Displays a HiProject's information on the screen.
      *
      * @return HiProject's information
      */
+
     @Override
     public String toString(){
         StringBuilder s = new StringBuilder();
@@ -125,7 +133,7 @@ public class HiProject implements Serializable {
 
         HiProject hiProject = (HiProject) o;
 
-        return this.projects.equals(hiProject.getProjects()) &&
+        return /*this.projects.equals(hiProject.getProjects()) &&*/
                 this.users.equals(hiProject.getUsers());
     }
 
@@ -206,4 +214,28 @@ public class HiProject implements Serializable {
             }
         return false;
     }
+
+    public void addProjectAndSerialize(User user, Project project) {
+        try {
+            User u = users.getUser(user.getEmail());
+            u.addProject(project);
+            u.incnextProjectId();
+            serialization.save(this);
+        } catch (UserDoesntExistException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editUserProfileAndSerialize(User user, String name, String email, String password) {
+        try {
+            User u = this.users.getUser(user.getEmail());
+            User newUser = new User(name, email, password, u.getProjects(), u.getnextProjectId());
+            this.users.getUsers().remove(u.getEmail());
+            this.users.addUser(newUser);
+            serialization.save(this);
+        } catch (UserDoesntExistException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

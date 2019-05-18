@@ -30,8 +30,9 @@ public class ProjectsList implements Serializable {
      * @param projects list of projects
      */
     public ProjectsList(Map<Integer, Project> projects){
-        this.projects.putAll(projects);
-        this.projects.forEach((k,v) -> v = v.clone());
+        //this.projects.putAll(projects);
+        //this.projects.forEach((k,v) -> v = v.clone());
+        this.projects = projects;
     }
 
     /**
@@ -49,7 +50,8 @@ public class ProjectsList implements Serializable {
      * @return projects
      */
     public Map<Integer, Project> getProjects(){
-        return projects.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));
+        /*return projects.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));*/
+        return projects;
     }
 
     /**
@@ -111,6 +113,7 @@ public class ProjectsList implements Serializable {
      */
     @Override
     public ProjectsList clone(){
+
         return new ProjectsList(this);
     }
 
@@ -202,7 +205,7 @@ public class ProjectsList implements Serializable {
         for(Map.Entry<Integer, Project> e : projects.entrySet()){
             State projectState = e.getValue().getProjectState();
             LocalDate projectEndDate = e.getValue().getEndDate();
-            if(projectState.equals(State.Started) && projectEndDate.isBefore(now)){
+            if(projectState.equals(State.Started) && projectEndDate.isAfter(now)){
                 ongoingProjects++;
             }
         }
@@ -221,7 +224,7 @@ public class ProjectsList implements Serializable {
         for(Map.Entry<Integer, Project> e : projects.entrySet()){
             State projectState = e.getValue().getProjectState();
             LocalDate projectEndDate = e.getValue().getEndDate();
-            if(!projectState.equals(State.Finished) && projectEndDate.isAfter(now)){
+            if(!projectState.equals(State.Finished) && projectEndDate.isBefore(now)){
                 lateProjects++;
             }
         }

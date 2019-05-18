@@ -20,6 +20,8 @@ public class User implements Serializable {
     private String password;
     private ProjectsList projects;
 
+    private int nextProjectId;
+
     /**
      * User's default constructor.
      */
@@ -28,6 +30,7 @@ public class User implements Serializable {
         this.email = "";
         this.password = "";
         this.projects = new ProjectsList();
+        this.nextProjectId = 0;
     }
 
     /**
@@ -38,11 +41,12 @@ public class User implements Serializable {
      * @param password user's password
      * @param projects list of user's projects
      */
-    public User(String name, String email, String password, ProjectsList projects) {
+    public User(String name, String email, String password, ProjectsList projects, int nextProjectId) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.projects = projects;
+        this.nextProjectId = nextProjectId;
     }
 
     /**
@@ -57,6 +61,7 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.projects = new ProjectsList();
+        this.nextProjectId = 0;
     }
 
     /**
@@ -69,6 +74,7 @@ public class User implements Serializable {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.projects = user.getProjects();
+        this.nextProjectId = user.getnextProjectId();
     }
 
     /**
@@ -103,6 +109,7 @@ public class User implements Serializable {
      *
      * @return user's projects
      */
+
     public ProjectsList getProjects() {
         return projects.clone();
     }
@@ -141,6 +148,22 @@ public class User implements Serializable {
      */
     public void setProjects(ProjectsList projects) {
         this.projects = projects.clone();
+    }
+
+    public int getnextProjectId() {
+        return nextProjectId;
+    }
+
+    public void setnextProjectId(int nextProjectId) {
+        this.nextProjectId = nextProjectId;
+    }
+
+    public int getAndIncnextProjectId() {
+        return nextProjectId++;
+    }
+
+    public void incnextProjectId() {
+        nextProjectId++;
     }
 
     /**
