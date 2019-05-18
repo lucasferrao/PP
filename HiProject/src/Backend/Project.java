@@ -388,5 +388,18 @@ public class Project implements Serializable {
 		return (TasksList) latestTasks;
 	}
 
+	public ArrayList<Task> completedTasks() {
+		ArrayList<Task> completedTasks = new ArrayList<>();
+		for (TasksList e : this.lists) {
+			for (Task t : e.getTasks()) {
+				if (t.getTaskState().equals(State.Finished)) {
+					completedTasks.add(t);
+				}
+			}
+		}
+
+		return completedTasks;
+	}
+
 
 }

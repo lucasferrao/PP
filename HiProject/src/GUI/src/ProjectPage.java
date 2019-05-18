@@ -5,6 +5,7 @@ package GUI.src;/*
  */
 
 import Backend.*;
+import Exceptions.UserDoesntExistException;
 import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
@@ -18,8 +19,8 @@ import java.time.LocalDate;
 public class ProjectPage extends javax.swing.JFrame {
     private static User connectedUser;
     private static Project selectedProject;
-    private HiProject hiProject;
     private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
+    private HiProject hiProject = serialization.load();
 
     /**
      * Creates new form ProjectPage
@@ -29,7 +30,11 @@ public class ProjectPage extends javax.swing.JFrame {
     }
 
     public ProjectPage(Project selectedProject, User connectedUser) {
-        ProjectPage.selectedProject = selectedProject;
+        try {
+            ProjectPage.selectedProject = hiProject.getUsers().getUser(connectedUser.getEmail()).getProjects().getProject(selectedProject.getProjectID());
+        } catch (UserDoesntExistException e) {
+            e.printStackTrace();
+        }
         ProjectPage.connectedUser = connectedUser;
         initComponents();
     }
@@ -616,7 +621,6 @@ public class ProjectPage extends javax.swing.JFrame {
     }//GEN-LAST:event_changeDescriptionButtonActionPerformed
 
     private void markAsCompleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markAsCompleteButtonActionPerformed
-        hiProject = serialization.load();
         selectedProject.setProjectState(State.Finished);
         serialization.save(hiProject);
     }//GEN-LAST:event_markAsCompleteButtonActionPerformed

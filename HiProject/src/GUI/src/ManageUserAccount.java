@@ -15,7 +15,6 @@ import java.time.LocalDate;
  */
 public class ManageUserAccount extends javax.swing.JFrame {
     private static User connectedUser;
-    private HiProject hiProject;
     private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
 
     /**
@@ -56,11 +55,6 @@ public class ManageUserAccount extends javax.swing.JFrame {
         userNameLabel.setText("Name");
 
         userNameField.setText(connectedUser.getName());
-        userNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameFieldActionPerformed(evt);
-            }
-        });
 
         userEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         userEmailLabel.setText("Email");
@@ -83,11 +77,6 @@ public class ManageUserAccount extends javax.swing.JFrame {
         });
 
         userEmailField.setText(connectedUser.getEmail());
-        userEmailField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userEmailFieldActionPerformed(evt);
-            }
-        });
 
         confirmPasswordLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         confirmPasswordLabel.setText("Confirm Password");
@@ -166,7 +155,7 @@ public class ManageUserAccount extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesButtonActionPerformed
-        hiProject = serialization.load();
+        HiProject hiProject = serialization.load();
         hiProject.editUserProfileAndSerialize(connectedUser, userNameField.getText(), userEmailField.getText(), new String(confirmPasswordField.getPassword()));
         dispose();
     }//GEN-LAST:event_saveChangesButtonActionPerformed
@@ -174,14 +163,6 @@ public class ManageUserAccount extends javax.swing.JFrame {
     private void exitDontSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitDontSaveButtonActionPerformed
         dispose();
     }//GEN-LAST:event_exitDontSaveButtonActionPerformed
-
-    private void userNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userNameFieldActionPerformed
-
-    private void userEmailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userEmailFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userEmailFieldActionPerformed
 
     /**
      * @param args the command line arguments

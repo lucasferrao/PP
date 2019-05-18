@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 import Backend.*;
+import Exceptions.UserDoesntExistException;
 
 import java.lang.reflect.Array;
 
@@ -24,6 +25,7 @@ public class Homepage extends javax.swing.JFrame {
     private Map<Integer, Project> pl;
     private static ArrayList<String> titles = new ArrayList<>();
     private ArrayList<String> projectsmta(ArrayList<String> ptitles) {
+        ptitles.clear();
         ptitles.add("< Please Select a Project >");
         for (Map.Entry<Integer, Project> e : pl.entrySet()) {
             ptitles.add(e.getValue().getTitle());
@@ -31,69 +33,14 @@ public class Homepage extends javax.swing.JFrame {
         return ptitles;
     }
 
-
-    private javax.swing.JButton jButton1;
-
     /**
      * Creates new form Homepage
      */
     public Homepage(User connectedUser) {
         Homepage.connectedUser = connectedUser;
         pl = connectedUser.getProjects().getProjects();
-
         initComponents();
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Homepage(connectedUser).setVisible(true);
-
-            }
-        });
-    }
-
-    private void projectsListMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectsListMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_projectsListMenuItemActionPerformed
-
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(1);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
-
-    private void userProfileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userProfileMenuItemActionPerformed
-        ManageUserAccount mua = new ManageUserAccount(connectedUser);
-        mua.setVisible(true);
-    }//GEN-LAST:event_userProfileMenuItemActionPerformed
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -338,15 +285,15 @@ public class Homepage extends javax.swing.JFrame {
 
         completedProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         completedProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        completedProjectsValueLabel.setText("completedProjectsValueLabel");
+        completedProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().completedProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
 
         ongoingProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ongoingProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ongoingProjectsValueLabel.setText("ongoingProjectsValueLabel");
+        ongoingProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().ongoingProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
 
         lateProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lateProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lateProjectsValueLabel.setText("lateProjectsValueLabel");
+        lateProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().lateProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
 
         inNeedOfAttentionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         inNeedOfAttentionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -354,15 +301,15 @@ public class Homepage extends javax.swing.JFrame {
 
         inoaProject2ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject2ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inoaProject2ValueLabel.setText("inoaProject2ValueLabel");
+        inoaProject2ValueLabel.setText(inoaProjects2GetText(connectedUser.getProjects().biggestProject().completedTasks()));
 
         inoaProject3ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject3ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inoaProject3ValueLabel.setText("inoaProject3ValueLabel");
+        inoaProject3ValueLabel.setText(inoaProjects3GetText(connectedUser.getProjects().biggestProject().completedTasks()));
 
         inoaProject1ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject1ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inoaProject1ValueLabel.setText("inoaProject1ValueLabel");
+        inoaProject1ValueLabel.setText(inoaProjects1GetText(connectedUser.getProjects().biggestProject().completedTasks()));
 
         biggestProjectLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         biggestProjectLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -374,19 +321,19 @@ public class Homepage extends javax.swing.JFrame {
 
         bpPeopleInvolvedValueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bpPeopleInvolvedValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpPeopleInvolvedValueLabel.setText("bpPeopleInvolvedValueLabel");
+        bpPeopleInvolvedValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().getContributors().size()));
 
         bpCompletedTasksLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         bpCompletedTasksLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpCompletedTasksLabel.setText("Completed Tasks in Project:");
+        bpCompletedTasksLabel.setText("Completed Tasks:");
 
         bpNameValueLabel.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         bpNameValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpNameValueLabel.setText("bpNameValueLabel");
+        bpNameValueLabel.setText(connectedUser.getProjects().biggestProject().getTitle());
 
         bpCompletedTasksValueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bpCompletedTasksValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpCompletedTasksValueLabel.setText("bpCompletedTasksValueLabel");
+        bpCompletedTasksValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().completedTasks().size()));
 
         javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
         dashboardPanel.setLayout(dashboardPanelLayout);
@@ -524,10 +471,24 @@ public class Homepage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void projectsListMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectsListMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_projectsListMenuItemActionPerformed
+
+    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
+        System.exit(1);
+    }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void userProfileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userProfileMenuItemActionPerformed
+        ManageUserAccount mua = new ManageUserAccount(connectedUser);
+        mua.setVisible(true);
+    }//GEN-LAST:event_userProfileMenuItemActionPerformed
+
     private void newProjectMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         NewProject newp = new NewProject(connectedUser);
         newp.setModal(true);
         newp.setVisible(true);
+        updateHomepage();
     }
 
     private void openProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openProjectButtonActionPerformed
@@ -536,11 +497,82 @@ public class Homepage extends javax.swing.JFrame {
             if (ptitle.equals(e.getValue().getTitle())) {
                 new ProjectPage(e.getValue(), connectedUser).setVisible(true);
                 dispose();
-            } else {
-                return;
             }
         }
     }//GEN-LAST:event_openProjectButtonActionPerformed
+
+    public String inoaProjects1GetText(ArrayList<Task> tasks) {
+        try {
+            return (tasks.get(0).getTitle());
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return ("No projects in need of attention yet.");
+        }
+    }
+
+    public String inoaProjects2GetText(ArrayList<Task> tasks) {
+        try {
+            return (tasks.get(1).getTitle());
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return ("None.");
+        }
+    }
+
+    public String inoaProjects3GetText(ArrayList<Task> tasks) {
+        try {
+            return (tasks.get(2).getTitle());
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            return ("None.");
+        }
+    }
+
+    private void updateHomepage() {
+        this.dispose();
+        HiProject hiProject = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir"))).load();
+        try {
+            User updatedConnectedUser = hiProject.getUsers().getUser(connectedUser.getEmail());
+            new Homepage(updatedConnectedUser).setVisible(true);
+        } catch (UserDoesntExistException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Homepage(connectedUser).setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel biggestProjectLabel;
