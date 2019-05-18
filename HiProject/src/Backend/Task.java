@@ -16,7 +16,7 @@ import java.time.LocalDate;
 public class Task implements Serializable {
 	private String title;
 	private User creator;
-	private User coordinator;
+	private User contributor;
 	private String description;
 	private State taskState;
 	private LocalDate beginDate;
@@ -30,7 +30,7 @@ public class Task implements Serializable {
 	public Task(){
 		this.title = "";
 		this.creator = new User();
-		this.coordinator = new User();
+		this.contributor = new User();
 		this.description = "";
 		this.taskState = State.NotStarted;
 		this.beginDate = LocalDate.MIN;
@@ -44,7 +44,7 @@ public class Task implements Serializable {
 	 *
 	 * @param title task's title
 	 * @param creator task's creator
-	 * @param coordinator task's coordinator
+	 * @param contributor task's contributor
 	 * @param description task's description
 	 * @param taskState task's state
 	 * @param beginDate task's begin date
@@ -52,12 +52,12 @@ public class Task implements Serializable {
 	 * @param limitDate task's limit date
 	 * @param priority task's priority
 	 */
-	public Task(String title, User creator, User coordinator, String description,
+	public Task(String title, User creator, User contributor, String description,
 				State taskState, LocalDate beginDate, LocalDate endDate,
 				LocalDate limitDate, TasksPriority priority) {
 		this.title = title;
 		this.creator = creator;
-		this.coordinator = coordinator;
+		this.contributor = contributor;
 		this.description = description;
 		this.taskState = taskState;
 		this.beginDate = beginDate;
@@ -74,7 +74,7 @@ public class Task implements Serializable {
 	public Task(Task task){
 		this.title = task.getTitle();
 		this.creator = task.getCreator();
-		this.coordinator = task.getCoordinator();
+		this.contributor = task.getContributor();
 		this.description = task.getDescription();
 		this.taskState = task.getTaskState();
 		this.beginDate = task.getBeginDate();
@@ -102,12 +102,12 @@ public class Task implements Serializable {
 	}
 
 	/**
-	 * Returns the task's coordinator.
+	 * Returns the task's contributor.
 	 *
-	 * @return task's coordinator
+	 * @return task's contributor
 	 */
-	public User getCoordinator() {
-		return coordinator;
+	public User getContributor() {
+		return contributor;
 	}
 
 	/**
@@ -183,12 +183,12 @@ public class Task implements Serializable {
 	}
 
 	/**
-	 * Updates the task's coordinator.
+	 * Updates the task's contributor.
 	 *
-	 * @param coordinator a new coordinator
+	 * @param contributor a new contributor
 	 */
-	public void setCoordinator(User coordinator) {
-		this.coordinator = coordinator;
+	public void setContributor(User contributor) {
+		this.contributor = contributor;
 	}
 
 	/**
@@ -257,7 +257,7 @@ public class Task implements Serializable {
 		s.append("Task\n");
 		s.append("Task's title: " + this.title + ".\n");
 		s.append("Task's creator: " + this.creator.toString() + ".\n");
-		s.append("Task's coordinator: " + this.coordinator.toString() + ".\n");
+		s.append("Task's contributor: " + this.contributor.toString() + ".\n");
 		s.append("Task's description: " + this.description + ".\n");
 		s.append("Task's state: " + this.taskState + ".\n");
 		s.append("Task's begin date: " + this.beginDate + ".\n");
@@ -287,7 +287,7 @@ public class Task implements Serializable {
 		Task test = (Task) o;
 
 		return test.title.equals(this.title) && test.creator.equals(this.creator) &&
-					test.coordinator.equals(this.coordinator) && test.description.equals(this.description) &&
+					test.contributor.equals(this.contributor) && test.description.equals(this.description) &&
 					test.taskState.equals(this.taskState) && test.beginDate.equals(this.beginDate) &&
 							test.endDate.equals(this.endDate) && test.limitDate.equals(this.limitDate) &&
 							test.priority.equals(this.priority);

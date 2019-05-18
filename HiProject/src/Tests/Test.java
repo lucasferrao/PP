@@ -1,8 +1,6 @@
 package Tests;
 
-import Backend.Contributor;
-import Backend.Project;
-import Backend.ProjectsList;
+import Backend.*;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -18,7 +16,7 @@ public class Test {
         Contributor c = new Contributor();
 
 
-
+        /*
         p.setEndDate(LocalDate.of(2014, Month.JANUARY, 15));
         p.setBeginDate(LocalDate.of(2014, Month.JANUARY, 1));
         p3.setBeginDate(LocalDate.of(2014, Month.JANUARY, 1));
@@ -32,5 +30,32 @@ public class Test {
         l.setProjects(asd);
 
         System.out.println(l.delayedProjects().toString());
+        */
+
+
+        Task t1 = new Task();
+        Task t2 = new Task();
+        Task t3 = new Task();
+        t1.setTitle("a");
+        t1.setEndDate(LocalDate.of(2014, Month.JANUARY, 15));
+        t2.setTitle("c");
+        t2.setEndDate(LocalDate.of(2014, Month.JANUARY, 16));
+        t3.setTitle("b");
+        t3.setEndDate(LocalDate.of(2014, Month.JANUARY, 14));
+
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        tasks.add(t1);
+        tasks.add(t2);
+        tasks.add(t3);
+
+        TasksList tL = new TasksList();
+        tL.setTasks(tasks);
+
+        System.out.println(tL.sortTitleAsc());
+        System.out.println("\n");
+        System.out.println("\n");
+        System.out.println("\n");
+        System.out.println(tL.sortEndDateDesc());
+
     }
 }

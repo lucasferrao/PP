@@ -10,7 +10,11 @@
 package Backend;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TasksList implements Serializable {
     private String description;
@@ -175,6 +179,161 @@ public class TasksList implements Serializable {
      */
     public void changeTaskState(Task task, State state){
         task.setTaskState(state);
+    }
+
+    /**
+     * Method that filter the tasks list by task's owner.
+     *
+     * @param owner task's owner
+     * @return tasks by owner
+     */
+    public ArrayList<Task> filterOwner(Manager owner){
+        ArrayList<Task> tasksByOwner = new ArrayList<Task>();
+
+        for(Task t : tasks){
+            User isOwner = t.getCreator();
+            if(isOwner.equals(owner)){
+                tasksByOwner.add(t);
+            }
+        }
+
+        return tasksByOwner;
+
+        // return (ArrayList<Task>) tasks.stream().
+        //        filter(f-> f.getCreator().equals(owner)).
+        //        collect(Collectors.toList());
+    }
+
+    /**
+     * Method that filter the tasks list by task's contributor.
+     *
+     * @param contributor task's contributor
+     * @return tasks by contributor
+     */
+    public ArrayList<Task> filterContributor(Contributor contributor){
+        ArrayList<Task> tasksByContributor = new ArrayList<Task>();
+
+        for(Task t : tasks){
+            User isContributor = t.getContributor();
+            if(isContributor.equals(contributor)){
+                tasksByContributor.add(t);
+            }
+        }
+
+        return tasksByContributor;
+
+        // return (ArrayList<Task>) tasks.stream().
+        //        filter(f-> f.getContributor().equals(contributor)).
+        //        collect(Collectors.toList());
+    }
+
+    /**
+     * Method that filter the tasks list by task's priority.
+     *
+     * @param priority task's priority
+     * @return tasks by priority
+     */
+    public ArrayList<Task> filterPriority(TasksPriority priority){
+        ArrayList<Task> tasksByPriority = new ArrayList<Task>();
+
+        for(Task t : tasks){
+            TasksPriority itsPriority = t.getPriority();
+            if(itsPriority.equals(priority)){
+                tasksByPriority.add(t);
+            }
+        }
+
+        return tasksByPriority;
+
+        // return (ArrayList<Task>) tasks.stream().
+        //        filter(f-> f.getPriority().equals(priority)).
+        //        collect(Collectors.toList());
+    }
+
+    /**
+     * Method that filter the tasks list by task's state.
+     *
+     * @param state task's state
+     * @return tasks by state
+     */
+    public ArrayList<Task> filterState(State state){
+        ArrayList<Task> tasksByState = new ArrayList<Task>();
+
+        for(Task t : tasks){
+            State itState = t.getTaskState();
+            if(itState.equals(state)){
+                tasksByState.add(t);
+            }
+        }
+
+        return tasksByState;
+
+        // return (ArrayList<Task>) tasks.stream().
+        //        filter(f-> f.getTaskState().equals(state)).
+        //        collect(Collectors.toList());
+    }
+
+    /**
+     * Method that filter the tasks list by task's end date.
+     *
+     * @param endDate task's end date
+     * @return tasks by end date
+     */
+    public ArrayList<Task> filterEndDate(LocalDate endDate){
+        ArrayList<Task> tasksByEndDate = new ArrayList<Task>();
+
+        for(Task t : tasks){
+            LocalDate itsEndDate = t.getEndDate();
+            if(itsEndDate.equals(endDate)){
+                tasksByEndDate.add(t);
+            }
+        }
+
+        return tasksByEndDate;
+
+        // return (ArrayList<Task>) tasks.stream().
+        //        filter(f-> f.getEndDate().equals(endDate)).
+        //        collect(Collectors.toList());
+    }
+
+    /**
+     * Method that sort the tasks list by title ascending.
+     *
+     * @return tasks list sorted by title ascending
+     */
+    public ArrayList<Task> sortTitleAsc(){
+        return (ArrayList<Task>) tasks.stream().sorted(Comparator.comparing(Task :: getTitle)).
+                collect(Collectors.toList());
+    }
+
+    /**
+     * Method that sort the tasks list by title descending.
+     *
+     * @return tasks list sorted by title descending
+     */
+    public ArrayList<Task> sortTitleDesc(){
+        return (ArrayList<Task>) tasks.stream().sorted(Comparator.comparing(Task :: getTitle).reversed()).
+                collect(Collectors.toList());
+    }
+
+    /**
+     * Method that sort the tasks list by end date ascending.
+     *
+     * @return tasks list sorted by end date ascending
+     */
+    public ArrayList<Task> sortEndDateAsc(){
+        return (ArrayList<Task>) tasks.stream().sorted(Comparator.comparing(Task :: getEndDate)).
+                collect(Collectors.toList());
+    }
+
+    /**
+     * Method that sort the tasks list by end date descending.
+     *
+     * @return tasks list sorted by end date descending
+     */
+    public ArrayList<Task> sortEndDateDesc(){
+        return (ArrayList<Task>) tasks.stream().sorted(Comparator.comparing(Task :: getEndDate).reversed()).
+                collect(Collectors.toList());
     }
 }
 
