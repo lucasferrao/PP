@@ -50,7 +50,8 @@ public class ProjectsList implements Serializable {
      * @return projects
      */
     public Map<Integer, Project> getProjects(){
-        return projects.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));
+        /*return projects.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));*/
+        return projects;
     }
 
     /**

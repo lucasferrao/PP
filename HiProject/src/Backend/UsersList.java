@@ -52,7 +52,8 @@ public class UsersList implements Serializable {
      * @return Map with users
      */
     public Map<String, User> getUsers() {
-        return users.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));
+        /*return users.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));*/
+        return users;
     }
 
     /**

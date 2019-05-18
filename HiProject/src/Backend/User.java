@@ -20,7 +20,7 @@ public class User implements Serializable {
     private String password;
     private ProjectsList projects;
 
-    private int nextId;
+    private int nextProjectId;
 
     /**
      * User's default constructor.
@@ -30,7 +30,7 @@ public class User implements Serializable {
         this.email = "";
         this.password = "";
         this.projects = new ProjectsList();
-        this.nextId = 0;
+        this.nextProjectId = 0;
     }
 
     /**
@@ -41,12 +41,12 @@ public class User implements Serializable {
      * @param password user's password
      * @param projects list of user's projects
      */
-    public User(String name, String email, String password, ProjectsList projects, int nextId) {
+    public User(String name, String email, String password, ProjectsList projects, int nextProjectId) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.projects = projects;
-        this.nextId = nextId;
+        this.nextProjectId = nextProjectId;
     }
 
     /**
@@ -61,7 +61,7 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.projects = new ProjectsList();
-        this.nextId = 0;
+        this.nextProjectId = 0;
     }
 
     /**
@@ -74,7 +74,7 @@ public class User implements Serializable {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.projects = user.getProjects();
-        this.nextId = user.getNextId();
+        this.nextProjectId = user.getnextProjectId();
     }
 
     /**
@@ -150,20 +150,20 @@ public class User implements Serializable {
         this.projects = projects.clone();
     }
 
-    public int getNextId() {
-        return nextId;
+    public int getnextProjectId() {
+        return nextProjectId;
     }
 
-    public void setNextId(int nextId) {
-        this.nextId = nextId;
+    public void setnextProjectId(int nextProjectId) {
+        this.nextProjectId = nextProjectId;
     }
 
-    public int getAndIncNextId() {
-        return nextId++;
+    public int getAndIncnextProjectId() {
+        return nextProjectId++;
     }
 
-    public void incNextId() {
-        nextId++;
+    public void incnextProjectId() {
+        nextProjectId++;
     }
 
     /**

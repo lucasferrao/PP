@@ -214,7 +214,7 @@ public class HiProject implements Serializable {
         try {
             User u = users.getUser(user.getEmail());
             u.addProject(project);
-            u.incNextId();
+            u.incnextProjectId();
             serialization.save(this);
         } catch (UserDoesntExistException e) {
             e.printStackTrace();
@@ -224,7 +224,7 @@ public class HiProject implements Serializable {
     public void editUserProfileAndSerialize(User user, String name, String email, String password) {
         try {
             User u = this.users.getUser(user.getEmail());
-            User newUser = new User(name, email, password, u.getProjects(), u.getNextId());
+            User newUser = new User(name, email, password, u.getProjects(), u.getnextProjectId());
             this.users.getUsers().remove(u.getEmail());
             this.users.addUser(newUser);
             serialization.save(this);
