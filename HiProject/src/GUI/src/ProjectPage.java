@@ -37,9 +37,9 @@ public class ProjectPage extends javax.swing.JFrame {
 
 
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void addUserProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserProjectButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_addUserProjectButtonActionPerformed
 
 
 
@@ -89,14 +89,14 @@ public class ProjectPage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         projectTitleLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        addUserProjectButton = new javax.swing.JButton();
         editTitleButton = new javax.swing.JButton();
         projectOwnerLabel = new javax.swing.JLabel();
         projectStartDateLabel = new javax.swing.JLabel();
         projectEndDateLabel = new javax.swing.JLabel();
         projectStateLabel = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
+        removeUserProjectButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         projectDescriptionArea = new javax.swing.JTextArea();
         changeDescriptionButton = new javax.swing.JButton();
@@ -105,11 +105,37 @@ public class ProjectPage extends javax.swing.JFrame {
         projectEndDateValue = new javax.swing.JLabel();
         markAsCompleteButton = new javax.swing.JButton();
         editEndDateButton = new javax.swing.JButton();
+        goBackButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        createNewTasksListsButton = new javax.swing.JButton();
+        removeTaskButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tasksList = new javax.swing.JList<>();
+        tasksListsLabel = new javax.swing.JLabel();
+        tasksLabel = new javax.swing.JLabel();
+        createNewTaskButton = new javax.swing.JButton();
+        removeTasksListsButton = new javax.swing.JButton();
+        sortUserButton = new javax.swing.JButton();
+        sortPriorityButton = new javax.swing.JButton();
+        sortCreatorButton = new javax.swing.JButton();
+        tasksListsComboBox = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        taskNameValue = new javax.swing.JLabel();
+        taskDescriptiontField = new javax.swing.JTextField();
+        taskPriorityLabelValue = new javax.swing.JLabel();
+        taskCreaterLabelValue = new javax.swing.JLabel();
+        taskStateLabelValue = new javax.swing.JLabel();
+        taskCreationDateLabelValue = new javax.swing.JLabel();
+        taskEndDateLabelValue = new javax.swing.JLabel();
+        associatedUsersLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        associatedUsersList = new javax.swing.JList<>();
+        associateNewUserTaskButton = new javax.swing.JButton();
+        removeUserTaskButton = new javax.swing.JButton();
+        editTaskButton = new javax.swing.JButton();
+        sortStateButton = new javax.swing.JButton();
+        sortTasksByLabel = new javax.swing.JLabel();
+        sortEndDateButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,10 +145,10 @@ public class ProjectPage extends javax.swing.JFrame {
         projectTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         projectTitleLabel.setText(selectedProject.getTitle());
 
-        jButton1.setText("Add User");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addUserProjectButton.setText("Add User");
+        addUserProjectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addUserProjectButtonActionPerformed(evt);
             }
         });
 
@@ -151,10 +177,10 @@ public class ProjectPage extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton3.setText("Remove User");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        removeUserProjectButton.setText("Remove User");
+        removeUserProjectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                removeUserProjectButtonActionPerformed(evt);
             }
         });
 
@@ -196,6 +222,13 @@ public class ProjectPage extends javax.swing.JFrame {
             }
         });
 
+        goBackButton.setText("Go Back");
+        goBackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goBackButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -209,9 +242,9 @@ public class ProjectPage extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox1, 0, 231, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addUserProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)))
+                        .addComponent(removeUserProjectButton)))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(projectStateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -235,15 +268,17 @@ public class ProjectPage extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addComponent(editEndDateButton)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 151, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(goBackButton)
+                .addGap(45, 45, 45)
                 .addComponent(projectTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(45, 45, 45)
                 .addComponent(editTitleButton)
-                .addGap(31, 31, 31))
+                .addGap(34, 34, 34))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,8 +289,13 @@ public class ProjectPage extends javax.swing.JFrame {
                         .addComponent(projectTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(editTitleButton)
-                        .addGap(20, 20, 20)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(editTitleButton)
+                                .addGap(20, 20, 20))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(goBackButton)
+                                .addGap(18, 18, 18)))))
                 .addComponent(projectOwnerLabel)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,8 +304,8 @@ public class ProjectPage extends javax.swing.JFrame {
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(67, 67, 67)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton3)
-                                .addComponent(jButton1)))
+                                .addComponent(removeUserProjectButton)
+                                .addComponent(addUserProjectButton)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(projectStateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -291,46 +331,241 @@ public class ProjectPage extends javax.swing.JFrame {
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        createNewTasksListsButton.setText("Create a new Tasks List");
 
-        jButton4.setText("Create a new Tasks List");
+        removeTaskButton.setText("Remove selected Tasks List");
 
-        jButton2.setText("Remove selected Tasks List");
+        tasksList.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tasksList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(tasksList);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tasksListsLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tasksListsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tasksListsLabel.setText("Tasks Lists");
+
+        tasksLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        tasksLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tasksLabel.setText("Tasks");
+
+        createNewTaskButton.setText("Create a new Task");
+        createNewTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewTaskButtonActionPerformed(evt);
+            }
+        });
+
+        removeTasksListsButton.setText("Remove selected Tasks List");
+
+        sortUserButton.setText("User");
+        sortUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortUserButtonActionPerformed(evt);
+            }
+        });
+
+        sortPriorityButton.setText("Priority");
+        sortPriorityButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortPriorityButtonActionPerformed(evt);
+            }
+        });
+
+        sortCreatorButton.setText("Creator");
+        sortCreatorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortCreatorButtonActionPerformed(evt);
+            }
+        });
+
+        tasksListsComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        taskNameValue.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        taskNameValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        taskNameValue.setText("Task Name");
+
+        taskDescriptiontField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        taskDescriptiontField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        taskDescriptiontField.setText("Task Description");
+        taskDescriptiontField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taskDescriptiontFieldActionPerformed(evt);
+            }
+        });
+
+        taskPriorityLabelValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        taskPriorityLabelValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        taskPriorityLabelValue.setText("Task Priority:");
+
+        taskCreaterLabelValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        taskCreaterLabelValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        taskCreaterLabelValue.setText("Task Creator:");
+
+        taskStateLabelValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        taskStateLabelValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        taskStateLabelValue.setText("Task State:");
+
+        taskCreationDateLabelValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        taskCreationDateLabelValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        taskCreationDateLabelValue.setText("Task Creation Date:");
+
+        taskEndDateLabelValue.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        taskEndDateLabelValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        taskEndDateLabelValue.setText("Task End Date:");
+
+        associatedUsersLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        associatedUsersLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        associatedUsersLabel.setText("Associated Users");
+
+        associatedUsersList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(associatedUsersList);
+
+        associateNewUserTaskButton.setText("Associate New User");
+        associateNewUserTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                associateNewUserTaskButtonActionPerformed(evt);
+            }
+        });
+
+        removeUserTaskButton.setText("Remove Selected User");
+        removeUserTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeUserTaskButtonActionPerformed(evt);
+            }
+        });
+
+        editTaskButton.setText("Edit Task");
+        editTaskButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editTaskButtonActionPerformed(evt);
+            }
+        });
+
+        sortStateButton.setText("State");
+        sortStateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortStateButtonActionPerformed(evt);
+            }
+        });
+
+        sortTasksByLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        sortTasksByLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sortTasksByLabel.setText("Sort Tasks by:");
+
+        sortEndDateButton.setText("End Date");
+        sortEndDateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortEndDateButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(647, Short.MAX_VALUE)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(297, 297, 297))
-            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tasksListsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tasksListsComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1)
+                    .addComponent(removeTasksListsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sortUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sortPriorityButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sortCreatorButton, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(createNewTasksListsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sortStateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sortTasksByLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sortEndDateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(tasksLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeTaskButton, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(createNewTaskButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton4)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(taskNameValue, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(editTaskButton, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(taskEndDateLabelValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(taskCreationDateLabelValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                            .addComponent(taskStateLabelValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(taskPriorityLabelValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(taskCreaterLabelValue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(taskDescriptiontField, javax.swing.GroupLayout.Alignment.LEADING))))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(associatedUsersLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(associateNewUserTaskButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeUserTaskButton, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(jButton4)
-                .addGap(70, 70, 70)
-                .addComponent(jButton2)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(associatedUsersLabel)
+                    .addComponent(taskNameValue)
+                    .addComponent(tasksLabel)
+                    .addComponent(tasksListsLabel))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(associateNewUserTaskButton))
+                            .addComponent(createNewTaskButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(taskDescriptiontField, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(taskCreaterLabelValue)
+                                .addGap(18, 18, 18)
+                                .addComponent(taskPriorityLabelValue)
+                                .addGap(18, 18, 18)
+                                .addComponent(taskStateLabelValue)
+                                .addGap(18, 18, 18)
+                                .addComponent(taskCreationDateLabelValue)
+                                .addGap(18, 18, 18)
+                                .addComponent(taskEndDateLabelValue))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(tasksListsComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(createNewTasksListsButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(removeTasksListsButton)
+                                .addGap(25, 25, 25)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sortTasksByLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sortCreatorButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sortUserButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sortPriorityButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(sortStateButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(removeUserTaskButton)
+                            .addComponent(editTaskButton)
+                            .addComponent(removeTaskButton)
+                            .addComponent(sortEndDateButton))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -343,8 +578,8 @@ public class ProjectPage extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -360,9 +595,9 @@ public class ProjectPage extends javax.swing.JFrame {
         serialization.save(hiProject);
     }//GEN-LAST:event_editTitleButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void removeUserProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserProjectButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_removeUserProjectButtonActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
@@ -403,21 +638,71 @@ public class ProjectPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_editEndDateButtonActionPerformed
 
+    private void editTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTaskButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editTaskButtonActionPerformed
+
+    private void removeUserTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserTaskButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeUserTaskButtonActionPerformed
+
+    private void associateNewUserTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_associateNewUserTaskButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_associateNewUserTaskButtonActionPerformed
+
+    private void taskDescriptiontFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskDescriptiontFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_taskDescriptiontFieldActionPerformed
+
+    private void sortCreatorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortCreatorButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sortCreatorButtonActionPerformed
+
+    private void sortPriorityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortPriorityButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sortPriorityButtonActionPerformed
+
+    private void sortUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortUserButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sortUserButtonActionPerformed
+
+    private void createNewTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createNewTaskButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_createNewTaskButtonActionPerformed
+
+    private void sortStateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortStateButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sortStateButtonActionPerformed
+
+    private void sortEndDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortEndDateButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sortEndDateButtonActionPerformed
+
+    private void goBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackButtonActionPerformed
+        new Homepage(connectedUser).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goBackButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addUserProjectButton;
+    private javax.swing.JButton associateNewUserTaskButton;
+    private javax.swing.JLabel associatedUsersLabel;
+    private javax.swing.JList<String> associatedUsersList;
     private javax.swing.JButton changeDescriptionButton;
+    private javax.swing.JButton createNewTaskButton;
+    private javax.swing.JButton createNewTasksListsButton;
     private javax.swing.JButton editEndDateButton;
+    private javax.swing.JButton editTaskButton;
     private javax.swing.JButton editTitleButton;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton goBackButton;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton markAsCompleteButton;
     private javax.swing.JTextArea projectDescriptionArea;
     private javax.swing.JLabel projectEndDateLabel;
@@ -428,5 +713,26 @@ public class ProjectPage extends javax.swing.JFrame {
     private javax.swing.JLabel projectStateLabel;
     private javax.swing.JLabel projectStateValue;
     private javax.swing.JLabel projectTitleLabel;
+    private javax.swing.JButton removeTaskButton;
+    private javax.swing.JButton removeTasksListsButton;
+    private javax.swing.JButton removeUserProjectButton;
+    private javax.swing.JButton removeUserTaskButton;
+    private javax.swing.JButton sortCreatorButton;
+    private javax.swing.JButton sortEndDateButton;
+    private javax.swing.JButton sortPriorityButton;
+    private javax.swing.JButton sortStateButton;
+    private javax.swing.JLabel sortTasksByLabel;
+    private javax.swing.JButton sortUserButton;
+    private javax.swing.JLabel taskCreaterLabelValue;
+    private javax.swing.JLabel taskCreationDateLabelValue;
+    private javax.swing.JTextField taskDescriptiontField;
+    private javax.swing.JLabel taskEndDateLabelValue;
+    private javax.swing.JLabel taskNameValue;
+    private javax.swing.JLabel taskPriorityLabelValue;
+    private javax.swing.JLabel taskStateLabelValue;
+    private javax.swing.JLabel tasksLabel;
+    private javax.swing.JList<String> tasksList;
+    private javax.swing.JComboBox<String> tasksListsComboBox;
+    private javax.swing.JLabel tasksListsLabel;
     // End of variables declaration//GEN-END:variables
 }
