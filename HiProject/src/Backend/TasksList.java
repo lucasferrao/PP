@@ -188,20 +188,9 @@ public class TasksList implements Serializable {
      * @return tasks by owner
      */
     public ArrayList<Task> filterOwner(Manager owner){
-        ArrayList<Task> tasksByOwner = new ArrayList<Task>();
-
-        for(Task t : tasks){
-            User isOwner = t.getCreator();
-            if(isOwner.equals(owner)){
-                tasksByOwner.add(t);
-            }
-        }
-
-        return tasksByOwner;
-
-        // return (ArrayList<Task>) tasks.stream().
-        //        filter(f-> f.getCreator().equals(owner)).
-        //        collect(Collectors.toList());
+        return (ArrayList<Task>) tasks.stream().
+                filter(f-> f.getCreator().equals(owner)).
+                collect(Collectors.toList());
     }
 
     /**
@@ -211,20 +200,9 @@ public class TasksList implements Serializable {
      * @return tasks by contributor
      */
     public ArrayList<Task> filterContributor(Contributor contributor){
-        ArrayList<Task> tasksByContributor = new ArrayList<Task>();
-
-        for(Task t : tasks){
-            User isContributor = t.getContributor();
-            if(isContributor.equals(contributor)){
-                tasksByContributor.add(t);
-            }
-        }
-
-        return tasksByContributor;
-
-        // return (ArrayList<Task>) tasks.stream().
-        //        filter(f-> f.getContributor().equals(contributor)).
-        //        collect(Collectors.toList());
+        return (ArrayList<Task>) tasks.stream().
+                filter(f-> f.getContributor().equals(contributor)).
+                collect(Collectors.toList());
     }
 
     /**
@@ -234,20 +212,9 @@ public class TasksList implements Serializable {
      * @return tasks by priority
      */
     public ArrayList<Task> filterPriority(TasksPriority priority){
-        ArrayList<Task> tasksByPriority = new ArrayList<Task>();
-
-        for(Task t : tasks){
-            TasksPriority itsPriority = t.getPriority();
-            if(itsPriority.equals(priority)){
-                tasksByPriority.add(t);
-            }
-        }
-
-        return tasksByPriority;
-
-        // return (ArrayList<Task>) tasks.stream().
-        //        filter(f-> f.getPriority().equals(priority)).
-        //        collect(Collectors.toList());
+        return (ArrayList<Task>) tasks.stream().
+                filter(f-> f.getPriority().equals(priority)).
+                collect(Collectors.toList());
     }
 
     /**
@@ -257,20 +224,9 @@ public class TasksList implements Serializable {
      * @return tasks by state
      */
     public ArrayList<Task> filterState(State state){
-        ArrayList<Task> tasksByState = new ArrayList<Task>();
-
-        for(Task t : tasks){
-            State itState = t.getTaskState();
-            if(itState.equals(state)){
-                tasksByState.add(t);
-            }
-        }
-
-        return tasksByState;
-
-        // return (ArrayList<Task>) tasks.stream().
-        //        filter(f-> f.getTaskState().equals(state)).
-        //        collect(Collectors.toList());
+        return (ArrayList<Task>) tasks.stream().
+                filter(f-> f.getTaskState().equals(state)).
+                collect(Collectors.toList());
     }
 
     /**
@@ -280,20 +236,9 @@ public class TasksList implements Serializable {
      * @return tasks by end date
      */
     public ArrayList<Task> filterEndDate(LocalDate endDate){
-        ArrayList<Task> tasksByEndDate = new ArrayList<Task>();
-
-        for(Task t : tasks){
-            LocalDate itsEndDate = t.getEndDate();
-            if(itsEndDate.equals(endDate)){
-                tasksByEndDate.add(t);
-            }
-        }
-
-        return tasksByEndDate;
-
-        // return (ArrayList<Task>) tasks.stream().
-        //        filter(f-> f.getEndDate().equals(endDate)).
-        //        collect(Collectors.toList());
+        return (ArrayList<Task>) tasks.stream().
+                filter(f-> f.getEndDate().equals(endDate)).
+                collect(Collectors.toList());
     }
 
     /**
