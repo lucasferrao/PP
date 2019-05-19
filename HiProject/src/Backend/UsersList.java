@@ -32,9 +32,8 @@ public class UsersList implements Serializable {
      * @param users Map of users
      */
     public UsersList(Map<String, User> users){
-        /*this.users.putAll(users);
-        this.users.forEach((k,v) -> v = v.clone());*/
-        this.users = users;
+        this.users.putAll(users);
+        this.users.forEach((k,v) -> v = v.clone());
     }
 
     /**

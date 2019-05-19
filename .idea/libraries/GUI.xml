@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="GUI">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/out/production/HiProject/GUI/dist/GUI.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

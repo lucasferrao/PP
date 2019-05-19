@@ -150,9 +150,9 @@ public class HiProject implements Serializable {
     /**
      * Method that registers a new user.
      *
-     * @param name
-     * @param email
-     * @param email
+     * @param name user's name
+     * @param email user's email
+     * @param password user's password
      */
     public void registerNewUser(String name, String email, String password){
         User u = new User(name, email, password);
@@ -179,12 +179,17 @@ public class HiProject implements Serializable {
      * @param endDate project's end date
      * @param email project's owner email
      */
-    /*public void createProject(String title, String description, LocalDate startDate, LocalDate endDate, String email){
-        Manager owner = new Manager();     // ?????
-        Project p = new Project(title, description, startDate, endDate, owner);
-        *//*this.projects.addProject(p);*//*
-        this.users.addUserProject(owner.getEmail(), p);
-    }*/
+    public void createProject(String title, String description, LocalDate endDate, String email){
+        try{
+            Manager owner = (Manager) this.users.getUser(email);
+            Project p = new Project(title, description, endDate, owner);
+            this.projects.addProject(p);
+            this.users.addUserProject(owner.getEmail(), p);
+        } catch(UserDoesntExistException e){
+
+        }
+
+    }
 
     /**
      * Method that authenticates a user.
