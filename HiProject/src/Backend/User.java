@@ -19,7 +19,6 @@ public class User implements Serializable {
     private String email;
     private String password;
     private ProjectsList projects;
-
     private int nextProjectId;
 
     /**
@@ -162,7 +161,7 @@ public class User implements Serializable {
         return nextProjectId++;
     }
 
-    public void incnextProjectId() {
+    public void incNextProjectId() {
         nextProjectId++;
     }
 

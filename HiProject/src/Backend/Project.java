@@ -29,8 +29,6 @@ public class Project implements Serializable {
 	private State projectState;
 	private ArrayList<Contributor> contributors;
 
-	/*private static int nextID = 1;*/
-
 	/**
 	 * Project's default constructor.
 	 */
@@ -111,15 +109,6 @@ public class Project implements Serializable {
 		this.projectState = project.getProjectState();
 		this.contributors = project.getContributors();
 	}
-
-	/**
-	 * Method that returns the project's ID.
-	 *
-	 * @return project's ID
-	 */
-	/*public static int getAndIncNextID(){
-		return Project.nextID++;
-	}*/
 
 	/**
 	 * Returns the project's ID.
@@ -203,15 +192,6 @@ public class Project implements Serializable {
 	}
 
 	/**
-	 * Returns the next project's ID.
-	 *
-	 * @return next project ID
-	 */
-	/*public static int getNextID(){
-		return Project.nextID;
-	}*/
-
-	/**
 	 * Updates the project's ID.
 	 *
 	 * @param projectID new project's ID
@@ -293,15 +273,6 @@ public class Project implements Serializable {
 	}
 
 	/**
-	 * Updates the next project's ID
-	 *
-	 * @param nextID
-	 */
-	/*public static void setNextID(int nextID){
-		Project.nextID = nextID;
-	}*/
-
-	/**
 	 * Displays a project's information on the screen.
 	 *
 	 * @return project's information
@@ -362,10 +333,13 @@ public class Project implements Serializable {
 		return new Project(this);
 	}
 
-	public void addTasksList(int projectID, TasksList t){
-		Project p = new Project();
-		p.setProjectID(projectID);
-		p.lists.add(t);
+	/**
+	 * Method that add tasks list to a project.
+	 *
+	 * @param t a tasks list
+	 */
+	public void addTasksList(TasksList t){
+		lists.add(t);
 	}
 
 	/**
