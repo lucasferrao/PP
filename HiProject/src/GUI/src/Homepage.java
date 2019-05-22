@@ -24,22 +24,18 @@ public class Homepage extends javax.swing.JFrame {
     private static User connectedUser;
     private Map<Integer, Project> pl;
     private static ArrayList<String> titles = new ArrayList<>();
-    private ArrayList<String> projectsmta(ArrayList<String> ptitles) {
-        ptitles.clear();
-        ptitles.add("< Please Select a Project >");
-        for (Map.Entry<Integer, Project> e : pl.entrySet()) {
-            ptitles.add(e.getValue().getTitle());
-        }
-        return ptitles;
-    }
+    private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
+    private HiProject hiProject = serialization.load();
+
 
     /**
      * Creates new form Homepage
      */
-    public Homepage(User connectedUser) {
-        Homepage.connectedUser = connectedUser;
+    public Homepage() {
+        Homepage.connectedUser = hiProject.getConnectedUser();
         pl = connectedUser.getProjects().getProjects();
         initComponents();
+        System.out.println(connectedUser.getProjects());
     }
 
     /**
@@ -99,6 +95,7 @@ public class Homepage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Homepage");
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         projectListComboBox.setModel(new javax.swing.DefaultComboBoxModel(projectsmta(titles).toArray()));
@@ -265,6 +262,7 @@ public class Homepage extends javax.swing.JFrame {
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
+        dashboardPanel.setBackground(new java.awt.Color(255, 255, 255));
         dashboardPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -285,15 +283,15 @@ public class Homepage extends javax.swing.JFrame {
 
         completedProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         completedProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        completedProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().completedProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
+        completedProjectsValueLabel.setText("completedProjectsValueLabel");
 
         ongoingProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ongoingProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ongoingProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().ongoingProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
+        ongoingProjectsValueLabel.setText("ongoingProjectsValueLabel");
 
         lateProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lateProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lateProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().lateProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
+        lateProjectsValueLabel.setText("lateProjectsValueLabel");
 
         inNeedOfAttentionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         inNeedOfAttentionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -301,15 +299,15 @@ public class Homepage extends javax.swing.JFrame {
 
         inoaProject2ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject2ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inoaProject2ValueLabel.setText(inoaProjects2GetText(connectedUser.getProjects().biggestProject().completedTasks()));
+        inoaProject2ValueLabel.setText("inoaProject2ValueLabel");
 
         inoaProject3ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject3ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inoaProject3ValueLabel.setText(inoaProjects3GetText(connectedUser.getProjects().biggestProject().completedTasks()));
+        inoaProject3ValueLabel.setText("inoaProject3ValueLabel");
 
         inoaProject1ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject1ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inoaProject1ValueLabel.setText(inoaProjects1GetText(connectedUser.getProjects().biggestProject().completedTasks()));
+        inoaProject1ValueLabel.setText("inoaProject1ValueLabel");
 
         biggestProjectLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         biggestProjectLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -321,19 +319,19 @@ public class Homepage extends javax.swing.JFrame {
 
         bpPeopleInvolvedValueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bpPeopleInvolvedValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpPeopleInvolvedValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().getContributors().size()));
+        bpPeopleInvolvedValueLabel.setText("bpPeopleInvolvedValueLabel");
 
         bpCompletedTasksLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         bpCompletedTasksLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpCompletedTasksLabel.setText("Completed Tasks:");
+        bpCompletedTasksLabel.setText("Completed Tasks in Project:");
 
         bpNameValueLabel.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         bpNameValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpNameValueLabel.setText(connectedUser.getProjects().biggestProject().getTitle());
+        bpNameValueLabel.setText("bpNameValueLabel");
 
         bpCompletedTasksValueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bpCompletedTasksValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpCompletedTasksValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().completedTasks().size()));
+        bpCompletedTasksValueLabel.setText("bpCompletedTasksValueLabel");
 
         javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
         dashboardPanel.setLayout(dashboardPanelLayout);
@@ -480,13 +478,13 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void userProfileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userProfileMenuItemActionPerformed
-        ManageUserAccount mua = new ManageUserAccount(connectedUser);
+        ManageUserAccount mua = new ManageUserAccount();
         mua.setVisible(true);
+        updateHomepage();
     }//GEN-LAST:event_userProfileMenuItemActionPerformed
 
     private void newProjectMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        NewProject newp = new NewProject(connectedUser);
-        newp.setModal(true);
+        NewProject newp = new NewProject();
         newp.setVisible(true);
         updateHomepage();
     }
@@ -515,7 +513,7 @@ public class Homepage extends javax.swing.JFrame {
             return (tasks.get(1).getTitle());
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
-            return ("None.");
+            return ("");
         }
     }
 
@@ -524,19 +522,29 @@ public class Homepage extends javax.swing.JFrame {
             return (tasks.get(2).getTitle());
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
-            return ("None.");
+            return ("");
         }
     }
 
     private void updateHomepage() {
         this.dispose();
-        HiProject hiProject = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir"))).load();
-        try {
+        /*HiProject hiProject = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir"))).load();*/
+        /*try {
             User updatedConnectedUser = hiProject.getUsers().getUser(connectedUser.getEmail());
-            new Homepage(updatedConnectedUser).setVisible(true);
+            new Homepage().setVisible(true);
         } catch (UserDoesntExistException e) {
             e.printStackTrace();
+        }*/
+        new Homepage().setVisible(true);
+    }
+
+    private ArrayList<String> projectsmta(ArrayList<String> ptitles) {
+        ptitles.clear();
+        ptitles.add("< Please Select a Project >");
+        for (Map.Entry<Integer, Project> e : pl.entrySet()) {
+            ptitles.add(e.getValue().getTitle());
         }
+        return ptitles;
     }
 
     /**
@@ -569,7 +577,7 @@ public class Homepage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Homepage(connectedUser).setVisible(true);
+                new Homepage().setVisible(true);
             }
         });
     }

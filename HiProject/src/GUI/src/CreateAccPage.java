@@ -1,9 +1,6 @@
 package GUI.src;
 
-import Backend.HiProject;
-import Backend.Project;
-import Backend.User;
-import Backend.UsersList;
+import Backend.*;
 import Exceptions.UserDoesntExistException;
 
 import javax.swing.*;
@@ -22,6 +19,7 @@ import java.util.Arrays;
  * @author Raphael
  */
 public class CreateAccPage extends javax.swing.JFrame {
+    private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
 
     /**
      * Creates new form Homepage
@@ -188,11 +186,17 @@ public class CreateAccPage extends javax.swing.JFrame {
 
     private void createAccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccButtonActionPerformed
         HiProject hiProject = new HiProject();
-        if (nameTextField.getText().equals("")) {
+        if (nameTextField.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Please insert a name.");
             nameTextField.requestFocus();
-        } else if (emailTextField.getText().equals("")) {
+        } else if (nameTextField.getText().length() < 3) {
+            JOptionPane.showMessageDialog(null, "Please input a name with at least three characters.");
+            nameTextField.requestFocus();
+        } else if (emailTextField.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Please insert an email.");
+            emailTextField.requestFocus();
+        } else if (emailTextField.getText().length() < "a@a.com".length()) {
+            JOptionPane.showMessageDialog(null, "Please input a name with at least three characters.");
             emailTextField.requestFocus();
         } else if (passwordField.getPassword().length == 0) {
             JOptionPane.showMessageDialog(null, "Please insert a password.");
@@ -208,7 +212,8 @@ public class CreateAccPage extends javax.swing.JFrame {
             } catch (UserDoesntExistException e) {
                 e.printStackTrace();
             }
-            new Homepage(hiProject.getConnectedUser()).setVisible(true);
+            serialization.save(hiProject);
+            new Homepage().setVisible(true);
         }
 
     }//GEN-LAST:event_createAccButtonActionPerformed

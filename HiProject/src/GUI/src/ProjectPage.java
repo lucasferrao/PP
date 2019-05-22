@@ -35,53 +35,12 @@ public class ProjectPage extends javax.swing.JFrame {
         } catch (UserDoesntExistException e) {
             e.printStackTrace();
         }
-        ProjectPage.connectedUser = connectedUser;
+        ProjectPage.connectedUser = hiProject.getConnectedUser();
         initComponents();
     }
 
 
 
-
-    private void addUserProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserProjectButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addUserProjectButtonActionPerformed
-
-
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProjectPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProjectPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProjectPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProjectPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProjectPage().setVisible(true);
-            }
-        });
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -593,11 +552,11 @@ public class ProjectPage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editTitleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTitleButtonActionPerformed
-        hiProject = serialization.load();
         String result;
         result = JOptionPane.showInputDialog("Type a new project title:");
         selectedProject.setTitle(result);
         serialization.save(hiProject);
+        updateProjectPage();
     }//GEN-LAST:event_editTitleButtonActionPerformed
 
     private void removeUserProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserProjectButtonActionPerformed
@@ -609,37 +568,40 @@ public class ProjectPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void changeDescriptionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDescriptionButtonActionPerformed
-        hiProject = serialization.load();
         JTextArea ta = new JTextArea(10, 30);
         Object[] options = {"Confirm changes", "Cancel"};
         switch (JOptionPane.showOptionDialog(null, new JScrollPane(ta), "Change your project description.", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
             case JOptionPane.OK_OPTION:
-                selectedProject.setTitle(ta.getText());
+                selectedProject.setDescription(ta.getText());
                 serialization.save(hiProject);
                 break;
         }
+        updateProjectPage();
     }//GEN-LAST:event_changeDescriptionButtonActionPerformed
 
     private void markAsCompleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markAsCompleteButtonActionPerformed
         selectedProject.setProjectState(State.Finished);
+        ProjectsList updatedProjectsList = connectedUser.getProjects();
+        updatedProjectsList.getProject(selectedProject.getProjectID()).setProjectState(State.Finished);
+        connectedUser.setProjects(updatedProjectsList);
         serialization.save(hiProject);
+        updateProjectPage();
     }//GEN-LAST:event_markAsCompleteButtonActionPerformed
 
     private void editEndDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEndDateButtonActionPerformed
-        hiProject = serialization.load();
         DatePicker dp = new DatePicker();
         Object[] options = {"Confirm changes", "Cancel"};
         switch (JOptionPane.showOptionDialog(null, dp, "Change your project end date.", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
             case JOptionPane.OK_OPTION:
                 if (dp.getDate().isBefore(LocalDate.now().plusDays(1))) {
                     JOptionPane.showMessageDialog(null, "The new end date cannot be set for today or before!");
-                    break;
                 } else {
+                    /*connectedUser.getProjects().getProject(selectedProject.getProjectID()).setEndDate(dp.getDate());*/
                     selectedProject.setEndDate(dp.getDate());
                     serialization.save(hiProject);
-                    break;
                 }
         }
+        updateProjectPage();
     }//GEN-LAST:event_editEndDateButtonActionPerformed
 
     private void editTaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editTaskButtonActionPerformed
@@ -683,9 +645,62 @@ public class ProjectPage extends javax.swing.JFrame {
     }//GEN-LAST:event_sortEndDateButtonActionPerformed
 
     private void goBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackButtonActionPerformed
-        new Homepage(connectedUser).setVisible(true);
+        new Homepage().setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackButtonActionPerformed
+
+    private void addUserProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserProjectButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addUserProjectButtonActionPerformed
+
+    private void updateProjectPage() {
+        this.dispose();
+        HiProject hiProject = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir"))).load();
+        try {
+            User updatedConnectedUser = hiProject.getUsers().getUser(connectedUser.getEmail());
+            ProjectPage.selectedProject = hiProject.getUsers().getUser(updatedConnectedUser.getEmail()).getProjects().getProject(selectedProject.getProjectID());
+            new ProjectPage(selectedProject, updatedConnectedUser).setVisible(true);
+        } catch (UserDoesntExistException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ProjectPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ProjectPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ProjectPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ProjectPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ProjectPage().setVisible(true);
+            }
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

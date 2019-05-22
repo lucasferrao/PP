@@ -50,8 +50,8 @@ public class ProjectsList implements Serializable {
      * @return projects
      */
     public Map<Integer, Project> getProjects(){
-        /*return projects.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));*/
-        return projects;
+        return projects.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));
+        /*return projects;*/
     }
 
     /**
@@ -276,5 +276,11 @@ public class ProjectsList implements Serializable {
         }
 
         return  biggestProject;
+    }
+
+    public void updateProjectsOwner(User user){
+        for(Map.Entry<Integer, Project> e : projects.entrySet()){
+            e.getValue().setOwner(new Manager(user));
+        }
     }
 }

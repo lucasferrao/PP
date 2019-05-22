@@ -149,4 +149,8 @@ public class UsersList implements Serializable {
         }
     }
 
+    public void updateUserKey(User user, String oldKey) {
+        this.users.put(user.getEmail(), this.users.remove(oldKey));
+    }
+
 }

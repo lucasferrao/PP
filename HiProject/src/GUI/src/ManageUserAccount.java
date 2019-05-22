@@ -4,24 +4,29 @@
  * and open the template in the editor.
  */
 package GUI.src;
+
 import Backend.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Map;
 
 /**
- *
  * @author joaod
  */
-public class ManageUserAccount extends javax.swing.JFrame {
+public class ManageUserAccount extends javax.swing.JDialog {
     private static User connectedUser;
     private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
+    private HiProject hiProject = serialization.load();
 
     /**
      * Creates new form ManageUserAccount
      */
-    public ManageUserAccount(User connectedUser) {
-        ManageUserAccount.connectedUser = connectedUser;
+    public ManageUserAccount() {
+        setModal(true);
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        ManageUserAccount.connectedUser = hiProject.getConnectedUser();
         initComponents();
     }
 
@@ -84,70 +89,70 @@ public class ManageUserAccount extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(saveChangesButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(exitDontSaveButton)
-                .addGap(60, 60, 60))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(userNameLabel)
-                            .addComponent(userEmailLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                            .addComponent(userEmailField)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newPasswordLabel)
-                            .addComponent(confirmPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(confirmPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(newPasswordField))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(saveChangesButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                                .addComponent(exitDontSaveButton)
+                                .addGap(60, 60, 60))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(userNameLabel)
+                                                        .addComponent(userEmailLabel))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                                                        .addComponent(userEmailField)))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(newPasswordLabel)
+                                                        .addComponent(confirmPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(confirmPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                                        .addComponent(newPasswordField))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userNameLabel)
-                    .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userEmailLabel)
-                    .addComponent(userEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newPasswordLabel)
-                    .addComponent(newPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmPasswordLabel)
-                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveChangesButton)
-                    .addComponent(exitDontSaveButton))
-                .addGap(36, 36, 36))
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(userNameLabel)
+                                        .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(userEmailLabel)
+                                        .addComponent(userEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(50, 50, 50)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(newPasswordLabel)
+                                        .addComponent(newPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(confirmPasswordLabel)
+                                        .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(50, 50, 50)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(saveChangesButton)
+                                        .addComponent(exitDontSaveButton))
+                                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(416, 398));
@@ -155,14 +160,32 @@ public class ManageUserAccount extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesButtonActionPerformed
-        HiProject hiProject = serialization.load();
-        hiProject.editUserProfileAndSerialize(connectedUser, userNameField.getText(), userEmailField.getText(), new String(confirmPasswordField.getPassword()));
+        /*hiProject.editUserProfileAndSerialize(connectedUser, userNameField.getText(), userEmailField.getText(), new String(confirmPasswordField.getPassword()));*/
+        String oldKey = connectedUser.getEmail();
+        if (!userNameField.getText().isBlank() && userNameField.getText().length() >= 3) {
+            connectedUser.setName(userNameField.getText());
+            ProjectsList updatedUserProjects = new ProjectsList(connectedUser.getProjects());
+            updatedUserProjects.updateProjectsOwner(connectedUser);
+            connectedUser.setProjects(updatedUserProjects);
+        }
+        if (!userEmailField.getText().isBlank() && userEmailField.getText().length() >= "~@~.com".length()) {
+            connectedUser.setEmail(userEmailField.getText());
+            hiProject.getUsers().updateUserKey(connectedUser, oldKey);
+        }
+        if (!(new String(newPasswordField.getPassword()).isBlank()) && Arrays.equals(newPasswordField.getPassword(), confirmPasswordField.getPassword())) {
+            connectedUser.setPassword(new String(newPasswordField.getPassword()));
+        }
+        serialization.save(hiProject);
         dispose();
     }//GEN-LAST:event_saveChangesButtonActionPerformed
 
     private void exitDontSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitDontSaveButtonActionPerformed
         dispose();
     }//GEN-LAST:event_exitDontSaveButtonActionPerformed
+
+    public void updateUser(User user, UsersList usersList) {
+        usersList.getUsers().put(user.getEmail(), usersList.getUsers().remove(user.getEmail()));
+    }
 
     /**
      * @param args the command line arguments
@@ -195,7 +218,7 @@ public class ManageUserAccount extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageUserAccount(connectedUser).setVisible(true);
+                new ManageUserAccount().setVisible(true);
             }
         });
     }

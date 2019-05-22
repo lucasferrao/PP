@@ -16,15 +16,16 @@ import java.time.LocalDate;
  */
 public class NewProject extends javax.swing.JDialog {
     private static User connectedUser;
-    private HiProject hiProject;
     private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
+    private HiProject hiProject = serialization.load();
 
     /**
      * Creates new form NewProject
      */
-    public NewProject(User connectedUser) {
+    public NewProject() {
+        setModal(true);
         setModalityType(ModalityType.APPLICATION_MODAL);
-        NewProject.connectedUser = connectedUser;
+        NewProject.connectedUser = hiProject.getConnectedUser();
         initComponents();
     }
 
@@ -168,7 +169,7 @@ public class NewProject extends javax.swing.JDialog {
     }//GEN-LAST:event_newProjectEndDateValueLabelActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        dispose();// TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void newProjectTitleValueFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProjectTitleValueFieldActionPerformed
@@ -176,7 +177,6 @@ public class NewProject extends javax.swing.JDialog {
     }//GEN-LAST:event_newProjectTitleValueFieldActionPerformed
 
     private void createProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProjectButtonActionPerformed
-        hiProject = serialization.load();
         if (newProjectTitleValueField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please insert a project title.");
             newProjectTitleValueField.requestFocus();
@@ -227,7 +227,7 @@ public class NewProject extends javax.swing.JDialog {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewProject(connectedUser).setVisible(true);
+                new NewProject().setVisible(true);
             }
         });
     }

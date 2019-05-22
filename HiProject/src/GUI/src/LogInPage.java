@@ -30,7 +30,7 @@ public class LogInPage extends javax.swing.JFrame {
 
     private void authenticate() {
         HiProject hiProject = serialization.load();
-        if (emailTextField.getText().equals("")) {
+        if (emailTextField.getText().isBlank()) {
             JOptionPane.showMessageDialog(null, "Please insert an email.");
             emailTextField.requestFocus();
         } else if (passwordField.getPassword().length == 0) {
@@ -46,7 +46,8 @@ public class LogInPage extends javax.swing.JFrame {
             } catch (UserDoesntExistException e) {
                 e.printStackTrace();
             }
-            new Homepage(hiProject.getConnectedUser()).setVisible(true);
+            serialization.save(hiProject);
+            new Homepage().setVisible(true);
         }
 
     }
@@ -194,7 +195,6 @@ public class LogInPage extends javax.swing.JFrame {
     }//GEN-LAST:event_createAccLabelMouseClicked
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        // TODO add your handling code here:
         jPanel1.requestFocus();
     }//GEN-LAST:event_jPanel1MouseClicked
 

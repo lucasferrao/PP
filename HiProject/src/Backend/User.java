@@ -225,4 +225,5 @@ public class User implements Serializable {
     public void addProject(Project p){
         this.projects.addProject(p);
     }
+
 }
