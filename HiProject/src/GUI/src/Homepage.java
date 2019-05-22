@@ -51,27 +51,28 @@ public class Homepage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        mainMenuPanel = new javax.swing.JPanel();
         projectListComboBox = new javax.swing.JComboBox<>();
-        openProjectButton = new javax.swing.JButton();
-        selectedProjectNameLabel = new javax.swing.JLabel();
-        selectedProjectOwnerLabel = new javax.swing.JLabel();
-        selectedProjectPeopleInvolvedLabel = new javax.swing.JLabel();
-        selectedProjectProjectStateLabel = new javax.swing.JLabel();
-        selectedProjectStartDateLabel = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        selectedProjectOwnerValue = new javax.swing.JLabel();
-        selectedProjectPeopleInvolvedValue = new javax.swing.JLabel();
-        selectedProjectEndDateLabel = new javax.swing.JLabel();
-        selectedProjectTasksNumberLabel = new javax.swing.JLabel();
-        selectedProjectProjectStateValue = new javax.swing.JLabel();
-        selectedProjectStartDateValue = new javax.swing.JLabel();
-        selectedProjectEndDateValue = new javax.swing.JLabel();
-        selectedProjectTasksNumberValue = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        editProfileButton = new javax.swing.JButton();
+        addProjectButton = new javax.swing.JLabel();
+        removeProjectButton = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        selectedProjectPanel = new javax.swing.JPanel();
+        selectedProjectOwnerValue1 = new javax.swing.JLabel();
+        selectedProjectStartDateValue1 = new javax.swing.JLabel();
+        selectedProjectStartDateLabel1 = new javax.swing.JLabel();
+        selectedProjectProjectStateLabel1 = new javax.swing.JLabel();
+        selectedProjectTasksNumberLabel1 = new javax.swing.JLabel();
+        selectedProjectEndDateLabel1 = new javax.swing.JLabel();
+        selectedProjectEndDateValue1 = new javax.swing.JLabel();
+        selectedProjectPeopleInvolvedLabel1 = new javax.swing.JLabel();
+        selectedProjectOwnerLabel1 = new javax.swing.JLabel();
+        selectedProjectProjectStateValue1 = new javax.swing.JLabel();
+        selectedProjectNameLabel1 = new javax.swing.JLabel();
+        selectedProjectTasksNumberValue1 = new javax.swing.JLabel();
+        selectedProjectPeopleInvolvedValue1 = new javax.swing.JLabel();
+        selectedProjectBackground = new javax.swing.JLabel();
         dashboardPanel = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         lateProjectsLabel = new javax.swing.JLabel();
         ongoingProjectsLabel = new javax.swing.JLabel();
         completedProjectsLabel = new javax.swing.JLabel();
@@ -88,24 +89,22 @@ public class Homepage extends javax.swing.JFrame {
         bpCompletedTasksLabel = new javax.swing.JLabel();
         bpNameValueLabel = new javax.swing.JLabel();
         bpCompletedTasksValueLabel = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        newProjectMenuItem = new javax.swing.JMenuItem();
-        projectsListMenuItem = new javax.swing.JMenuItem();
-        userProfileMenuItem = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        dashboardBackground = new javax.swing.JLabel();
+        homepageBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Homepage");
+        getContentPane().setLayout(null);
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        mainMenuPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Welcome to HiProject, " + connectedUser.getName()));
+        mainMenuPanel.setOpaque(false);
+        mainMenuPanel.setLayout(null);
 
         projectListComboBox.setModel(new javax.swing.DefaultComboBoxModel(projectsmta(titles).toArray()));
         projectListComboBox.addItemListener (new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                String ptitle = projectListComboBox.getItemAt(projectListComboBox.getSelectedIndex());
+                /*String ptitle = projectListComboBox.getItemAt(projectListComboBox.getSelectedIndex());
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     for (Map.Entry<Integer, Project> ee : pl.entrySet()) {
                         if (ptitle.equals(ee.getValue().getTitle())) {
@@ -120,369 +119,272 @@ public class Homepage extends javax.swing.JFrame {
                     }
                 }
             }
-        });
+        });*/
+            }});
+        mainMenuPanel.add(projectListComboBox);
+        projectListComboBox.setBounds(20, 20, 220, 22);
 
-        openProjectButton.setText("Open Project");
-        openProjectButton.addActionListener(new java.awt.event.ActionListener() {
+        editProfileButton.setText("Edit Profile");
+        editProfileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openProjectButtonActionPerformed(evt);
+                editProfileButtonActionPerformed(evt);
             }
         });
+        mainMenuPanel.add(editProfileButton);
+        editProfileButton.setBounds(360, 20, 87, 23);
 
-        selectedProjectNameLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        selectedProjectNameLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedProjectNameLabel.setText("Select a Project to View its Details");
+        addProjectButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\plus.png")); // NOI18N
+        addProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addProjectButtonMouseClicked(evt);
+            }
+        });
+        mainMenuPanel.add(addProjectButton);
+        addProjectButton.setBounds(260, 20, 23, 24);
 
-        selectedProjectOwnerLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectOwnerLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        selectedProjectOwnerLabel.setText("Owner:");
+        removeProjectButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\minus.png")); // NOI18N
+        removeProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeProjectButtonMouseClicked(evt);
+            }
+        });
+        mainMenuPanel.add(removeProjectButton);
+        removeProjectButton.setBounds(300, 20, 23, 24);
 
-        selectedProjectPeopleInvolvedLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectPeopleInvolvedLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        selectedProjectPeopleInvolvedLabel.setText("People Involved:");
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        mainMenuPanel.add(jButton1);
+        jButton1.setBounds(490, 20, 73, 23);
 
-        selectedProjectProjectStateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectProjectStateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        selectedProjectProjectStateLabel.setText("Project State:");
+        getContentPane().add(mainMenuPanel);
+        mainMenuPanel.setBounds(10, 6, 1260, 60);
 
-        selectedProjectStartDateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectStartDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        selectedProjectStartDateLabel.setText("Start Date:");
+        selectedProjectPanel.setOpaque(false);
+        selectedProjectPanel.setLayout(null);
 
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        selectedProjectOwnerValue1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectOwnerValue1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectPanel.add(selectedProjectOwnerValue1);
+        selectedProjectOwnerValue1.setBounds(509, 244, 331, 22);
 
-        selectedProjectOwnerValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectOwnerValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectStartDateValue1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectStartDateValue1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectPanel.add(selectedProjectStartDateValue1);
+        selectedProjectStartDateValue1.setBounds(509, 364, 331, 22);
 
-        selectedProjectPeopleInvolvedValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectPeopleInvolvedValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectStartDateLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectStartDateLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        selectedProjectStartDateLabel1.setText("Start Date:");
+        selectedProjectPanel.add(selectedProjectStartDateLabel1);
+        selectedProjectStartDateLabel1.setBounds(189, 364, 310, 22);
 
-        selectedProjectEndDateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectEndDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        selectedProjectEndDateLabel.setText("End Date:");
+        selectedProjectProjectStateLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectProjectStateLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        selectedProjectProjectStateLabel1.setText("Project State:");
+        selectedProjectPanel.add(selectedProjectProjectStateLabel1);
+        selectedProjectProjectStateLabel1.setBounds(189, 324, 310, 22);
 
-        selectedProjectTasksNumberLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectTasksNumberLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        selectedProjectTasksNumberLabel.setText("Tasks Number:");
+        selectedProjectTasksNumberLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectTasksNumberLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        selectedProjectTasksNumberLabel1.setText("Tasks Number:");
+        selectedProjectPanel.add(selectedProjectTasksNumberLabel1);
+        selectedProjectTasksNumberLabel1.setBounds(189, 444, 310, 22);
 
-        selectedProjectProjectStateValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectProjectStateValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectEndDateLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectEndDateLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        selectedProjectEndDateLabel1.setText("End Date:");
+        selectedProjectPanel.add(selectedProjectEndDateLabel1);
+        selectedProjectEndDateLabel1.setBounds(189, 404, 310, 22);
 
-        selectedProjectStartDateValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectStartDateValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectEndDateValue1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectEndDateValue1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectPanel.add(selectedProjectEndDateValue1);
+        selectedProjectEndDateValue1.setBounds(509, 404, 331, 22);
 
-        selectedProjectEndDateValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectEndDateValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectPeopleInvolvedLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectPeopleInvolvedLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        selectedProjectPeopleInvolvedLabel1.setText("People Involved:");
+        selectedProjectPanel.add(selectedProjectPeopleInvolvedLabel1);
+        selectedProjectPeopleInvolvedLabel1.setBounds(189, 284, 310, 22);
 
-        selectedProjectTasksNumberValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        selectedProjectTasksNumberValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectOwnerLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectOwnerLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        selectedProjectOwnerLabel1.setText("Owner:");
+        selectedProjectPanel.add(selectedProjectOwnerLabel1);
+        selectedProjectOwnerLabel1.setBounds(189, 244, 310, 22);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Projects");
+        selectedProjectProjectStateValue1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectProjectStateValue1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectPanel.add(selectedProjectProjectStateValue1);
+        selectedProjectProjectStateValue1.setBounds(509, 324, 331, 22);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(projectListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(openProjectButton)))
-                        .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(selectedProjectOwnerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectPeopleInvolvedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                            .addComponent(selectedProjectProjectStateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectStartDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectEndDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectTasksNumberLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(selectedProjectStartDateValue, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
-                            .addComponent(selectedProjectEndDateValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectTasksNumberValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectOwnerValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectPeopleInvolvedValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectProjectStateValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(selectedProjectNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(40, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator3)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(projectListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(openProjectButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(selectedProjectNameLabel)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(selectedProjectOwnerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectOwnerValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(selectedProjectPeopleInvolvedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(selectedProjectPeopleInvolvedValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectedProjectProjectStateLabel)
-                            .addComponent(selectedProjectProjectStateValue, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(selectedProjectStartDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(selectedProjectStartDateValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(selectedProjectEndDateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(selectedProjectEndDateValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectedProjectTasksNumberLabel)
-                    .addComponent(selectedProjectTasksNumberValue, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
-        );
+        selectedProjectNameLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        selectedProjectNameLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedProjectNameLabel1.setText("Select a Project to View its Details");
+        selectedProjectPanel.add(selectedProjectNameLabel1);
+        selectedProjectNameLabel1.setBounds(300, 60, 610, 29);
 
-        dashboardPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        selectedProjectTasksNumberValue1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectTasksNumberValue1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectPanel.add(selectedProjectTasksNumberValue1);
+        selectedProjectTasksNumberValue1.setBounds(509, 444, 331, 22);
 
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        selectedProjectPeopleInvolvedValue1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        selectedProjectPeopleInvolvedValue1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        selectedProjectPanel.add(selectedProjectPeopleInvolvedValue1);
+        selectedProjectPeopleInvolvedValue1.setBounds(509, 284, 331, 22);
 
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        selectedProjectBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\BackgroundWavesGreen2.png")); // NOI18N
+        selectedProjectPanel.add(selectedProjectBackground);
+        selectedProjectBackground.setBounds(0, 0, 1260, 700);
+
+        getContentPane().add(selectedProjectPanel);
+        selectedProjectPanel.setBounds(10, 90, 1260, 700);
+
+        dashboardPanel.setBackground(new java.awt.Color(36, 80, 218));
+        dashboardPanel.setOpaque(false);
+        dashboardPanel.setLayout(null);
 
         lateProjectsLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lateProjectsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lateProjectsLabel.setText("Late Projects");
+        dashboardPanel.add(lateProjectsLabel);
+        lateProjectsLabel.setBounds(6, 318, 326, 29);
 
         ongoingProjectsLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         ongoingProjectsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ongoingProjectsLabel.setText("Ongoing Projects");
+        dashboardPanel.add(ongoingProjectsLabel);
+        ongoingProjectsLabel.setBounds(6, 202, 326, 29);
 
         completedProjectsLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         completedProjectsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         completedProjectsLabel.setText("Completed Projects");
+        dashboardPanel.add(completedProjectsLabel);
+        completedProjectsLabel.setBounds(6, 71, 326, 29);
 
         completedProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         completedProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        completedProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().completedProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
+        completedProjectsValueLabel.setText("completedProjectsValueLabel");
+        dashboardPanel.add(completedProjectsValueLabel);
+        completedProjectsValueLabel.setBounds(6, 118, 326, 25);
 
         ongoingProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ongoingProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ongoingProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().ongoingProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
+        ongoingProjectsValueLabel.setText("ongoingProjectsValueLabel");
+        dashboardPanel.add(ongoingProjectsValueLabel);
+        ongoingProjectsValueLabel.setBounds(6, 249, 326, 25);
 
         lateProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lateProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lateProjectsValueLabel.setText(String.format("%d/%d", Homepage.connectedUser.getProjects().lateProjects(), Homepage.connectedUser.getProjects().getProjects().size()));
+        lateProjectsValueLabel.setText("lateProjectsValueLabel");
+        dashboardPanel.add(lateProjectsValueLabel);
+        lateProjectsValueLabel.setBounds(6, 365, 326, 25);
 
         inNeedOfAttentionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         inNeedOfAttentionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         inNeedOfAttentionLabel.setText("In Need of Attention");
+        dashboardPanel.add(inNeedOfAttentionLabel);
+        inNeedOfAttentionLabel.setBounds(410, 70, 326, 29);
 
         inoaProject2ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject2ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inoaProject2ValueLabel.setText(inoaProjects2GetText(connectedUser.getProjects().biggestProject().completedTasks()));
+        inoaProject2ValueLabel.setText("inoaProject2ValueLabel");
+        dashboardPanel.add(inoaProject2ValueLabel);
+        inoaProject2ValueLabel.setBounds(360, 230, 326, 40);
 
         inoaProject3ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject3ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inoaProject3ValueLabel.setText(inoaProjects3GetText(connectedUser.getProjects().biggestProject().completedTasks()));
+        inoaProject3ValueLabel.setText("inoaProject3ValueLabel");
+        dashboardPanel.add(inoaProject3ValueLabel);
+        inoaProject3ValueLabel.setBounds(110, 310, 576, 40);
 
         inoaProject1ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject1ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inoaProject1ValueLabel.setText(inoaProjects1GetText(connectedUser.getProjects().biggestProject().completedTasks()));
+        inoaProject1ValueLabel.setText("inoaProject1ValueLabel");
+        dashboardPanel.add(inoaProject1ValueLabel);
+        inoaProject1ValueLabel.setBounds(250, 150, 576, 40);
 
         biggestProjectLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         biggestProjectLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         biggestProjectLabel.setText("Biggest Project");
+        dashboardPanel.add(biggestProjectLabel);
+        biggestProjectLabel.setBounds(700, 70, 326, 29);
 
         bpPeopleInvolvedLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         bpPeopleInvolvedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bpPeopleInvolvedLabel.setText("People Involved in Project:");
+        dashboardPanel.add(bpPeopleInvolvedLabel);
+        bpPeopleInvolvedLabel.setBounds(700, 190, 326, 28);
 
         bpPeopleInvolvedValueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bpPeopleInvolvedValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpPeopleInvolvedValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().getContributors().size()));
+        bpPeopleInvolvedValueLabel.setText("bpPeopleInvolvedValueLabel");
+        dashboardPanel.add(bpPeopleInvolvedValueLabel);
+        bpPeopleInvolvedValueLabel.setBounds(700, 230, 326, 22);
 
         bpCompletedTasksLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         bpCompletedTasksLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpCompletedTasksLabel.setText("Completed Tasks:");
+        bpCompletedTasksLabel.setText("Completed Tasks in Project:");
+        dashboardPanel.add(bpCompletedTasksLabel);
+        bpCompletedTasksLabel.setBounds(700, 290, 326, 25);
 
         bpNameValueLabel.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         bpNameValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpNameValueLabel.setText(connectedUser.getProjects().biggestProject().getTitle());
+        bpNameValueLabel.setText("bpNameValueLabel");
+        dashboardPanel.add(bpNameValueLabel);
+        bpNameValueLabel.setBounds(700, 120, 326, 22);
 
         bpCompletedTasksValueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bpCompletedTasksValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bpCompletedTasksValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().completedTasks().size()));
+        bpCompletedTasksValueLabel.setText("bpCompletedTasksValueLabel");
+        dashboardPanel.add(bpCompletedTasksValueLabel);
+        bpCompletedTasksValueLabel.setBounds(700, 330, 326, 22);
 
-        javax.swing.GroupLayout dashboardPanelLayout = new javax.swing.GroupLayout(dashboardPanel);
-        dashboardPanel.setLayout(dashboardPanelLayout);
-        dashboardPanelLayout.setHorizontalGroup(
-            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dashboardPanelLayout.createSequentialGroup()
-                .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(ongoingProjectsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lateProjectsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(completedProjectsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(completedProjectsValueLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                    .addComponent(ongoingProjectsValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lateProjectsValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(inoaProject1ValueLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(inNeedOfAttentionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(inoaProject2ValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(inoaProject3ValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(biggestProjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bpPeopleInvolvedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bpPeopleInvolvedValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bpCompletedTasksLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                    .addComponent(bpNameValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bpCompletedTasksValueLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        dashboardPanelLayout.setVerticalGroup(
-            dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(dashboardPanelLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(dashboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dashboardPanelLayout.createSequentialGroup()
-                        .addComponent(completedProjectsLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(completedProjectsValueLabel)
-                        .addGap(59, 59, 59)
-                        .addComponent(ongoingProjectsLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(ongoingProjectsValueLabel)
-                        .addGap(44, 44, 44)
-                        .addComponent(lateProjectsLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(lateProjectsValueLabel))
-                    .addGroup(dashboardPanelLayout.createSequentialGroup()
-                        .addComponent(inNeedOfAttentionLabel)
-                        .addGap(45, 45, 45)
-                        .addComponent(inoaProject1ValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(inoaProject2ValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(inoaProject3ValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dashboardPanelLayout.createSequentialGroup()
-                        .addComponent(biggestProjectLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(bpNameValueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(bpPeopleInvolvedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bpPeopleInvolvedValueLabel)
-                        .addGap(35, 35, 35)
-                        .addComponent(bpCompletedTasksLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(bpCompletedTasksValueLabel)))
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
+        dashboardBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\BackgroundWavesBlue2.png")); // NOI18N
+        dashboardPanel.add(dashboardBackground);
+        dashboardBackground.setBounds(0, 0, 1260, 700);
 
-        jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        getContentPane().add(dashboardPanel);
+        dashboardPanel.setBounds(10, 90, 1260, 700);
 
-        jMenu1.setText("File");
+        homepageBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\cropped-cool-background.png")); // NOI18N
+        getContentPane().add(homepageBackground);
+        homepageBackground.setBounds(0, 0, 1280, 800);
 
-        newProjectMenuItem.setText("New Project");
-        newProjectMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newProjectMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu1.add(newProjectMenuItem);
-
-        projectsListMenuItem.setText("Projects List");
-        projectsListMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projectsListMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu1.add(projectsListMenuItem);
-
-        userProfileMenuItem.setText("User Profile");
-        userProfileMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userProfileMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu1.add(userProfileMenuItem);
-
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
-            }
-        });
-        jMenu1.add(exitMenuItem);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(dashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(1, 1, 1)
-                .addComponent(dashboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        setSize(new java.awt.Dimension(1018, 849));
+        setSize(new java.awt.Dimension(1296, 839));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void projectsListMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projectsListMenuItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_projectsListMenuItemActionPerformed
-
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(1);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
-
-    private void userProfileMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userProfileMenuItemActionPerformed
+    private void editProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProfileButtonActionPerformed
         ManageUserAccount mua = new ManageUserAccount(connectedUser);
         mua.setVisible(true);
-    }//GEN-LAST:event_userProfileMenuItemActionPerformed
+    }//GEN-LAST:event_editProfileButtonActionPerformed
+
+    private void addProjectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addProjectButtonMouseClicked
+        NewProject newp = new NewProject(connectedUser);
+        newp.setModal(true);
+        newp.setVisible(true);
+        updateHomepage();
+    }//GEN-LAST:event_addProjectButtonMouseClicked
+
+    private void removeProjectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeProjectButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removeProjectButtonMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (dashboardPanel.isVisible()) {
+            this.dashboardPanel.setVisible(false);
+            this.selectedProjectPanel.setVisible(true);
+        } else {
+            this.selectedProjectPanel.setVisible(false);
+            this.dashboardPanel.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void newProjectMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         NewProject newp = new NewProject(connectedUser);
@@ -490,16 +392,6 @@ public class Homepage extends javax.swing.JFrame {
         newp.setVisible(true);
         updateHomepage();
     }
-
-    private void openProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openProjectButtonActionPerformed
-        String ptitle = this.projectListComboBox.getItemAt(projectListComboBox.getSelectedIndex());
-        for (Map.Entry<Integer, Project> e : pl.entrySet()) {
-            if (ptitle.equals(e.getValue().getTitle())) {
-                new ProjectPage(e.getValue(), connectedUser).setVisible(true);
-                dispose();
-            }
-        }
-    }//GEN-LAST:event_openProjectButtonActionPerformed
 
     public String inoaProjects1GetText(ArrayList<Task> tasks) {
         try {
@@ -575,6 +467,7 @@ public class Homepage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addProjectButton;
     private javax.swing.JLabel biggestProjectLabel;
     private javax.swing.JLabel bpCompletedTasksLabel;
     private javax.swing.JLabel bpCompletedTasksValueLabel;
@@ -583,41 +476,36 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JLabel bpPeopleInvolvedValueLabel;
     private javax.swing.JLabel completedProjectsLabel;
     private javax.swing.JLabel completedProjectsValueLabel;
+    private javax.swing.JLabel dashboardBackground;
     private javax.swing.JPanel dashboardPanel;
-    private javax.swing.JMenuItem exitMenuItem;
+    private javax.swing.JButton editProfileButton;
+    private javax.swing.JLabel homepageBackground;
     private javax.swing.JLabel inNeedOfAttentionLabel;
     private javax.swing.JLabel inoaProject1ValueLabel;
     private javax.swing.JLabel inoaProject2ValueLabel;
     private javax.swing.JLabel inoaProject3ValueLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lateProjectsLabel;
     private javax.swing.JLabel lateProjectsValueLabel;
-    private javax.swing.JMenuItem newProjectMenuItem;
+    private javax.swing.JPanel mainMenuPanel;
     private javax.swing.JLabel ongoingProjectsLabel;
     private javax.swing.JLabel ongoingProjectsValueLabel;
-    private javax.swing.JButton openProjectButton;
     private javax.swing.JComboBox<String> projectListComboBox;
-    private javax.swing.JMenuItem projectsListMenuItem;
-    private javax.swing.JLabel selectedProjectEndDateLabel;
-    private javax.swing.JLabel selectedProjectEndDateValue;
-    private javax.swing.JLabel selectedProjectNameLabel;
-    private javax.swing.JLabel selectedProjectOwnerLabel;
-    private javax.swing.JLabel selectedProjectOwnerValue;
-    private javax.swing.JLabel selectedProjectPeopleInvolvedLabel;
-    private javax.swing.JLabel selectedProjectPeopleInvolvedValue;
-    private javax.swing.JLabel selectedProjectProjectStateLabel;
-    private javax.swing.JLabel selectedProjectProjectStateValue;
-    private javax.swing.JLabel selectedProjectStartDateLabel;
-    private javax.swing.JLabel selectedProjectStartDateValue;
-    private javax.swing.JLabel selectedProjectTasksNumberLabel;
-    private javax.swing.JLabel selectedProjectTasksNumberValue;
-    private javax.swing.JMenuItem userProfileMenuItem;
+    private javax.swing.JLabel removeProjectButton;
+    private javax.swing.JLabel selectedProjectBackground;
+    private javax.swing.JLabel selectedProjectEndDateLabel1;
+    private javax.swing.JLabel selectedProjectEndDateValue1;
+    private javax.swing.JLabel selectedProjectNameLabel1;
+    private javax.swing.JLabel selectedProjectOwnerLabel1;
+    private javax.swing.JLabel selectedProjectOwnerValue1;
+    private javax.swing.JPanel selectedProjectPanel;
+    private javax.swing.JLabel selectedProjectPeopleInvolvedLabel1;
+    private javax.swing.JLabel selectedProjectPeopleInvolvedValue1;
+    private javax.swing.JLabel selectedProjectProjectStateLabel1;
+    private javax.swing.JLabel selectedProjectProjectStateValue1;
+    private javax.swing.JLabel selectedProjectStartDateLabel1;
+    private javax.swing.JLabel selectedProjectStartDateValue1;
+    private javax.swing.JLabel selectedProjectTasksNumberLabel1;
+    private javax.swing.JLabel selectedProjectTasksNumberValue1;
     // End of variables declaration//GEN-END:variables
 }
