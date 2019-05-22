@@ -17,6 +17,8 @@ import java.util.Map;
  */
 
 public class HiProject implements Serializable {
+    private int projectID;
+    private ProjectsList projects;
     private UsersList users;
     private User connectedUser;
     private final Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
@@ -25,15 +27,19 @@ public class HiProject implements Serializable {
      * HiProject's default constructor.
      */
     public HiProject(){
+        this.projects = new ProjectsList();
+        this.projectID = 0;
         this.users = new UsersList();
     }
 
     /**
      * HiProject's parametrized constructor.
      *
+     * @param projectsList a projects list
      * @param usersList a users list
      */
-    public HiProject(UsersList usersList){
+    public HiProject(ProjectsList projectsList, UsersList usersList){
+        this.projects = projectsList.clone();
         this.users = usersList.clone();
     }
 
@@ -43,7 +49,27 @@ public class HiProject implements Serializable {
      * @param hiProject HiProject being replicated
      */
     public HiProject(HiProject hiProject){
+        this.projects = hiProject.getProjects();
+        this.projectID = hiProject.getProjectID();
         this.users = hiProject.getUsers();
+    }
+
+    /**
+     * Returns a projects list.
+     *
+     * @return projects
+     */
+    public ProjectsList getProjects() {
+        return projects.clone();
+    }
+
+    /**
+     * Returns the project's ID.
+     *
+     * @return project's ID
+     */
+    public int getProjectID(){
+        return this.projectID;
     }
 
     /**
@@ -62,6 +88,24 @@ public class HiProject implements Serializable {
      */
     public User getConnectedUser() {
         return connectedUser;
+    }
+
+    /**
+     * Updates a projects list.
+     *
+     * @param projects a new projects list
+     */
+    public void setProjects(ProjectsList projects) {
+        this.projects = projects.clone();
+    }
+
+    /**
+     * Updates the project's ID.
+     *
+     * @param projectID new project's ID
+     */
+    public void setProjectID(int projectID){
+        this.projectID = projectID;
     }
 
     /**
@@ -110,7 +154,8 @@ public class HiProject implements Serializable {
 
         HiProject hiProject = (HiProject) o;
 
-        return this.users.equals(hiProject.getUsers());
+        return this.projects.equals(hiProject.getProjects()) &&
+                this.users.equals(hiProject.getUsers()) && (hiProject.projectID == this.projectID);
     }
 
     /**
@@ -121,6 +166,13 @@ public class HiProject implements Serializable {
     @Override
     public HiProject clone(){
         return new HiProject(this);
+    }
+
+    /**
+     *
+     */
+    public void incProjectID() {
+        projectID++;
     }
 
     /**
@@ -175,7 +227,8 @@ public class HiProject implements Serializable {
         try {
             User u = users.getUser(user.getEmail());
             u.addProject(project);
-            u.incNextProjectId();
+            incProjectID();
+            this.getProjects().addProject(project);
             serialization.save(this);
         } catch (UserDoesntExistException e) {
             e.printStackTrace();

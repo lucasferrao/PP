@@ -51,8 +51,7 @@ public class UsersList implements Serializable {
      * @return Map with users
      */
     public Map<String, User> getUsers() {
-        /*return users.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));*/
-        return users;
+        return users.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));
     }
 
     /**
@@ -141,6 +140,13 @@ public class UsersList implements Serializable {
         return users.containsKey(email);
     }
 
+    /**
+     * Method that gives a user.
+     *
+     * @param email
+     * @return
+     * @throws UserDoesntExistException
+     */
     public User getUser(String email) throws UserDoesntExistException {
         if (users.containsKey(email)){
             return users.get(email);

@@ -149,18 +149,33 @@ public class User implements Serializable {
         this.projects = projects.clone();
     }
 
+    /**
+     *
+     * @return
+     */
     public int getnextProjectId() {
         return nextProjectId;
     }
 
+    /**
+     *
+     * @param nextProjectId
+     */
     public void setnextProjectId(int nextProjectId) {
         this.nextProjectId = nextProjectId;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getAndIncnextProjectId() {
         return nextProjectId++;
     }
 
+    /**
+     *
+     */
     public void incNextProjectId() {
         nextProjectId++;
     }

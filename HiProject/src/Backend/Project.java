@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Project implements Serializable {
-	private int projectID;
 	private String title;
 	private String description;
 	private LocalDate beginDate;
@@ -33,8 +32,6 @@ public class Project implements Serializable {
 	 * Project's default constructor.
 	 */
 	public Project(){
-		/*this.projectID = Project.getAndIncNextID();*/
-		this.projectID = 0;
 		this.title = "";
 		this.description = "";
 		this.beginDate = LocalDate.MIN;
@@ -58,10 +55,9 @@ public class Project implements Serializable {
 	 * @param projectState project's state
 	 * @param contributors project's contributors
 	 */
-	public Project(int projectID, String title, String description, LocalDate beginDate,
+	public Project(String title, String description, LocalDate beginDate,
 				   LocalDate endDate, ArrayList<TasksList> lists, Manager owner,
 				   State projectState, ArrayList<Contributor> contributors){
-		this.projectID = projectID;
 		this.title = title;
 		this.description = description;
 		this.beginDate = beginDate;
@@ -80,9 +76,8 @@ public class Project implements Serializable {
 	 * @param endDate project's end date
 	 * @param owner project's owner
 	 */
-	public Project(int nextId, String title, String description, LocalDate beginDate,
+	public Project(String title, String description, LocalDate beginDate,
 				   LocalDate endDate, Manager owner){
-		this.projectID = nextId;
 		this.title = title;
 		this.description = description;
 		this.beginDate = beginDate;
@@ -99,7 +94,6 @@ public class Project implements Serializable {
 	 * @param project a project
 	 */
 	public Project(Project project){
-		this.projectID = project.getProjectID();
 		this.title = project.getTitle();
 		this.description = project.getDescription();
 		this.beginDate = project.getBeginDate();
@@ -108,15 +102,6 @@ public class Project implements Serializable {
 		this.owner = project.getOwner();
 		this.projectState = project.getProjectState();
 		this.contributors = project.getContributors();
-	}
-
-	/**
-	 * Returns the project's ID.
-	 *
-	 * @return project's ID
-	 */
-	public int getProjectID(){
-		return this.projectID;
 	}
 
 	/**
@@ -189,15 +174,6 @@ public class Project implements Serializable {
 	 */
 	public ArrayList<Contributor> getContributors() {
 		return contributors;
-	}
-
-	/**
-	 * Updates the project's ID.
-	 *
-	 * @param projectID new project's ID
-	 */
-	public void setProjectID(int projectID){
-		this.projectID = projectID;
 	}
 
 	/**
@@ -295,7 +271,6 @@ public class Project implements Serializable {
 		for(Contributor c: this.contributors){
 			s.append(" - " + c.toString() + ".\n");
 		}
-		s.append("Project's ID: " + projectID + ".");
 
 		return s.toString();
 	}
@@ -321,7 +296,7 @@ public class Project implements Serializable {
 					test.beginDate.equals(this.beginDate) && test.endDate.equals(this.endDate) &&
 					test.lists.equals(this.lists) && test.owner.equals(this.owner) &&
 					test.projectState.equals(this.projectState)
-					&& test.contributors.equals(this.contributors) && (test.projectID == this.projectID);
+					&& test.contributors.equals(this.contributors);
 	}
 
 	/**
