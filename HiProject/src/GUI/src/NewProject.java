@@ -190,7 +190,7 @@ public class NewProject extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Please insert a valid project end date.\nThe project cannot end before or on the same day it starts.");
             newProjectTitleValueField.requestFocus();
         } else {
-            hiProject.addProjectAndSerialize(connectedUser, new Project(connectedUser.getnextProjectId(), newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
+            hiProject.addProjectAndSerialize(connectedUser, new Project(newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
                     newProjectStartDateValueField.getDate(), newProjectEndDateValueField.getDate(), new Manager(connectedUser)));
             dispose();
         }
