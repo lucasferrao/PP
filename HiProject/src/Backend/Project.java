@@ -27,6 +27,7 @@ public class Project implements Serializable {
 	private Manager owner;
 	private State projectState;
 	private ArrayList<Contributor> contributors;
+	private int projectID;
 
 	/**
 	 * Project's default constructor.
@@ -348,6 +349,10 @@ public class Project implements Serializable {
 		}
 
 		return completedTasks;
+	}
+
+	public int getProjectID(){
+		return this.projectID;
 	}
 
 
