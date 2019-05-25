@@ -45,22 +45,36 @@ public class ManageUserAccount extends javax.swing.JFrame {
         newPasswordField = new javax.swing.JPasswordField();
         confirmPasswordLabel = new javax.swing.JLabel();
         confirmPasswordField = new javax.swing.JPasswordField();
+        manageYourUserProfileLabel = new javax.swing.JLabel();
+        passwordChangeInfo1 = new javax.swing.JLabel();
+        passwordChangeLabel = new javax.swing.JLabel();
+        currentPasswordLabel = new javax.swing.JLabel();
+        currentPasswordField = new javax.swing.JPasswordField();
+        defaultBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("User Account Manager");
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel1.setLayout(null);
 
-        userNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         userNameLabel.setText("Name");
+        userNameLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(userNameLabel);
+        userNameLabel.setBounds(42, 95, 35, 17);
 
         userNameField.setText(connectedUser.getName());
+        jPanel1.add(userNameField);
+        userNameField.setBounds(95, 90, 282, 30);
 
         userEmailLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         userEmailLabel.setText("Email");
+        jPanel1.add(userEmailLabel);
+        userEmailLabel.setBounds(50, 150, 33, 17);
 
         newPasswordLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         newPasswordLabel.setText("New Password");
+        jPanel1.add(newPasswordLabel);
+        newPasswordLabel.setBounds(36, 360, 88, 17);
 
         exitDontSaveButton.setText("Exit & Don't Save");
         exitDontSaveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +82,8 @@ public class ManageUserAccount extends javax.swing.JFrame {
                 exitDontSaveButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(exitDontSaveButton);
+        exitDontSaveButton.setBounds(219, 460, 140, 23);
 
         saveChangesButton.setText("Save Changes");
         saveChangesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -75,69 +91,61 @@ public class ManageUserAccount extends javax.swing.JFrame {
                 saveChangesButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(saveChangesButton);
+        saveChangesButton.setBounds(63, 460, 120, 23);
 
         userEmailField.setText(connectedUser.getEmail());
+        userEmailField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userEmailFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(userEmailField);
+        userEmailField.setBounds(95, 145, 282, 30);
+        jPanel1.add(newPasswordField);
+        newPasswordField.setBounds(167, 360, 210, 20);
 
         confirmPasswordLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         confirmPasswordLabel.setText("Confirm Password");
+        jPanel1.add(confirmPasswordLabel);
+        confirmPasswordLabel.setBounds(36, 400, 113, 17);
+        jPanel1.add(confirmPasswordField);
+        confirmPasswordField.setBounds(167, 400, 210, 20);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(saveChangesButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addComponent(exitDontSaveButton)
-                .addGap(60, 60, 60))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(userNameLabel)
-                            .addComponent(userEmailLabel))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                            .addComponent(userEmailField)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newPasswordLabel)
-                            .addComponent(confirmPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(confirmPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                            .addComponent(newPasswordField))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userNameLabel)
-                    .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(userEmailLabel)
-                    .addComponent(userEmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newPasswordLabel)
-                    .addComponent(newPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmPasswordLabel)
-                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveChangesButton)
-                    .addComponent(exitDontSaveButton))
-                .addGap(36, 36, 36))
-        );
+        manageYourUserProfileLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        manageYourUserProfileLabel.setText("Manage your User Profile");
+        manageYourUserProfileLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jPanel1.add(manageYourUserProfileLabel);
+        manageYourUserProfileLabel.setBounds(1, 31, 416, 29);
+
+        passwordChangeInfo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        passwordChangeInfo1.setText("If you wish to change your user password, please fill in the following fields.");
+        jPanel1.add(passwordChangeInfo1);
+        passwordChangeInfo1.setBounds(1, 262, 416, 14);
+
+        passwordChangeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        passwordChangeLabel.setText("Password Change");
+        passwordChangeLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel1.add(passwordChangeLabel);
+        passwordChangeLabel.setBounds(1, 222, 416, 22);
+
+        currentPasswordLabel.setText("Current Password");
+        currentPasswordLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(currentPasswordLabel);
+        currentPasswordLabel.setBounds(36, 320, 108, 17);
+
+        currentPasswordField.setText("jPasswordField1");
+        currentPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                currentPasswordFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(currentPasswordField);
+        currentPasswordField.setBounds(167, 320, 210, 20);
+
+        defaultBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\DefaultBackground.png", System.getProperty("user.dir"))));
+        jPanel1.add(defaultBackground);
+        defaultBackground.setBounds(0, 0, 420, 530);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,7 +158,7 @@ public class ManageUserAccount extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(416, 398));
+        setSize(new java.awt.Dimension(434, 565));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -163,6 +171,14 @@ public class ManageUserAccount extends javax.swing.JFrame {
     private void exitDontSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitDontSaveButtonActionPerformed
         dispose();
     }//GEN-LAST:event_exitDontSaveButtonActionPerformed
+
+    private void userEmailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userEmailFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userEmailFieldActionPerformed
+
+    private void currentPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_currentPasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,10 +219,16 @@ public class ManageUserAccount extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField confirmPasswordField;
     private javax.swing.JLabel confirmPasswordLabel;
+    private javax.swing.JPasswordField currentPasswordField;
+    private javax.swing.JLabel currentPasswordLabel;
+    private javax.swing.JLabel defaultBackground;
     private javax.swing.JButton exitDontSaveButton;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel manageYourUserProfileLabel;
     private javax.swing.JPasswordField newPasswordField;
     private javax.swing.JLabel newPasswordLabel;
+    private javax.swing.JLabel passwordChangeInfo1;
+    private javax.swing.JLabel passwordChangeLabel;
     private javax.swing.JButton saveChangesButton;
     private javax.swing.JTextField userEmailField;
     private javax.swing.JLabel userEmailLabel;
