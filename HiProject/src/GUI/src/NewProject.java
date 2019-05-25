@@ -174,9 +174,8 @@ public class NewProject extends javax.swing.JDialog {
             newProjectTitleValueField.requestFocus();
         } else {
 
-       /*     hiProject.addProjectAndSerialize(connectedUser, new Project(HiProject.getnextProjectId(), newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
+            hiProject.addProjectAndSerialize(connectedUser, new Project(hiProject.getProjectID(), newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
                     newProjectStartDateValueField.getDate(), newProjectEndDateValueField.getDate(), new Manager(connectedUser)));
-*/
             dispose();
         }
     }//GEN-LAST:event_createProjectButtonActionPerformed

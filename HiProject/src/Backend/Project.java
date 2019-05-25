@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Project implements Serializable {
+	private int projectID;
 	private String title;
 	private String description;
 	private LocalDate beginDate;
@@ -27,12 +28,12 @@ public class Project implements Serializable {
 	private Manager owner;
 	private State projectState;
 	private ArrayList<Contributor> contributors;
-	private int projectID;
 
 	/**
 	 * Project's default constructor.
 	 */
 	public Project(){
+		this.projectID = 0;
 		this.title = "";
 		this.description = "";
 		this.beginDate = LocalDate.MIN;
@@ -56,9 +57,10 @@ public class Project implements Serializable {
 	 * @param projectState project's state
 	 * @param contributors project's contributors
 	 */
-	public Project(String title, String description, LocalDate beginDate,
+	public Project(int projectID, String title, String description, LocalDate beginDate,
 				   LocalDate endDate, ArrayList<TasksList> lists, Manager owner,
 				   State projectState, ArrayList<Contributor> contributors){
+		this.projectID = projectID;
 		this.title = title;
 		this.description = description;
 		this.beginDate = beginDate;
@@ -77,8 +79,9 @@ public class Project implements Serializable {
 	 * @param endDate project's end date
 	 * @param owner project's owner
 	 */
-	public Project(String title, String description, LocalDate beginDate,
+	public Project(int projectID, String title, String description, LocalDate beginDate,
 				   LocalDate endDate, Manager owner){
+		this.projectID = projectID;
 		this.title = title;
 		this.description = description;
 		this.beginDate = beginDate;
@@ -103,6 +106,10 @@ public class Project implements Serializable {
 		this.owner = project.getOwner();
 		this.projectState = project.getProjectState();
 		this.contributors = project.getContributors();
+	}
+
+	public int getProjectID(){
+		return this.projectID;
 	}
 
 	/**
@@ -249,6 +256,10 @@ public class Project implements Serializable {
 		this.contributors = contributors;
 	}
 
+	public void setProjectID(int projectID) {
+		this.projectID = projectID;
+	}
+
 	/**
 	 * Displays a project's information on the screen.
 	 *
@@ -350,10 +361,5 @@ public class Project implements Serializable {
 
 		return completedTasks;
 	}
-
-	public int getProjectID(){
-		return this.projectID;
-	}
-
 
 }

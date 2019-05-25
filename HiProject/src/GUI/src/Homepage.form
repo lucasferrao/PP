@@ -84,7 +84,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="260" y="30" width="-1" height="-1"/>
+              <AbsoluteConstraints x="260" y="30" width="30" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -99,7 +99,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="300" y="30" width="-1" height="-1"/>
+              <AbsoluteConstraints x="300" y="30" width="30" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -318,8 +318,8 @@
         </Component>
         <Component class="javax.swing.JLabel" name="selectedProjectBackground">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\joaod\Desktop\PP\ProjectBackground.png"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\ProjectBackground.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
             </Property>
           </Properties>
           <Constraints>
@@ -573,8 +573,8 @@
         </Component>
         <Component class="javax.swing.JLabel" name="dashboardBackground">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\joaod\Desktop\PP\DashboardBackground.png"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\DashboardBackground.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
             </Property>
           </Properties>
           <Constraints>
@@ -588,7 +588,7 @@
     <Component class="javax.swing.JLabel" name="homepageBackground">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\DefaultBackground.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
+          <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\DefaultBackground.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
         </Property>
       </Properties>
       <Constraints>

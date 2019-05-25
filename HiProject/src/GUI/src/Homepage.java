@@ -139,7 +139,7 @@ public class Homepage extends javax.swing.JFrame {
             }
         });
         mainMenuPanel.add(addProjectButton);
-        addProjectButton.setBounds(260, 30, 0, 0);
+        addProjectButton.setBounds(260, 30, 30, 30);
 
         removeProjectButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\Minus.png", System.getProperty("user.dir"))));
         removeProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -148,7 +148,7 @@ public class Homepage extends javax.swing.JFrame {
             }
         });
         mainMenuPanel.add(removeProjectButton);
-        removeProjectButton.setBounds(300, 30, 0, 0);
+        removeProjectButton.setBounds(300, 30, 30, 30);
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +246,7 @@ public class Homepage extends javax.swing.JFrame {
         selectedProjectPanel.add(sppSelectedProjectName);
         sppSelectedProjectName.setBounds(310, 19, 610, 60);
 
-        selectedProjectBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\PP\\ProjectBackground.png")); // NOI18N
+        selectedProjectBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\ProjectBackground.png", System.getProperty("user.dir"))));
         selectedProjectPanel.add(selectedProjectBackground);
         selectedProjectBackground.setBounds(0, 0, 1320, 800);
 
@@ -353,14 +353,14 @@ public class Homepage extends javax.swing.JFrame {
         dashboardPanel.add(bpCompletedTasksValueLabel);
         bpCompletedTasksValueLabel.setBounds(800, 460, 326, 22);
 
-        dashboardBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\PP\\DashboardBackground.png")); // NOI18N
+        dashboardBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DashboardBackground.png", System.getProperty("user.dir"))));
         dashboardPanel.add(dashboardBackground);
         dashboardBackground.setBounds(0, 0, 1320, 800);
 
         getContentPane().add(dashboardPanel);
         dashboardPanel.setBounds(10, 90, 1320, 800);
 
-        homepageBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\DefaultBackground.png", System.getProperty("user.dir"))));
+        homepageBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DefaultBackground.png", System.getProperty("user.dir"))));
         getContentPane().add(homepageBackground);
         homepageBackground.setBounds(0, 0, 1350, 910);
 
