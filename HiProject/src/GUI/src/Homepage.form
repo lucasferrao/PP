@@ -4,9 +4,11 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Homepage"/>
+    <Property name="undecorated" type="boolean" value="true"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,-62,0,0,5,76"/>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,-101,0,0,5,60"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
     <SyntheticProperty name="generateSize" type="boolean" value="true"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
@@ -71,7 +73,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="350" y="40" width="-1" height="30"/>
+              <AbsoluteConstraints x="350" y="40" width="30" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -179,7 +181,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="530" y="20" width="270" height="70"/>
+              <AbsoluteConstraints x="530" y="21" width="270" height="70"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -694,6 +696,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\AddUser.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Click here to associate a new user to your project."/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addUserToProjectMouseClicked"/>
@@ -720,6 +723,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\RemoveUser.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Click here to remove an associated user of  your project."/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="removeUserFromProjectMouseClicked"/>
@@ -743,8 +747,8 @@
         </Component>
         <Component class="javax.swing.JLabel" name="markAsCompleteButton">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\joaod\Desktop\PP\Images\Complete.png"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\Complete.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -845,7 +849,7 @@
         <Component class="javax.swing.JLabel" name="removeTaskButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\MinusCircle64.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\PlusCircle64.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -860,7 +864,7 @@
         <Component class="javax.swing.JLabel" name="viewTaskButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\MinusCircle64.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
+              <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\View64.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -1005,12 +1009,12 @@
     <Component class="javax.swing.JLabel" name="homepageBackground">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\DefaultBackground.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
+          <Connection code="new javax.swing.ImageIcon(String.format(&quot;%s\\Images\\DefaultBackground2.png&quot;, System.getProperty(&quot;user.dir&quot;)))" type="code"/>
         </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="1350" height="930"/>
+          <AbsoluteConstraints x="0" y="0" width="1340" height="925"/>
         </Constraint>
       </Constraints>
     </Component>

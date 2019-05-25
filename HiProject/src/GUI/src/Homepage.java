@@ -123,6 +123,8 @@ public class Homepage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Homepage");
+        setUndecorated(true);
+        setResizable(false);
         getContentPane().setLayout(null);
 
         mainMenuPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Welcome to HiProject, " + connectedUser.getName() + "."));
@@ -159,7 +161,7 @@ public class Homepage extends javax.swing.JFrame {
             }
         });
         mainMenuPanel.add(addProjectButton);
-        addProjectButton.setBounds(350, 40, 0, 30);
+        addProjectButton.setBounds(350, 40, 30, 30);
 
         removeProjectButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\Minus.png", System.getProperty("user.dir"))));
         removeProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -219,7 +221,7 @@ public class Homepage extends javax.swing.JFrame {
             }
         });
         mainMenuPanel.add(viewProjectButton);
-        viewProjectButton.setBounds(530, 20, 270, 70);
+        viewProjectButton.setBounds(530, 21, 270, 70);
 
         viewDashboardButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\ViewDashboard2.png", System.getProperty("user.dir"))));
         viewDashboardButton.setVisible(false);
@@ -440,6 +442,7 @@ public class Homepage extends javax.swing.JFrame {
         associatedUsersLabel.setBounds(940, 160, 260, 30);
 
         addUserToProject.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\AddUser.png", System.getProperty("user.dir"))));
+        addUserToProject.setToolTipText("Click here to associate a new user to your project.");
         addUserToProject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addUserToProjectMouseClicked(evt);
@@ -454,6 +457,7 @@ public class Homepage extends javax.swing.JFrame {
         addUserToProjectLabel.setBounds(1220, 260, 60, 14);
 
         removeUserFromProject.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\RemoveUser.png", System.getProperty("user.dir"))));
+        removeUserFromProject.setToolTipText("Click here to remove an associated user of  your project.");
         removeUserFromProject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeUserFromProjectMouseClicked(evt);
@@ -467,7 +471,7 @@ public class Homepage extends javax.swing.JFrame {
         selectedProjectPanel.add(removeUserFromProjectLabel);
         removeUserFromProjectLabel.setBounds(1210, 350, 80, 14);
 
-        markAsCompleteButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\PP\\Images\\Complete.png")); // NOI18N
+        markAsCompleteButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\Complete.png", System.getProperty("user.dir"))));
         markAsCompleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 markAsCompleteButtonMouseClicked(evt);
@@ -524,7 +528,7 @@ public class Homepage extends javax.swing.JFrame {
         selectedProjectPanel.add(addTaskButton);
         addTaskButton.setBounds(1180, 680, 70, 80);
 
-        removeTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\MinusCircle64.png", System.getProperty("user.dir"))));
+        removeTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\PlusCircle64.png", System.getProperty("user.dir"))));
         removeTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeTaskButtonMouseClicked(evt);
@@ -533,7 +537,7 @@ public class Homepage extends javax.swing.JFrame {
         selectedProjectPanel.add(removeTaskButton);
         removeTaskButton.setBounds(1180, 470, 70, 80);
 
-        viewTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\MinusCircle64.png", System.getProperty("user.dir"))));
+        viewTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\View64.png", System.getProperty("user.dir"))));
         viewTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 viewTaskButtonMouseClicked(evt);
@@ -596,11 +600,11 @@ public class Homepage extends javax.swing.JFrame {
         getContentPane().add(selectedProjectPanel);
         selectedProjectPanel.setBounds(10, 110, 1320, 800);
 
-        homepageBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DefaultBackground.png", System.getProperty("user.dir"))));
+        homepageBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DefaultBackground2.png", System.getProperty("user.dir"))));
         getContentPane().add(homepageBackground);
-        homepageBackground.setBounds(0, 0, 1350, 930);
+        homepageBackground.setBounds(0, 0, 1340, 925);
 
-        setSize(new java.awt.Dimension(1356, 962));
+        setSize(new java.awt.Dimension(1340, 923));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
