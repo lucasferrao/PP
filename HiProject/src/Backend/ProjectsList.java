@@ -30,8 +30,10 @@ public class ProjectsList implements Serializable {
      * @param projects list of projects
      */
     public ProjectsList(Map<Integer, Project> projects){
-        //this.projects.putAll(projects);
-        //this.projects.forEach((k,v) -> v = v.clone());
+        for(Map.Entry<Integer, Project> e : projects.entrySet()){
+            this.projects.put(e.getKey(), e.getValue());
+        }
+        this.projects.forEach((k,v) -> v = v.clone());
         this.projects = projects;
     }
 
@@ -50,8 +52,7 @@ public class ProjectsList implements Serializable {
      * @return projects
      */
     public Map<Integer, Project> getProjects(){
-        /*return projects.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));*/
-        return projects;
+        return projects.entrySet().stream().collect(Collectors.toMap(k -> k.getKey(), v -> v.getValue().clone()));
     }
 
     /**
@@ -100,10 +101,16 @@ public class ProjectsList implements Serializable {
      * @return projects list's information
      */
     @Override
-    public String toString() {
-        return "Projects list{" +
-                "projects = " + projects +
-                '}';
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+        int count = 0;
+
+        s.append("Projects list:\n");
+        for(Map.Entry<Integer, Project> e : projects.entrySet()) {
+            s.append("Project " + (count + 1) + ": " + e.toString() + "\n");
+        }
+
+        return s.toString();
     }
 
     /**
@@ -147,7 +154,7 @@ public class ProjectsList implements Serializable {
      * @param projectID the project that has that ID
      */
     public Project getProject(int projectID){
-       return this.projects.get(projectID);
+        return this.projects.get(projectID);
     }
 
     /**
@@ -244,7 +251,7 @@ public class ProjectsList implements Serializable {
             LocalDate projectEndDate = e.getValue().getEndDate();
             State projectState = e.getValue().getProjectState();
             if(!projectState.equals(State.Finished) && !projectEndDate.isAfter(now)){
-                delayedProjects.add((Project) e.getValue());
+                delayedProjects.add(e.getValue());
             }
         }
 
@@ -265,14 +272,14 @@ public class ProjectsList implements Serializable {
 
         for(Map.Entry<Integer, Project> e : projects.entrySet()){
             total = 1.5 * e.getValue().getContributors().size();
-           for(TasksList t : e.getValue().getLists()){
-               total += t.getTasks().size();
-           }
+            for(TasksList t : e.getValue().getLists()){
+                total += t.getTasks().size();
+            }
 
-           if(total >= biggestTotal){
-               biggestTotal = total;
-               biggestProject = e.getValue();
-           }
+            if(total >= biggestTotal){
+                biggestTotal = total;
+                biggestProject = e.getValue();
+            }
         }
 
         return  biggestProject;

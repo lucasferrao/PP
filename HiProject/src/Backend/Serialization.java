@@ -13,7 +13,11 @@ public class Serialization implements Serializable {
         return file;
     }
 
-    //Loads/reads the file.
+    /**
+     * Loads/reads the file.
+     *
+     * @return the deserialized  HiProject
+     */
     public HiProject load() {
         try (FileInputStream fileIn = new FileInputStream(file);
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
@@ -23,7 +27,11 @@ public class Serialization implements Serializable {
         }
     }
 
-    //Saves the system as a file.
+    /**
+     * Saves the system as a file.
+     *
+     * @param hiProject serializes the HiProject's class
+     */
     public void save(HiProject hiProject) {
         try (FileOutputStream fileOut = new FileOutputStream(file);
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
@@ -36,6 +44,4 @@ public class Serialization implements Serializable {
             throw new RuntimeException(String.format("There was an error saving the file: %s", ex.getLocalizedMessage()), ex);
         }
     }
-
-
 }

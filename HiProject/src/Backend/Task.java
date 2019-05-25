@@ -89,7 +89,7 @@ public class Task implements Serializable {
 	 * @return task's title
 	 */
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class Task implements Serializable {
 	 * @return task's creator
 	 */
 	public User getCreator() {
-		return creator;
+		return this.creator;
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class Task implements Serializable {
 	 * @return task's contributor
 	 */
 	public User getContributor() {
-		return contributor;
+		return this.contributor;
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class Task implements Serializable {
 	 * @return task's description
 	 */
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class Task implements Serializable {
 	 * @return task's state
 	 */
 	public State getTaskState() {
-		return taskState;
+		return this.taskState;
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class Task implements Serializable {
 	 * @return task's begin date
 	 */
 	public LocalDate getBeginDate() {
-		return beginDate;
+		return this.beginDate;
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class Task implements Serializable {
 	 * @return task's end date
 	 */
 	public LocalDate getEndDate() {
-		return endDate;
+		return this.endDate;
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class Task implements Serializable {
 	 * @return task's limit date
 	 */
 	public LocalDate getLimitDate() {
-		return limitDate;
+		return this.limitDate;
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class Task implements Serializable {
 	 * @return task's priority
 	 */
 	public TasksPriority getPriority() {
-		return priority;
+		return this.priority;
 	}
 
 	/**
@@ -287,10 +287,10 @@ public class Task implements Serializable {
 		Task test = (Task) o;
 
 		return test.title.equals(this.title) && test.creator.equals(this.creator) &&
-					test.contributor.equals(this.contributor) && test.description.equals(this.description) &&
-					test.taskState.equals(this.taskState) && test.beginDate.equals(this.beginDate) &&
-							test.endDate.equals(this.endDate) && test.limitDate.equals(this.limitDate) &&
-							test.priority.equals(this.priority);
+				test.contributor.equals(this.contributor) && test.description.equals(this.description) &&
+				test.taskState.equals(this.taskState) && test.beginDate.equals(this.beginDate) &&
+				test.endDate.equals(this.endDate) && test.limitDate.equals(this.limitDate) &&
+				test.priority.equals(this.priority);
 	}
 
 	/**

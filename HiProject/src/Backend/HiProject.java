@@ -3,6 +3,7 @@ package Backend;
 import Exceptions.UserDoesntExistException;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * HiProject main application class.
@@ -130,6 +131,12 @@ public class HiProject implements Serializable {
         StringBuilder s = new StringBuilder();
 
         s.append("HiProject:\n");
+        s.append("Project count: " + (this.projectID + 1) + "\n");
+        s.append("Projects:\n");
+        this.projects.toString();
+        s.append("Users:\n");
+        this.users.toString();
+        s.append("Connected user: " + this.connectedUser + "\n");
 
         return s.toString();
     }
@@ -166,7 +173,7 @@ public class HiProject implements Serializable {
     }
 
     /**
-     *
+     * Method that keeps count the project ID.
      */
     public void incProjectID() {
         projectID++;
@@ -201,7 +208,6 @@ public class HiProject implements Serializable {
      *
      * @param email user's email
      * @param password user's password
-     *
      * @return boolean indicating if the user exists
      */
     public boolean authenticateUser(String email, String password) {
@@ -214,12 +220,18 @@ public class HiProject implements Serializable {
                     return true;
                 }
             }
-         }catch (Exception e) {
-                e.printStackTrace();
-            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
+    /**
+     * Method that add adds a project to a user and automatically serializes.
+     *
+     * @param user the project's owner
+     * @param project a new project
+     */
     public void addProjectAndSerialize(User user, Project project) {
         try {
             User u = users.getUser(user.getEmail());
@@ -232,6 +244,14 @@ public class HiProject implements Serializable {
         }
     }
 
+    /**
+     * Method that edits a user's profile and automatically serializes.
+     *
+     * @param user a user
+     * @param name new name
+     * @param email new email
+     * @param password new password
+     */
     public void editUserProfileAndSerialize(User user, String name, String email, String password) {
         try {
             User u = this.users.getUser(user.getEmail());
@@ -247,6 +267,4 @@ public class HiProject implements Serializable {
     public int getAndIncProjectID() {
         return projectID++;
     }
-
-
 }
