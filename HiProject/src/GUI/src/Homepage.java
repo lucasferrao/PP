@@ -57,6 +57,21 @@ public class Homepage extends javax.swing.JFrame {
         addProjectButton = new javax.swing.JLabel();
         removeProjectButton = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        selectedProjectPanel = new javax.swing.JPanel();
+        sppSelectedProjectDescriptionLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        sppSelectedProjectDescriptionValue = new javax.swing.JTextArea();
+        sppSelectedProjectEditProjectButtonLabel = new javax.swing.JLabel();
+        sppSelectedProjectEditProjectButton = new javax.swing.JLabel();
+        sppSelectedProjectStateValue = new javax.swing.JLabel();
+        sppSelectedProjectStartDateValue = new javax.swing.JLabel();
+        sppSelectedProjectStartDateLabel = new javax.swing.JLabel();
+        sppSelectedProjectEndDateValue = new javax.swing.JLabel();
+        sppSelectedProjectEndDateLabel = new javax.swing.JLabel();
+        sppSelectedProjectStateLabel = new javax.swing.JLabel();
+        sppSelectedProjectOwner = new javax.swing.JLabel();
+        sppSelectedProjectName = new javax.swing.JLabel();
+        selectedProjectBackground = new javax.swing.JLabel();
         dashboardPanel = new javax.swing.JPanel();
         completedProjectsLabel = new javax.swing.JLabel();
         completedProjectsValueLabel = new javax.swing.JLabel();
@@ -75,21 +90,6 @@ public class Homepage extends javax.swing.JFrame {
         bpNameValueLabel = new javax.swing.JLabel();
         bpCompletedTasksValueLabel = new javax.swing.JLabel();
         dashboardBackground = new javax.swing.JLabel();
-        selectedProjectPanel = new javax.swing.JPanel();
-        sppSelectedProjectDescriptionLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        sppSelectedProjectDescriptionValue = new javax.swing.JTextArea();
-        sppSelectedProjectEditProjectButtonLabel = new javax.swing.JLabel();
-        sppSelectedProjectEditProjectButton = new javax.swing.JLabel();
-        sppSelectedProjectStateValue = new javax.swing.JLabel();
-        sppSelectedProjectStartDateValue = new javax.swing.JLabel();
-        sppSelectedProjectStartDateLabel = new javax.swing.JLabel();
-        sppSelectedProjectEndDateValue = new javax.swing.JLabel();
-        sppSelectedProjectEndDateLabel = new javax.swing.JLabel();
-        sppSelectedProjectStateLabel = new javax.swing.JLabel();
-        sppSelectedProjectOwner = new javax.swing.JLabel();
-        sppSelectedProjectName = new javax.swing.JLabel();
-        selectedProjectBackground = new javax.swing.JLabel();
         homepageBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -101,25 +101,25 @@ public class Homepage extends javax.swing.JFrame {
         mainMenuPanel.setLayout(null);
 
         projectListComboBox.setModel(new javax.swing.DefaultComboBoxModel(projectsmta(titles).toArray()));
-/*        projectListComboBox.addItemListener (new ItemListener() {
+        projectListComboBox.addItemListener (new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 String ptitle = projectListComboBox.getItemAt(projectListComboBox.getSelectedIndex());
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     for (Map.Entry<Integer, Project> ee : pl.entrySet()) {
                         if (ptitle.equals(ee.getValue().getTitle())) {
-                            selectedProjectNameLabel.setText(ee.getValue().getTitle());
-                            selectedProjectOwnerValue.setText(ee.getValue().getOwner().getName());
-                            selectedProjectPeopleInvolvedValue.setText(Integer.toString(ee.getValue().getContributors().size()));
-                            selectedProjectEndDateValue.setText(ee.getValue().getEndDate().toString());
-                            selectedProjectStartDateValue.setText( ee.getValue().getBeginDate().toString());
-                            selectedProjectProjectStateValue.setText(ee.getValue().getProjectState().toString());
-                            selectedProjectTasksNumberValue.setText( Integer.toString(ee.getValue().getLists().size()));
+                            sppSelectedProjectName.setText(ee.getValue().getTitle());
+                            sppSelectedProjectOwner.setText(ee.getValue().getOwner().getName());
+                            //selectedProjectPeopleInvolvedValue.setText(Integer.toString(ee.getValue().getContributors().size()));
+                            sppSelectedProjectEndDateValue.setText(ee.getValue().getEndDate().toString());
+                            sppSelectedProjectStartDateValue.setText( ee.getValue().getBeginDate().toString());
+                            sppSelectedProjectStateValue.setText(ee.getValue().getProjectState().toString());
+                            //selectedProjectTasksNumberValue.setText( Integer.toString(ee.getValue().getLists().size()));
                         }
                     }
                 }
             }
-        });*/
+        });
         mainMenuPanel.add(projectListComboBox);
         projectListComboBox.setBounds(20, 30, 220, 30);
 
@@ -132,23 +132,23 @@ public class Homepage extends javax.swing.JFrame {
         mainMenuPanel.add(editProfileButton);
         editProfileButton.setBounds(360, 30, 87, 23);
 
-        addProjectButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\plus.png")); // NOI18N
+        addProjectButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\Plus.png", System.getProperty("user.dir"))));
         addProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addProjectButtonMouseClicked(evt);
             }
         });
         mainMenuPanel.add(addProjectButton);
-        addProjectButton.setBounds(260, 30, 23, 24);
+        addProjectButton.setBounds(260, 30, 0, 0);
 
-        removeProjectButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\minus.png")); // NOI18N
+        removeProjectButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\Minus.png", System.getProperty("user.dir"))));
         removeProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeProjectButtonMouseClicked(evt);
             }
         });
         mainMenuPanel.add(removeProjectButton);
-        removeProjectButton.setBounds(300, 30, 23, 24);
+        removeProjectButton.setBounds(300, 30, 0, 0);
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +161,97 @@ public class Homepage extends javax.swing.JFrame {
 
         getContentPane().add(mainMenuPanel);
         mainMenuPanel.setBounds(10, 6, 1320, 80);
+
+        selectedProjectPanel.setOpaque(false);
+        selectedProjectPanel.setLayout(null);
+
+        sppSelectedProjectDescriptionLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sppSelectedProjectDescriptionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sppSelectedProjectDescriptionLabel.setText("Project Description");
+        selectedProjectPanel.add(sppSelectedProjectDescriptionLabel);
+        sppSelectedProjectDescriptionLabel.setBounds(510, 160, 210, 30);
+
+        sppSelectedProjectDescriptionValue.setColumns(20);
+        sppSelectedProjectDescriptionValue.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        sppSelectedProjectDescriptionValue.setRows(5);
+        sppSelectedProjectDescriptionValue.setText("codigo get description\n");
+        sppSelectedProjectDescriptionValue.setBorder(null);
+        sppSelectedProjectDescriptionValue.setFocusable(false);
+        sppSelectedProjectDescriptionValue.setOpaque(false);
+        jScrollPane1.setViewportView(sppSelectedProjectDescriptionValue);
+
+        selectedProjectPanel.add(jScrollPane1);
+        jScrollPane1.setBounds(450, 200, 330, 140);
+
+        sppSelectedProjectEditProjectButtonLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        sppSelectedProjectEditProjectButtonLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sppSelectedProjectEditProjectButtonLabel.setText("Edit Project");
+        selectedProjectPanel.add(sppSelectedProjectEditProjectButtonLabel);
+        sppSelectedProjectEditProjectButtonLabel.setBounds(1210, 100, 80, 30);
+
+        sppSelectedProjectEditProjectButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\EditButton64px.png", System.getProperty("user.dir"))));
+        sppSelectedProjectEditProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sppSelectedProjectEditProjectButtonMouseClicked(evt);
+            }
+        });
+        selectedProjectPanel.add(sppSelectedProjectEditProjectButton);
+        sppSelectedProjectEditProjectButton.setBounds(1220, 30, 70, 70);
+
+        sppSelectedProjectStateValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sppSelectedProjectStateValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        sppSelectedProjectStateValue.setText("code ---");
+        selectedProjectPanel.add(sppSelectedProjectStateValue);
+        sppSelectedProjectStateValue.setBounds(280, 160, 200, 40);
+
+        sppSelectedProjectStartDateValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sppSelectedProjectStartDateValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        sppSelectedProjectStartDateValue.setText("codigo");
+        selectedProjectPanel.add(sppSelectedProjectStartDateValue);
+        sppSelectedProjectStartDateValue.setBounds(280, 210, 200, 40);
+
+        sppSelectedProjectStartDateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sppSelectedProjectStartDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        sppSelectedProjectStartDateLabel.setText("Project started on:");
+        selectedProjectPanel.add(sppSelectedProjectStartDateLabel);
+        sppSelectedProjectStartDateLabel.setBounds(0, 210, 250, 40);
+
+        sppSelectedProjectEndDateValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sppSelectedProjectEndDateValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        sppSelectedProjectEndDateValue.setText("codigo");
+        selectedProjectPanel.add(sppSelectedProjectEndDateValue);
+        sppSelectedProjectEndDateValue.setBounds(280, 260, 200, 40);
+
+        sppSelectedProjectEndDateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sppSelectedProjectEndDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        sppSelectedProjectEndDateLabel.setText("Project should end by:");
+        selectedProjectPanel.add(sppSelectedProjectEndDateLabel);
+        sppSelectedProjectEndDateLabel.setBounds(0, 260, 250, 40);
+
+        sppSelectedProjectStateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sppSelectedProjectStateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        sppSelectedProjectStateLabel.setText("Project is currently:");
+        selectedProjectPanel.add(sppSelectedProjectStateLabel);
+        sppSelectedProjectStateLabel.setBounds(0, 160, 250, 40);
+
+        sppSelectedProjectOwner.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sppSelectedProjectOwner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sppSelectedProjectOwner.setText("codigo: settxt(\"owned by \" + owner)");
+        selectedProjectPanel.add(sppSelectedProjectOwner);
+        sppSelectedProjectOwner.setBounds(460, 90, 310, 40);
+
+        sppSelectedProjectName.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        sppSelectedProjectName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sppSelectedProjectName.setText("codigo: txt getprojename");
+        selectedProjectPanel.add(sppSelectedProjectName);
+        sppSelectedProjectName.setBounds(310, 19, 610, 60);
+
+        selectedProjectBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\PP\\ProjectBackground.png")); // NOI18N
+        selectedProjectPanel.add(selectedProjectBackground);
+        selectedProjectBackground.setBounds(0, 0, 1320, 800);
+
+        getContentPane().add(selectedProjectPanel);
+        selectedProjectPanel.setBounds(10, 90, 1320, 800);
 
         dashboardPanel.setBackground(new java.awt.Color(36, 80, 218));
         dashboardPanel.setOpaque(false);
@@ -269,98 +360,7 @@ public class Homepage extends javax.swing.JFrame {
         getContentPane().add(dashboardPanel);
         dashboardPanel.setBounds(10, 90, 1320, 800);
 
-        selectedProjectPanel.setOpaque(false);
-        selectedProjectPanel.setLayout(null);
-
-        sppSelectedProjectDescriptionLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        sppSelectedProjectDescriptionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sppSelectedProjectDescriptionLabel.setText("Project Description");
-        selectedProjectPanel.add(sppSelectedProjectDescriptionLabel);
-        sppSelectedProjectDescriptionLabel.setBounds(510, 160, 210, 30);
-
-        sppSelectedProjectDescriptionValue.setColumns(20);
-        sppSelectedProjectDescriptionValue.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        sppSelectedProjectDescriptionValue.setRows(5);
-        sppSelectedProjectDescriptionValue.setText("codigo get description\n");
-        sppSelectedProjectDescriptionValue.setBorder(null);
-        sppSelectedProjectDescriptionValue.setFocusable(false);
-        sppSelectedProjectDescriptionValue.setOpaque(false);
-        jScrollPane1.setViewportView(sppSelectedProjectDescriptionValue);
-
-        selectedProjectPanel.add(jScrollPane1);
-        jScrollPane1.setBounds(450, 200, 330, 140);
-
-        sppSelectedProjectEditProjectButtonLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        sppSelectedProjectEditProjectButtonLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sppSelectedProjectEditProjectButtonLabel.setText("Edit Project");
-        selectedProjectPanel.add(sppSelectedProjectEditProjectButtonLabel);
-        sppSelectedProjectEditProjectButtonLabel.setBounds(1210, 100, 80, 30);
-
-        sppSelectedProjectEditProjectButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\PP\\EditButton64px.png")); // NOI18N
-        sppSelectedProjectEditProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sppSelectedProjectEditProjectButtonMouseClicked(evt);
-            }
-        });
-        selectedProjectPanel.add(sppSelectedProjectEditProjectButton);
-        sppSelectedProjectEditProjectButton.setBounds(1220, 30, 70, 70);
-
-        sppSelectedProjectStateValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        sppSelectedProjectStateValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        sppSelectedProjectStateValue.setText("code ---");
-        selectedProjectPanel.add(sppSelectedProjectStateValue);
-        sppSelectedProjectStateValue.setBounds(280, 160, 200, 40);
-
-        sppSelectedProjectStartDateValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        sppSelectedProjectStartDateValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        sppSelectedProjectStartDateValue.setText("codigo");
-        selectedProjectPanel.add(sppSelectedProjectStartDateValue);
-        sppSelectedProjectStartDateValue.setBounds(280, 210, 200, 40);
-
-        sppSelectedProjectStartDateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        sppSelectedProjectStartDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        sppSelectedProjectStartDateLabel.setText("Project started on:");
-        selectedProjectPanel.add(sppSelectedProjectStartDateLabel);
-        sppSelectedProjectStartDateLabel.setBounds(0, 210, 250, 40);
-
-        sppSelectedProjectEndDateValue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        sppSelectedProjectEndDateValue.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        sppSelectedProjectEndDateValue.setText("codigo");
-        selectedProjectPanel.add(sppSelectedProjectEndDateValue);
-        sppSelectedProjectEndDateValue.setBounds(280, 260, 200, 40);
-
-        sppSelectedProjectEndDateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        sppSelectedProjectEndDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        sppSelectedProjectEndDateLabel.setText("Project should end by:");
-        selectedProjectPanel.add(sppSelectedProjectEndDateLabel);
-        sppSelectedProjectEndDateLabel.setBounds(0, 260, 250, 40);
-
-        sppSelectedProjectStateLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        sppSelectedProjectStateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        sppSelectedProjectStateLabel.setText("Project is currently:");
-        selectedProjectPanel.add(sppSelectedProjectStateLabel);
-        sppSelectedProjectStateLabel.setBounds(0, 160, 250, 40);
-
-        sppSelectedProjectOwner.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        sppSelectedProjectOwner.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sppSelectedProjectOwner.setText("codigo: settxt(\"owned by \" + owner)");
-        selectedProjectPanel.add(sppSelectedProjectOwner);
-        sppSelectedProjectOwner.setBounds(460, 90, 310, 40);
-
-        sppSelectedProjectName.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        sppSelectedProjectName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        sppSelectedProjectName.setText("codigo: txt getprojename");
-        selectedProjectPanel.add(sppSelectedProjectName);
-        sppSelectedProjectName.setBounds(310, 19, 610, 60);
-
-        selectedProjectBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\PP\\ProjectBackground.png")); // NOI18N
-        selectedProjectPanel.add(selectedProjectBackground);
-        selectedProjectBackground.setBounds(0, 0, 1320, 800);
-
-        getContentPane().add(selectedProjectPanel);
-        selectedProjectPanel.setBounds(10, 90, 1320, 800);
-
-        homepageBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\cropped-cool-background.png")); // NOI18N
+        homepageBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\DefaultBackground.png", System.getProperty("user.dir"))));
         getContentPane().add(homepageBackground);
         homepageBackground.setBounds(0, 0, 1350, 910);
 

@@ -51,7 +51,7 @@ public class CreateAccPage extends javax.swing.JFrame {
         nameTextField = new javax.swing.JTextField();
         confirmPasswordLabel = new javax.swing.JLabel();
         confirmPasswordField = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Log in to HiProject");
@@ -134,9 +134,9 @@ public class CreateAccPage extends javax.swing.JFrame {
         jPanel1.add(confirmPasswordField);
         confirmPasswordField.setBounds(305, 503, 385, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\BackgroundLogIN.jpg")); // NOI18N
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1000, 800);
+        jLabel2.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\BackgroundLogIN.jpg", System.getProperty("user.dir"))));
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 0, 1000, 800);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -239,7 +239,7 @@ public class CreateAccPage extends javax.swing.JFrame {
     private javax.swing.JLabel createAccLabel;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logInLabel;
     private javax.swing.JLabel nameLabel;

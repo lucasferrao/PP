@@ -46,13 +46,13 @@ public class EditProject extends javax.swing.JDialog {
         setLocationByPlatform(true);
         setResizable(false);
         setSize(new java.awt.Dimension(540, 510));
-        getContentPane().setLayout(null);
+        setType(java.awt.Window.Type.POPUP);
 
         jPanel1.setLayout(null);
 
-        editYourSelectedProjectLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         editYourSelectedProjectLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         editYourSelectedProjectLabel.setText("Edit Your Selected Project");
+        editYourSelectedProjectLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jPanel1.add(editYourSelectedProjectLabel);
         editYourSelectedProjectLabel.setBounds(0, 24, 540, 52);
 
@@ -62,9 +62,9 @@ public class EditProject extends javax.swing.JDialog {
         jPanel1.add(projectEndDateLabel);
         projectEndDateLabel.setBounds(10, 163, 150, 35);
 
-        projectTitleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         projectTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         projectTitleLabel.setText("Project Title:");
+        projectTitleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel1.add(projectTitleLabel);
         projectTitleLabel.setBounds(10, 108, 150, 35);
 
@@ -105,14 +105,22 @@ public class EditProject extends javax.swing.JDialog {
         jPanel1.add(exitDontSaveButton);
         exitDontSaveButton.setBounds(297, 449, 139, 23);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\joaod\\Desktop\\PP\\DefaultBackground.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DefaultBackground.png", System.getProperty("user.dir"))));
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 540, 510);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 540, 510);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+        );
 
-        setSize(new java.awt.Dimension(556, 549));
+        setSize(new java.awt.Dimension(553, 550));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

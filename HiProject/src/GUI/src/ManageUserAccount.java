@@ -143,7 +143,7 @@ public class ManageUserAccount extends javax.swing.JFrame {
         jPanel1.add(currentPasswordField);
         currentPasswordField.setBounds(167, 320, 210, 20);
 
-        defaultBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\DefaultBackground.png", System.getProperty("user.dir"))));
+        defaultBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DefaultBackground.png", System.getProperty("user.dir"))));
         jPanel1.add(defaultBackground);
         defaultBackground.setBounds(0, 0, 420, 530);
 

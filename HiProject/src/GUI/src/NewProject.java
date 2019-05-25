@@ -127,7 +127,7 @@ public class NewProject extends javax.swing.JDialog {
         jPanel1.add(createNewProjectLabel);
         createNewProjectLabel.setBounds(1, 20, 413, 50);
 
-        defaultBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\DefaultBackground.png", System.getProperty("user.dir"))));
+        defaultBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DefaultBackground.png", System.getProperty("user.dir"))));
         jPanel1.add(defaultBackground);
         defaultBackground.setBounds(0, 0, 420, 410);
 
@@ -173,8 +173,8 @@ public class NewProject extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Please insert a valid project end date.\nThe project cannot end before or on the same day it starts.");
             newProjectTitleValueField.requestFocus();
         } else {
-/*
-            hiProject.addProjectAndSerialize(connectedUser, new Project(connectedUser.getnextProjectId(), newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
+
+       /*     hiProject.addProjectAndSerialize(connectedUser, new Project(HiProject.getnextProjectId(), newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
                     newProjectStartDateValueField.getDate(), newProjectEndDateValueField.getDate(), new Manager(connectedUser)));
 */
             dispose();
