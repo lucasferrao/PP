@@ -6,7 +6,6 @@
 package GUI.src;
 
 import Backend.*;
-import Exceptions.UserDoesntExistException;
 
 import javax.swing.*;
 import java.time.LocalDate;
@@ -49,26 +48,38 @@ public class NewProject extends javax.swing.JDialog {
         newProjectDescriptionValueField = new javax.swing.JTextArea();
         newProjectStartDateLabel = new javax.swing.JLabel();
         newProjectStartDateValueField = new com.github.lgooddatepicker.components.DatePicker();
+        createNewProjectLabel = new javax.swing.JLabel();
+        defaultBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Create New Project");
+        setUndecorated(true);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel1.setLayout(null);
 
         newProjectTitleLabel.setText("Title");
         newProjectTitleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(newProjectTitleLabel);
+        newProjectTitleLabel.setBounds(68, 91, 26, 17);
 
         newProjectTitleValueField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newProjectTitleValueFieldActionPerformed(evt);
             }
         });
+        jPanel1.add(newProjectTitleValueField);
+        newProjectTitleValueField.setBounds(112, 91, 270, 30);
 
         newProjectDescriptionLabel.setText("Description");
         newProjectDescriptionLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(newProjectDescriptionLabel);
+        newProjectDescriptionLabel.setBounds(25, 129, 69, 17);
 
         newProjectEndDateLabel.setText("End Date");
         newProjectEndDateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(newProjectEndDateLabel);
+        newProjectEndDateLabel.setBounds(37, 284, 57, 17);
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +87,8 @@ public class NewProject extends javax.swing.JDialog {
                 exitButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(exitButton);
+        exitButton.setBounds(269, 353, 51, 23);
 
         createProjectButton.setText("Create");
         createProjectButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,70 +96,40 @@ public class NewProject extends javax.swing.JDialog {
                 createProjectButtonActionPerformed(evt);
             }
         });
+        jPanel1.add(createProjectButton);
+        createProjectButton.setBounds(95, 353, 65, 23);
 
         newProjectEndDateValueField.setDate(LocalDate.now().plusDays(1));
+        jPanel1.add(newProjectEndDateValueField);
+        newProjectEndDateValueField.setBounds(112, 285, 270, 30);
 
         newProjectDescriptionValueField.setColumns(20);
-        newProjectDescriptionValueField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         newProjectDescriptionValueField.setLineWrap(true);
         newProjectDescriptionValueField.setRows(5);
+        newProjectDescriptionValueField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jScrollPane1.setViewportView(newProjectDescriptionValueField);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(112, 129, 270, 98);
 
         newProjectStartDateLabel.setText("Start Date");
         newProjectStartDateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel1.add(newProjectStartDateLabel);
+        newProjectStartDateLabel.setBounds(31, 245, 63, 17);
 
         newProjectStartDateValueField.setDate(LocalDate.now());
+        jPanel1.add(newProjectStartDateValueField);
+        newProjectStartDateValueField.setBounds(112, 246, 270, 30);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(createProjectButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(90, 90, 90))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(newProjectStartDateLabel)
-                    .addComponent(newProjectEndDateLabel)
-                    .addComponent(newProjectTitleLabel)
-                    .addComponent(newProjectDescriptionLabel))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                    .addComponent(newProjectTitleValueField)
-                    .addComponent(newProjectEndDateValueField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newProjectStartDateValueField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newProjectTitleLabel)
-                    .addComponent(newProjectTitleValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(newProjectDescriptionLabel)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newProjectStartDateLabel)
-                    .addComponent(newProjectStartDateValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newProjectEndDateLabel)
-                    .addComponent(newProjectEndDateValueField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createProjectButton)
-                    .addComponent(exitButton))
-                .addGap(36, 36, 36))
-        );
+        createNewProjectLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        createNewProjectLabel.setText("Create a New Project");
+        createNewProjectLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jPanel1.add(createNewProjectLabel);
+        createNewProjectLabel.setBounds(1, 20, 413, 50);
+
+        defaultBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\DefaultBackground.png", System.getProperty("user.dir"))));
+        jPanel1.add(defaultBackground);
+        defaultBackground.setBounds(0, 0, 420, 410);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,10 +139,10 @@ public class NewProject extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(416, 398));
+        setSize(new java.awt.Dimension(415, 410));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -190,8 +173,10 @@ public class NewProject extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Please insert a valid project end date.\nThe project cannot end before or on the same day it starts.");
             newProjectTitleValueField.requestFocus();
         } else {
-            hiProject.addProjectAndSerialize(connectedUser, new Project(newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
+/*
+            hiProject.addProjectAndSerialize(connectedUser, new Project(connectedUser.getnextProjectId(), newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
                     newProjectStartDateValueField.getDate(), newProjectEndDateValueField.getDate(), new Manager(connectedUser)));
+*/
             dispose();
         }
     }//GEN-LAST:event_createProjectButtonActionPerformed
@@ -233,7 +218,9 @@ public class NewProject extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel createNewProjectLabel;
     private javax.swing.JButton createProjectButton;
+    private javax.swing.JLabel defaultBackground;
     private javax.swing.JButton exitButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
