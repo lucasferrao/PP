@@ -60,7 +60,7 @@ public class TasksList implements Serializable {
      * @return tasks list's description
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     /**
@@ -69,7 +69,7 @@ public class TasksList implements Serializable {
      * @return tasks list's creator
      */
     public User getCreator() {
-        return creator;
+        return this.creator;
     }
 
     /**
@@ -78,7 +78,7 @@ public class TasksList implements Serializable {
      * @return a list of tasks
      */
     public ArrayList<Task> getTasks() {
-        return tasks;
+        return this.tasks;
     }
 
     /**
@@ -118,11 +118,11 @@ public class TasksList implements Serializable {
         StringBuilder s = new StringBuilder();
 
         s.append("Tasks List\n");
-        s.append("Task's description: " + this.description + ".\n");
-        s.append("Task's creator: " + this.creator + ".\n");
+        s.append("Task's description: " + this.description + "\n");
+        s.append("Task's creator: " + this.creator + "\n");
         s.append("Tasks:\n");
         for(Task t: this.tasks){
-            s.append(" - " + t.toString() + ".\n");
+            s.append(" -> " + t.toString() + "\n");
         }
 
         return s.toString();
@@ -148,7 +148,7 @@ public class TasksList implements Serializable {
         TasksList test = (TasksList) o;
 
         return test.description.equals(this.description) && test.creator.equals(this.creator) &&
-                    test.tasks.equals(this.tasks);
+                test.tasks.equals(this.tasks);
 
     }
 
@@ -281,4 +281,3 @@ public class TasksList implements Serializable {
                 collect(Collectors.toList());
     }
 }
-
