@@ -154,11 +154,11 @@ public class User implements Serializable {
         StringBuilder s = new StringBuilder();
 
         s.append("User\n");
-        s.append("User's name: " + this.name + ".\n");
-        s.append("User's email: " + this.email + ".\n");
+        s.append("User's name: " + this.name + "\n");
+        s.append("User's email: " + this.email + "\n");
         s.append("User's projects:\n");
         for(Project p : this.projects.getProjects().values()){
-            s.append(" - " + p.toString() + ".\n");
+            s.append(" -> " + p.toString() + "\n");
         }
 
         return s.toString();

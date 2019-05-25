@@ -32,7 +32,9 @@ public class UsersList implements Serializable {
      * @param users Map of users
      */
     public UsersList(Map<String, User> users){
-        this.users.putAll(users);
+        for(Map.Entry<String, User> e : users.entrySet()){
+            this.users.put(e.getKey(), e.getValue());
+        }
         this.users.forEach((k,v) -> v = v.clone());
     }
 
@@ -71,9 +73,15 @@ public class UsersList implements Serializable {
      */
     @Override
     public String toString() {
-        return "usersList{" +
-                "users = " + users +
-                '}';
+        StringBuilder s = new StringBuilder();
+        int count = 0;
+
+        s.append("Users list:\n");
+        for(Map.Entry<String, User> e : users.entrySet()) {
+            s.append("User " + (count + 1) + ": " + e.toString() + "\n");
+        }
+
+        return s.toString();
     }
 
     /**
@@ -114,7 +122,7 @@ public class UsersList implements Serializable {
      * @param u a new user
      */
     public void addUser(User u){
-        this.users.put(u.getEmail(), u);   //Key = user's email | Value = User's name, user's email and user's password
+        this.users.put(u.getEmail(), u);
     }
 
     /**
@@ -131,20 +139,19 @@ public class UsersList implements Serializable {
     }
 
     /**
-    * Method that checks if a user with the given username exists.
-    *
-    * @param email user's identifier
-    */
-
+     * Method that checks if a user with the given username exists.
+     *
+     * @param email user's identifier
+     */
     public boolean exists(String email) {
         return users.containsKey(email);
     }
 
     /**
-     * Method that gives a user.
+     * Method that returns a user.
      *
-     * @param email
-     * @return
+     * @param email the user's email
+     * @return a user
      * @throws UserDoesntExistException
      */
     public User getUser(String email) throws UserDoesntExistException {
@@ -154,5 +161,4 @@ public class UsersList implements Serializable {
             throw new UserDoesntExistException("This user doesn't exist.");
         }
     }
-
 }
