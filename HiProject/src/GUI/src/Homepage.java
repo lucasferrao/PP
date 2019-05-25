@@ -505,7 +505,7 @@ public class Homepage extends javax.swing.JFrame {
             this.dashboardPanel.setVisible(true);
             this.selectedProjectPanel.setVisible(false);
             this.viewProjectButton.setVisible(true);
-            this.viewDashboardButton.setVisible(false); 
+            this.viewDashboardButton.setVisible(false);
     }//GEN-LAST:event_viewDashboardButtonMouseClicked
 
     private void editProfileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProfileButtonMouseClicked

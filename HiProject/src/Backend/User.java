@@ -19,7 +19,6 @@ public class User implements Serializable {
     private String email;
     private String password;
     private ProjectsList projects;
-    private int nextProjectId;
 
     /**
      * User's default constructor.
@@ -29,7 +28,6 @@ public class User implements Serializable {
         this.email = "";
         this.password = "";
         this.projects = new ProjectsList();
-        this.nextProjectId = 0;
     }
 
     /**
@@ -40,12 +38,11 @@ public class User implements Serializable {
      * @param password user's password
      * @param projects list of user's projects
      */
-    public User(String name, String email, String password, ProjectsList projects, int nextProjectId) {
+    public User(String name, String email, String password, ProjectsList projects) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.projects = projects;
-        this.nextProjectId = nextProjectId;
     }
 
     /**
@@ -60,7 +57,6 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.projects = new ProjectsList();
-        this.nextProjectId = 0;
     }
 
     /**
@@ -73,7 +69,6 @@ public class User implements Serializable {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.projects = user.getProjects();
-        this.nextProjectId = user.getnextProjectId();
     }
 
     /**
@@ -150,37 +145,6 @@ public class User implements Serializable {
     }
 
     /**
-     *
-     * @return
-     */
-    public int getnextProjectId() {
-        return nextProjectId;
-    }
-
-    /**
-     *
-     * @param nextProjectId
-     */
-    public void setnextProjectId(int nextProjectId) {
-        this.nextProjectId = nextProjectId;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getAndIncnextProjectId() {
-        return nextProjectId++;
-    }
-
-    /**
-     *
-     */
-    public void incNextProjectId() {
-        nextProjectId++;
-    }
-
-    /**
      * Displays a user's information on the screen.
      *
      * @return user's information
@@ -190,11 +154,11 @@ public class User implements Serializable {
         StringBuilder s = new StringBuilder();
 
         s.append("User\n");
-        s.append("User's name: " + this.name + ".\n");
-        s.append("User's email: " + this.email + ".\n");
+        s.append("User's name: " + this.name + "\n");
+        s.append("User's email: " + this.email + "\n");
         s.append("User's projects:\n");
         for(Project p : this.projects.getProjects().values()){
-            s.append(" - " + p.toString() + ".\n");
+            s.append(" -> " + p.toString() + "\n");
         }
 
         return s.toString();
