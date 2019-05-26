@@ -48,9 +48,9 @@ public class EditProject extends javax.swing.JDialog {
         projectTitleValue = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         projectDescriptionValue = new javax.swing.JTextArea();
-        projectEndDateValue = new com.github.lgooddatepicker.components.DatePicker();
         saveChangesButton = new javax.swing.JButton();
         exitDontSaveButton = new javax.swing.JButton();
+        projectEndDateValue = new com.github.lgooddatepicker.components.DatePicker();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -86,7 +86,7 @@ public class EditProject extends javax.swing.JDialog {
         jPanel1.add(projectDescriptionLabel);
         projectDescriptionLabel.setBounds(10, 216, 150, 35);
 
-        projectTitleValue.setText("jTextField1");
+        projectTitleValue.setText(selectedProject.getTitle());
         projectTitleValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 projectTitleValueActionPerformed(evt);
@@ -97,12 +97,11 @@ public class EditProject extends javax.swing.JDialog {
 
         projectDescriptionValue.setColumns(20);
         projectDescriptionValue.setRows(5);
+        projectDescriptionValue.setText(selectedProject.getDescription());
         jScrollPane1.setViewportView(projectDescriptionValue);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(196, 216, 280, 180);
-        jPanel1.add(projectEndDateValue);
-        projectEndDateValue.setBounds(196, 163, 280, 35);
 
         saveChangesButton.setText("Save Changes");
         saveChangesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -116,6 +115,12 @@ public class EditProject extends javax.swing.JDialog {
         exitDontSaveButton.setText("Exit and Don't Save");
         jPanel1.add(exitDontSaveButton);
         exitDontSaveButton.setBounds(297, 449, 139, 23);
+
+        projectEndDateValue.setDate(LocalDate.now().plusDays(1)
+        );
+        projectEndDateValue.setMinimumSize(new java.awt.Dimension(145, 25));
+        jPanel1.add(projectEndDateValue);
+        projectEndDateValue.setBounds(200, 170, 280, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DefaultBackground.png", System.getProperty("user.dir"))));
         jPanel1.add(jLabel1);

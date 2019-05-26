@@ -14,9 +14,6 @@ import javax.swing.*;
  * and open the template in the editor.
  */
 
-/**
- * @author Raphael
- */
 @SuppressWarnings("Duplicates")
 public class LogInPage extends javax.swing.JFrame {
     private static Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
@@ -26,6 +23,7 @@ public class LogInPage extends javax.swing.JFrame {
      */
     public LogInPage() {
         initComponents();
+        setLookAndFeel();
     }
 
     private void authenticate() {
@@ -178,7 +176,26 @@ public class LogInPage extends javax.swing.JFrame {
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         logInButtonActionPerformed(evt);
     }//GEN-LAST:event_passwordFieldActionPerformed
-    
+
+    private static void setLookAndFeel() {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LogInPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LogInPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LogInPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LogInPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+
 
     /**
      * @param args the command line arguments

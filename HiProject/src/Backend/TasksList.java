@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class TasksList implements Serializable {
-    private String description;
+    private String title;
     private User creator;
     private ArrayList<Task> tasks;
 
@@ -25,7 +25,7 @@ public class TasksList implements Serializable {
      * TasksList's default constructor.
      */
     public TasksList(){
-        this.description = "";
+        this.title = "";
         this.creator = new User();
         this.tasks = new ArrayList<Task>();
     }
@@ -33,12 +33,12 @@ public class TasksList implements Serializable {
     /**
      * TasksList's Parametrized constructor.
      *
-     * @param description tasks list's description
+     * @param title tasks list's title
      * @param creator tasks list's creator
      * @param tasks tasks list's tasks
      */
-    public TasksList(String description, User creator, ArrayList<Task> tasks) {
-        this.description = description;
+    public TasksList(String title, User creator, ArrayList<Task> tasks) {
+        this.title = title;
         this.creator = creator;
         this.tasks = tasks;
     }
@@ -49,18 +49,18 @@ public class TasksList implements Serializable {
      * @param tasksList a tasks list
      */
     public TasksList(TasksList tasksList){
-        this.description = tasksList.getDescription();
+        this.title = tasksList.getTitle();
         this.creator = tasksList.getCreator();
         this.tasks = tasksList.getTasks();
     }
 
     /**
-     * Returns the tasks list's description.
+     * Returns the tasks list's title.
      *
-     * @return tasks list's description
+     * @return tasks list's title
      */
-    public String getDescription() {
-        return this.description;
+    public String getTitle() {
+        return this.title;
     }
 
     /**
@@ -82,12 +82,12 @@ public class TasksList implements Serializable {
     }
 
     /**
-     * Updates the task's description.
+     * Updates the task's title.
      *
-     * @param description a new description
+     * @param title a new title
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /**
@@ -118,7 +118,7 @@ public class TasksList implements Serializable {
         StringBuilder s = new StringBuilder();
 
         s.append("Tasks List\n");
-        s.append("Task's description: " + this.description + "\n");
+        s.append("Task's title: " + this.title + "\n");
         s.append("Task's creator: " + this.creator + "\n");
         s.append("Tasks:\n");
         for(Task t: this.tasks){
@@ -147,7 +147,7 @@ public class TasksList implements Serializable {
 
         TasksList test = (TasksList) o;
 
-        return test.description.equals(this.description) && test.creator.equals(this.creator) &&
+        return test.title.equals(this.title) && test.creator.equals(this.creator) &&
                 test.tasks.equals(this.tasks);
 
     }

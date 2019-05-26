@@ -19,9 +19,6 @@ import java.lang.reflect.Array;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicListUI;
 
-/**
- * @author joaod
- */
 public class Homepage extends javax.swing.JFrame {
     private static Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
     private static HiProject hiProject = serialization.load();
@@ -31,21 +28,30 @@ public class Homepage extends javax.swing.JFrame {
     private DefaultListModel listModelTasks;
     private DefaultListModel listModelUsers;
     private int posX, posY; //Mouse location on the X and Y axis.
+    private ArrayList<String> projectsmta(ArrayList<String> ptitles) {
+        ptitles.clear();
+        ptitles.add("< Please Select a Project >");
+        for (Map.Entry<Integer, Project> e : projectsList.entrySet()) {
+            ptitles.add(e.getValue().getTitle());
+        }
+        return ptitles;
+    }
 
     /**
      * Creates new form Homepage
      */
     public Homepage(User connectedUser) {
-        try {
-            Homepage.connectedUser = hiProject.getUsers().getUser(connectedUser.getEmail());
-        } catch (UserDoesntExistException e) {
+        //try {
+        Homepage.connectedUser = connectedUser;
+        /*} catch (UserDoesntExistException e) {
             e.printStackTrace();
-        }
+        }*/
         projectsList = connectedUser.getProjects().getProjects();
         initComponents();
         setSelectedProjectValuesText();
         setDashboardValues();
         checksToFillTasksLists();
+        checksToFillUsersLists();
     }
 
     /**
@@ -149,7 +155,7 @@ public class Homepage extends javax.swing.JFrame {
         mainMenuPanel.setLayout(null);
 
         projectListComboBox.setModel(new javax.swing.DefaultComboBoxModel(projectsmta(titles).toArray()));
-        projectListComboBox.addItemListener (new ItemListener() {
+        projectListComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 setSelectedProjectValuesText();
@@ -563,15 +569,15 @@ public class Homepage extends javax.swing.JFrame {
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
+                new Object[][]{
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
+                },
+                new String[]{
+                        "Title 1", "Title 2", "Title 3", "Title 4"
+                }
         ));
         jScrollPane2.setViewportView(jTable1);
 
@@ -585,11 +591,6 @@ public class Homepage extends javax.swing.JFrame {
         tasksListsLabel.setBounds(120, 430, 160, 22);
 
         tasksListsList.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        tasksListsList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         tasksListsScrollPane.setViewportView(tasksListsList);
 
         selectedProjectPanel.add(tasksListsScrollPane);
@@ -629,14 +630,14 @@ public class Homepage extends javax.swing.JFrame {
 
     private void removeProjectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeProjectButtonMouseClicked
         if (projectListComboBox.getSelectedIndex() == 0) {
-            JOptionPane.showConfirmDialog(null, "Please select a project first.");
+            JOptionPane.showMessageDialog(null, "Please select a project first.", "Error", 0);
         } else {
             removeProject();
         }
     }//GEN-LAST:event_removeProjectButtonMouseClicked
 
     private void sppSelectedProjectEditProjectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sppSelectedProjectEditProjectButtonMouseClicked
-        EditProject newep = new EditProject(this, rootPaneCheckingEnabled, getSelectedProject());
+        EditProject newep = new EditProject(this, true, getSelectedProject());
         newep.setVisible(true);
         updateHomepage();
     }//GEN-LAST:event_sppSelectedProjectEditProjectButtonMouseClicked
@@ -693,7 +694,7 @@ public class Homepage extends javax.swing.JFrame {
         hiProject = serialization.load();
         JTextArea ta = new JTextArea(1, 25);
         Object[] options = {"Associate User", "Cancel"};
-        switch (JOptionPane.showOptionDialog (null, new JScrollPane(ta), "Insert the user's EMAIL address", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
+        switch (JOptionPane.showOptionDialog(null, new JScrollPane(ta), "Insert the user's EMAIL address", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
             case JOptionPane.OK_OPTION:
                 // check do email e adicionar
                 serialization.save(hiProject);
@@ -720,7 +721,7 @@ public class Homepage extends javax.swing.JFrame {
         hiProject = serialization.load();
         JTextArea ta = new JTextArea(1, 25);
         Object[] options = {"Change Name", "Cancel"};
-        switch (JOptionPane.showOptionDialog (null, new JScrollPane(ta), "Input the new name of the selected Tasks List.", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
+        switch (JOptionPane.showOptionDialog(null, new JScrollPane(ta), "Input the new name of the selected Tasks List.", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
             case JOptionPane.OK_OPTION:
                 // check do email e adicionar
                 serialization.save(hiProject);
@@ -729,15 +730,18 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_editTasksListsButtonMouseClicked
 
     private void addTasksListsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTasksListsButtonMouseClicked
-
-
         hiProject = serialization.load();
         JTextArea ta = new JTextArea(1, 25);
         Object[] options = {"Create List", "Cancel"};
-        switch (JOptionPane.showOptionDialog (null, new JScrollPane(ta), "Input the name of your new Tasks List.", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
+        switch (JOptionPane.showOptionDialog(null, new JScrollPane(ta), "Input the name of your new Tasks List.", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
             case JOptionPane.OK_OPTION:
-                // check do email e adicionar
+                ProjectsList tempProjects = connectedUser.getProjects();
+                ArrayList<TasksList> tempArray = connectedUser.getProjects().getProject(getSelectedProject().getProjectID()).getLists();
+                tempArray.add(new TasksList(ta.getText(), connectedUser, new ArrayList<Task>()));
+                tempProjects.getProject(getSelectedProject().getProjectID()).setLists(tempArray);
+                connectedUser.setProjects(tempProjects);
                 serialization.save(hiProject);
+                updateHomepage();
                 break;
         }
     }//GEN-LAST:event_addTasksListsButtonMouseClicked
@@ -768,18 +772,10 @@ public class Homepage extends javax.swing.JFrame {
         setLocation(p.x + evt.getX() - posX, p.y + evt.getY() - posY);
     }//GEN-LAST:event_formMouseDragged
 
-    private void newProjectMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        NewProject newp = new NewProject();
-        newp.setModal(true);
-        newp.setVisible(true);
-        updateHomepage();
-    }
-
     public String inoaProjects1GetText(ArrayList<Task> tasks) {
         try {
             return (tasks.get(0).getTitle());
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
             return ("No projects in need of attention yet.");
         }
     }
@@ -788,7 +784,6 @@ public class Homepage extends javax.swing.JFrame {
         try {
             return (tasks.get(1).getTitle());
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
             return ("None.");
         }
     }
@@ -797,10 +792,20 @@ public class Homepage extends javax.swing.JFrame {
         try {
             return (tasks.get(2).getTitle());
         } catch (IndexOutOfBoundsException e) {
-            e.printStackTrace();
             return ("None.");
         }
     }
+
+    /*private void updateHomepage() {
+        this.dispose();
+        HiProject hiProject = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir"))).load();
+        try {
+            User updatedConnectedUser = hiProject.getUsers().getUser(connectedUser.getEmail());
+            new Homepage(updatedConnectedUser).setVisible(true);
+        } catch (UserDoesntExistException e) {
+            e.printStackTrace();
+        }
+    }*/
 
     private void updateHomepage() {
         this.dispose();
@@ -811,18 +816,6 @@ public class Homepage extends javax.swing.JFrame {
         } catch (UserDoesntExistException e) {
             e.printStackTrace();
         }
-        if (this.selectedProjectPanel.isVisible()) {
-
-        }
-    }
-
-
-    private ArrayList<Project> projectsToArray(ArrayList<Project> projectArrayList) {
-        projectArrayList.clear();
-        for (Map.Entry<Integer, Project> e : projectsList.entrySet()) {
-            projectArrayList.add(e.getValue());
-        }
-        return projectArrayList;
     }
 
     public Project getSelectedProject() {
@@ -833,11 +826,9 @@ public class Homepage extends javax.swing.JFrame {
         if (projectListComboBox.getSelectedIndex() == 0) {
             sppSelectedProjectName.setText("Please select a project.");
             sppSelectedProjectOwner.setText("");
-            //selectedProjectPeopleInvolvedValue.setText(Integer.toString(ee.getValue().getContributors().size()));
             sppSelectedProjectEndDateValue.setText("");
             sppSelectedProjectStartDateValue.setText("");
             sppSelectedProjectStateValue.setText("");
-            //selectedProjectTasksNumberValue.setText( Integer.toString(ee.getValue().getLists().size()));
             sppSelectedProjectDescriptionValue.setText("");
         } else {
             sppSelectedProjectName.setText(String.valueOf(getSelectedProject().getTitle()));
@@ -865,15 +856,6 @@ public class Homepage extends javax.swing.JFrame {
         bpCompletedTasksValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().completedTasks().size()));
     }
 
-    private ArrayList<String> projectsmta(ArrayList<String> ptitles) {
-        ptitles.clear();
-        ptitles.add("< Please Select a Project >");
-        for (Map.Entry<Integer, Project> e : projectsList.entrySet()) {
-            ptitles.add(e.getValue().getTitle());
-        }
-        return ptitles;
-    }
-
     public void disableEditIfNotOwner(User user) {
         if (projectListComboBox.getSelectedIndex() != 0) {
             if (!getSelectedProject().getOwner().equals(new Manager(user))) {
@@ -890,9 +872,10 @@ public class Homepage extends javax.swing.JFrame {
         updatedProjects.remove(projectKey);
         hiProject.setProjects(updatedProjects);
 
-        updatedProjects = connectedUser.getProjects();
-        updatedProjects.remove(projectKey);
-        connectedUser.setProjects(updatedProjects);
+        ProjectsList updatedUsersProject = connectedUser.getProjects();
+        updatedUsersProject = connectedUser.getProjects();
+        updatedUsersProject.remove(projectKey);
+        connectedUser.setProjects(updatedUsersProject);
         serialization.save(hiProject);
 
         System.out.println(connectedUser.getProjects());
@@ -903,14 +886,19 @@ public class Homepage extends javax.swing.JFrame {
         if (projectListComboBox.getSelectedIndex() == 0) {
             return new javax.swing.DefaultListModel<String>() {
                 String[] strings = {""};
-                public int getSize() { return strings.length; }
-                public String getElementAt(int i) { return strings[i]; }
+
+                public int getSize() {
+                    return strings.length;
+                }
+
+                public String getElementAt(int i) {
+                    return strings[i];
+                }
             };
         } else {
             listModelTasks = new DefaultListModel();
-            for (int i = 0; i < getSelectedProject().getLists().size(); i++)
-            {
-                listModelTasks.addElement(getSelectedProject().getLists().get(i).getDescription());
+            for (int i = 0; i < getSelectedProject().getLists().size(); i++) {
+                listModelTasks.addElement(getSelectedProject().getLists().get(i).getTitle());
             }
             return listModelTasks;
         }
@@ -920,13 +908,18 @@ public class Homepage extends javax.swing.JFrame {
         if (projectListComboBox.getSelectedIndex() == 0) {
             return new javax.swing.DefaultListModel<String>() {
                 String[] strings = {""};
-                public int getSize() { return strings.length; }
-                public String getElementAt(int i) { return strings[i]; }
+
+                public int getSize() {
+                    return strings.length;
+                }
+
+                public String getElementAt(int i) {
+                    return strings[i];
+                }
             };
         } else {
             listModelUsers = new DefaultListModel();
-            for (int i = 0; i < getSelectedProject().getContributors().size(); i++)
-            {
+            for (int i = 0; i < getSelectedProject().getContributors().size(); i++) {
                 listModelUsers.addElement(getSelectedProject().getContributors().get(i).getName());
             }
             return listModelUsers;
@@ -936,7 +929,7 @@ public class Homepage extends javax.swing.JFrame {
     public void fillTasksListList(ArrayList<TasksList> tasksLists) {
         listModelTasks = new DefaultListModel();
         for (int i = 0; i < tasksLists.size(); i++) {
-            listModelTasks.addElement(tasksLists.get(i).getDescription());
+            listModelTasks.addElement(tasksLists.get(i).getTitle());
         }
         this.tasksListsList = new JList(listModelTasks);
     }

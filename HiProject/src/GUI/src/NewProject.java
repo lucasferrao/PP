@@ -171,7 +171,7 @@ public class NewProject extends javax.swing.JDialog {
         } else if (newProjectEndDateValueField.getDate().isBefore(newProjectStartDateValueField.getDate().plusDays(1))) {
             JOptionPane.showMessageDialog(null, "Please insert a valid project end date.\nThe project cannot end before or on the same day it starts.");
             newProjectTitleValueField.requestFocus();
-        } else if (hiProject.getProjects().exists(newProjectTitleValueField.getText())) {
+        } else if (connectedUser.getProjects().exists(newProjectTitleValueField.getText())) {
             JOptionPane.showMessageDialog(null, "A project with this title already exists, please try again with a different one.", "Project Already Exists", JOptionPane.WARNING_MESSAGE);
             newProjectTitleValueField.requestFocus();
         } else {
