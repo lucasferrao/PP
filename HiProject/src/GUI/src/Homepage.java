@@ -5,6 +5,7 @@
  */
 package GUI.src;
 
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import Exceptions.UserDoesntExistException;
 import java.lang.reflect.Array;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicListUI;
 
 /**
  * @author joaod
@@ -27,6 +29,7 @@ public class Homepage extends javax.swing.JFrame {
     private Map<Integer, Project> projectsList;
     private static ArrayList<String> titles = new ArrayList<>();
     private DefaultListModel listModel;
+    private int posX, posY; //Mouse location on the X and Y axis.
 
     /**
      * Creates new form Homepage
@@ -82,6 +85,8 @@ public class Homepage extends javax.swing.JFrame {
         bpCompletedTasksLabel = new javax.swing.JLabel();
         bpNameValueLabel = new javax.swing.JLabel();
         bpCompletedTasksValueLabel = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         dashboardBackground = new javax.swing.JLabel();
         selectedProjectPanel = new javax.swing.JPanel();
         sppSelectedProjectDescriptionLabel = new javax.swing.JLabel();
@@ -97,7 +102,7 @@ public class Homepage extends javax.swing.JFrame {
         sppSelectedProjectStateLabel = new javax.swing.JLabel();
         sppSelectedProjectOwner = new javax.swing.JLabel();
         sppSelectedProjectName = new javax.swing.JLabel();
-        associatedUsersLabel = new javax.swing.JLabel();
+        sppSelectedProjectAssociatedUsersLabel = new javax.swing.JLabel();
         addUserToProject = new javax.swing.JLabel();
         addUserToProjectLabel = new javax.swing.JLabel();
         removeUserFromProject = new javax.swing.JLabel();
@@ -117,7 +122,7 @@ public class Homepage extends javax.swing.JFrame {
         tasksListsScrollPane = new javax.swing.JScrollPane();
         tasksListsList = new javax.swing.JList<>();
         associatedUsersScrollPane = new javax.swing.JScrollPane();
-        associatedUsersList = new javax.swing.JList<>();
+        sppSelectedProjectAssociatedUsersList = new javax.swing.JList<>();
         jSeparator1 = new javax.swing.JSeparator();
         selectedProjectBackground = new javax.swing.JLabel();
         homepageBackground = new javax.swing.JLabel();
@@ -126,6 +131,16 @@ public class Homepage extends javax.swing.JFrame {
         setTitle("Homepage");
         setUndecorated(true);
         setResizable(false);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         mainMenuPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Welcome to HiProject, " + connectedUser.getName() + "."));
@@ -133,23 +148,9 @@ public class Homepage extends javax.swing.JFrame {
         mainMenuPanel.setLayout(null);
 
         projectListComboBox.setModel(new javax.swing.DefaultComboBoxModel(projectsmta(titles).toArray()));
-        projectListComboBox.addItemListener(new ItemListener() {
+        projectListComboBox.addItemListener (new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                /*String ptitle = projectListComboBox.getItemAt(projectListComboBox.getSelectedIndex());
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    for (Map.Entry<Integer, Project> ee : projectsList.entrySet()) {
-                        if (ptitle.equals(ee.getValue().getTitle())) {
-                            sppSelectedProjectName.setText(ee.getValue().getTitle());
-                            sppSelectedProjectOwner.setText(ee.getValue().getOwner().getName());
-                            //selectedProjectPeopleInvolvedValue.setText(Integer.toString(ee.getValue().getContributors().size()));
-                            sppSelectedProjectEndDateValue.setText(ee.getValue().getEndDate().toString());
-                            sppSelectedProjectStartDateValue.setText( ee.getValue().getBeginDate().toString());
-                            sppSelectedProjectStateValue.setText(ee.getValue().getProjectState().toString());
-                            //selectedProjectTasksNumberValue.setText( Integer.toString(ee.getValue().getLists().size()));
-                        }
-                    }
-                }*/
                 setSelectedProjectValuesText();
                 disableEditIfNotOwner(connectedUser);
             }
@@ -179,7 +180,6 @@ public class Homepage extends javax.swing.JFrame {
         editProfileButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editProfileButtonMouseClicked(evt);
-                updateHomepage();
             }
         });
         mainMenuPanel.add(editProfileButton);
@@ -345,6 +345,12 @@ public class Homepage extends javax.swing.JFrame {
         dashboardPanel.add(bpCompletedTasksValueLabel);
         bpCompletedTasksValueLabel.setBounds(800, 460, 326, 22);
 
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        dashboardPanel.add(jSeparator2);
+        jSeparator2.setBounds(630, 30, 10, 510);
+        dashboardPanel.add(jSeparator3);
+        jSeparator3.setBounds(20, 540, 1280, 10);
+
         dashboardBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DashboardBackground.png", System.getProperty("user.dir"))));
         dashboardPanel.add(dashboardBackground);
         dashboardBackground.setBounds(0, 0, 1320, 800);
@@ -439,11 +445,11 @@ public class Homepage extends javax.swing.JFrame {
         selectedProjectPanel.add(sppSelectedProjectName);
         sppSelectedProjectName.setBounds(310, 19, 610, 60);
 
-        associatedUsersLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        associatedUsersLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        associatedUsersLabel.setText("Associated Users");
-        selectedProjectPanel.add(associatedUsersLabel);
-        associatedUsersLabel.setBounds(940, 160, 260, 30);
+        sppSelectedProjectAssociatedUsersLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        sppSelectedProjectAssociatedUsersLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sppSelectedProjectAssociatedUsersLabel.setText("Associated Users");
+        selectedProjectPanel.add(sppSelectedProjectAssociatedUsersLabel);
+        sppSelectedProjectAssociatedUsersLabel.setBounds(940, 160, 260, 30);
 
         addUserToProject.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\AddUser.png", System.getProperty("user.dir"))));
         addUserToProject.setToolTipText("Click here to associate a new user to your project.");
@@ -552,15 +558,15 @@ public class Homepage extends javax.swing.JFrame {
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null},
-                        {null, null, null, null}
-                },
-                new String[]{
-                        "Title 1", "Title 2", "Title 3", "Title 4"
-                }
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
         ));
         jScrollPane2.setViewportView(jTable1);
 
@@ -574,25 +580,19 @@ public class Homepage extends javax.swing.JFrame {
         tasksListsLabel.setBounds(120, 430, 160, 22);
 
         tasksListsList.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        tasksListsList.setModel(fillListModel());
+        tasksListsList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         tasksListsScrollPane.setViewportView(tasksListsList);
 
         selectedProjectPanel.add(tasksListsScrollPane);
         tasksListsScrollPane.setBounds(120, 470, 160, 250);
 
-        associatedUsersList.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        associatedUsersList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
-
-            public int getSize() {
-                return strings.length;
-            }
-
-            public String getElementAt(int i) {
-                return strings[i];
-            }
-        });
-        associatedUsersScrollPane.setViewportView(associatedUsersList);
+        sppSelectedProjectAssociatedUsersList.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        sppSelectedProjectAssociatedUsersList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        associatedUsersScrollPane.setViewportView(sppSelectedProjectAssociatedUsersList);
 
         selectedProjectPanel.add(associatedUsersScrollPane);
         associatedUsersScrollPane.setBounds(940, 220, 260, 150);
@@ -605,6 +605,7 @@ public class Homepage extends javax.swing.JFrame {
 
         getContentPane().add(selectedProjectPanel);
         selectedProjectPanel.setBounds(10, 110, 1320, 800);
+        selectedProjectPanel.setVisible(false);
 
         homepageBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DefaultBackground2.png", System.getProperty("user.dir"))));
         getContentPane().add(homepageBackground);
@@ -684,7 +685,15 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonMouseClicked
 
     private void addUserToProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUserToProjectMouseClicked
-        // TODO add your handling code here:
+        hiProject = serialization.load();
+        JTextArea ta = new JTextArea(1, 25);
+        Object[] options = {"Associate User", "Cancel"};
+        switch (JOptionPane.showOptionDialog (null, new JScrollPane(ta), "Insert the user's EMAIL address", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
+            case JOptionPane.OK_OPTION:
+                // check do email e adicionar
+                serialization.save(hiProject);
+                break;
+        }
     }//GEN-LAST:event_addUserToProjectMouseClicked
 
     private void removeUserFromProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeUserFromProjectMouseClicked
@@ -730,6 +739,16 @@ public class Homepage extends javax.swing.JFrame {
     private void addTaskButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTaskButtonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_addTaskButtonMouseClicked
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        posX = evt.getX();
+        posY = evt.getY();
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        Point p = getLocation();
+        setLocation(p.x + evt.getX() - posX, p.y + evt.getY() - posY);
+    }//GEN-LAST:event_formMouseDragged
 
     private void newProjectMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
         NewProject newp = new NewProject();
@@ -835,6 +854,14 @@ public class Homepage extends javax.swing.JFrame {
         return ptitles;
     }
 
+    private ArrayList<String> associatedUsers(ArrayList<String> pusers) {
+        pusers.clear();
+        for (Contributor e : getSelectedProject().getContributors()) {
+            pusers.add(e.getName());
+        }
+        return pusers;
+    }
+
     public void disableEditIfNotOwner(User user) {
         if (projectListComboBox.getSelectedIndex() != 0) {
             if (!getSelectedProject().getOwner().equals(new Manager(user))) {
@@ -883,8 +910,6 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JLabel addTasksListsButton;
     private javax.swing.JLabel addUserToProject;
     private javax.swing.JLabel addUserToProjectLabel;
-    private javax.swing.JLabel associatedUsersLabel;
-    private javax.swing.JList<String> associatedUsersList;
     private javax.swing.JScrollPane associatedUsersScrollPane;
     private javax.swing.JLabel biggestProjectLabel;
     private javax.swing.JLabel bpCompletedTasksLabel;
@@ -910,6 +935,8 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lateProjectsLabel;
     private javax.swing.JLabel lateProjectsValueLabel;
@@ -926,6 +953,8 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JLabel removeUserFromProjectLabel;
     private javax.swing.JLabel selectedProjectBackground;
     private javax.swing.JPanel selectedProjectPanel;
+    private javax.swing.JLabel sppSelectedProjectAssociatedUsersLabel;
+    private javax.swing.JList<String> sppSelectedProjectAssociatedUsersList;
     private javax.swing.JLabel sppSelectedProjectDescriptionLabel;
     private javax.swing.JTextArea sppSelectedProjectDescriptionValue;
     private javax.swing.JLabel sppSelectedProjectEditProjectButton;
