@@ -284,4 +284,13 @@ public class ProjectsList implements Serializable {
 
         return  biggestProject;
     }
+
+    public Project getProjectByTitle(String projectTitle) {
+        for (Map.Entry<Integer, Project> e : projects.entrySet()) {
+            if (e.getValue().getTitle().equals(projectTitle)) {
+                return e.getValue();
+            }
+        }
+        return null;
+    }
 }

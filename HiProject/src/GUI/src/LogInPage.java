@@ -46,6 +46,7 @@ public class LogInPage extends javax.swing.JFrame {
             } catch (UserDoesntExistException e) {
                 e.printStackTrace();
             }
+            serialization.save(hiProject);
             new Homepage(hiProject.getConnectedUser()).setVisible(true);
         }
 
