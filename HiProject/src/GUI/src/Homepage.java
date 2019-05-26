@@ -110,7 +110,6 @@ public class Homepage extends javax.swing.JFrame {
         removeUserFromProject = new javax.swing.JLabel();
         removeUserFromProjectLabel = new javax.swing.JLabel();
         markAsCompleteButton = new javax.swing.JLabel();
-        markAsCompleteLabel = new javax.swing.JLabel();
         addTasksListsButton = new javax.swing.JLabel();
         tasksTableLabel = new javax.swing.JLabel();
         removeTasksListsButton = new javax.swing.JLabel();
@@ -161,6 +160,7 @@ public class Homepage extends javax.swing.JFrame {
         projectListComboBox.setBounds(110, 40, 220, 30);
 
         addProjectButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\Plus.png", System.getProperty("user.dir"))));
+        addProjectButton.setToolTipText("Create a new Project");
         addProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addProjectButtonMouseClicked(evt);
@@ -170,6 +170,7 @@ public class Homepage extends javax.swing.JFrame {
         addProjectButton.setBounds(350, 40, 30, 30);
 
         removeProjectButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\Minus.png", System.getProperty("user.dir"))));
+        removeProjectButton.setToolTipText("Delete the selected Project");
         removeProjectButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeProjectButtonMouseClicked(evt);
@@ -454,7 +455,7 @@ public class Homepage extends javax.swing.JFrame {
         sppSelectedProjectAssociatedUsersLabel.setBounds(940, 160, 260, 30);
 
         addUserToProject.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\AddUser.png", System.getProperty("user.dir"))));
-        addUserToProject.setToolTipText("Click here to associate a new user to your project.");
+        addUserToProject.setToolTipText("");
         addUserToProject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addUserToProjectMouseClicked(evt);
@@ -469,7 +470,7 @@ public class Homepage extends javax.swing.JFrame {
         addUserToProjectLabel.setBounds(1220, 260, 60, 14);
 
         removeUserFromProject.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\RemoveUser.png", System.getProperty("user.dir"))));
-        removeUserFromProject.setToolTipText("Click here to remove an associated user of  your project.");
+        removeUserFromProject.setToolTipText("");
         removeUserFromProject.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeUserFromProjectMouseClicked(evt);
@@ -484,6 +485,7 @@ public class Homepage extends javax.swing.JFrame {
         removeUserFromProjectLabel.setBounds(1210, 350, 80, 14);
 
         markAsCompleteButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\Complete.png", System.getProperty("user.dir"))));
+        markAsCompleteButton.setToolTipText("Mark project as complete!");
         markAsCompleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 markAsCompleteButtonMouseClicked(evt);
@@ -492,12 +494,8 @@ public class Homepage extends javax.swing.JFrame {
         selectedProjectPanel.add(markAsCompleteButton);
         markAsCompleteButton.setBounds(270, 210, 30, 30);
 
-        markAsCompleteLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        markAsCompleteLabel.setText("Mark as Complete");
-        selectedProjectPanel.add(markAsCompleteLabel);
-        markAsCompleteLabel.setBounds(240, 250, 100, 14);
-
         addTasksListsButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\PlusCircle.png", System.getProperty("user.dir"))));
+        addTasksListsButton.setToolTipText("Create a new Tasks List");
         addTasksListsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addTasksListsButtonMouseClicked(evt);
@@ -514,6 +512,7 @@ public class Homepage extends javax.swing.JFrame {
 
         removeTasksListsButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         removeTasksListsButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\MinusCircle.png", System.getProperty("user.dir"))));
+        removeTasksListsButton.setToolTipText("Delete the selected Tasks List");
         removeTasksListsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeTasksListsButtonMouseClicked(evt);
@@ -523,6 +522,7 @@ public class Homepage extends javax.swing.JFrame {
         removeTasksListsButton.setBounds(242, 720, 40, 40);
 
         editTasksListsButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\EditButton32px.png", System.getProperty("user.dir"))));
+        editTasksListsButton.setToolTipText("Change the name of the selected Tasks List");
         editTasksListsButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editTasksListsButtonMouseClicked(evt);
@@ -532,6 +532,7 @@ public class Homepage extends javax.swing.JFrame {
         editTasksListsButton.setBounds(186, 720, 40, 40);
 
         addTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\MinusCircle64.png", System.getProperty("user.dir"))));
+        addTaskButton.setToolTipText("Delete selected Task");
         addTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addTaskButtonMouseClicked(evt);
@@ -541,6 +542,7 @@ public class Homepage extends javax.swing.JFrame {
         addTaskButton.setBounds(1180, 680, 70, 80);
 
         removeTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\PlusCircle64.png", System.getProperty("user.dir"))));
+        removeTaskButton.setToolTipText("Create a new Task");
         removeTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeTaskButtonMouseClicked(evt);
@@ -550,6 +552,7 @@ public class Homepage extends javax.swing.JFrame {
         removeTaskButton.setBounds(1180, 470, 70, 80);
 
         viewTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\View64.png", System.getProperty("user.dir"))));
+        viewTaskButton.setToolTipText("View selected Task");
         viewTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 viewTaskButtonMouseClicked(evt);
@@ -582,24 +585,18 @@ public class Homepage extends javax.swing.JFrame {
         tasksListsLabel.setBounds(120, 430, 160, 22);
 
         tasksListsList.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        tasksListsList.setModel(fillTasksListModel());
+        tasksListsList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
         tasksListsScrollPane.setViewportView(tasksListsList);
 
         selectedProjectPanel.add(tasksListsScrollPane);
         tasksListsScrollPane.setBounds(120, 470, 160, 250);
 
         sppSelectedProjectAssociatedUsersList.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        sppSelectedProjectAssociatedUsersList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
-
-            public int getSize() {
-                return strings.length;
-            }
-
-            public String getElementAt(int i) {
-                return strings[i];
-            }
-        });
+        sppSelectedProjectAssociatedUsersList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         associatedUsersScrollPane.setViewportView(sppSelectedProjectAssociatedUsersList);
 
         selectedProjectPanel.add(associatedUsersScrollPane);
@@ -848,7 +845,7 @@ public class Homepage extends javax.swing.JFrame {
             sppSelectedProjectEndDateValue.setText(String.valueOf(getSelectedProject().getEndDate()));
             sppSelectedProjectStartDateValue.setText(String.valueOf(getSelectedProject().getBeginDate()));
             sppSelectedProjectStateValue.setText(String.valueOf(getSelectedProject().getProjectState()));
-            sppSelectedProjectDescriptionValue.setText(getSelectedProject().getDescription());
+            sppSelectedProjectDescriptionValue.setText("\"" + getSelectedProject().getDescription() + "\"");
             tasksListsList.setModel(fillTasksListModel());
             sppSelectedProjectAssociatedUsersList.setModel(fillUsersListModel());
         }
@@ -1006,7 +1003,6 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JLabel lateProjectsValueLabel;
     private javax.swing.JPanel mainMenuPanel;
     private javax.swing.JLabel markAsCompleteButton;
-    private javax.swing.JLabel markAsCompleteLabel;
     private javax.swing.JLabel ongoingProjectsLabel;
     private javax.swing.JLabel ongoingProjectsValueLabel;
     private javax.swing.JComboBox<String> projectListComboBox;
