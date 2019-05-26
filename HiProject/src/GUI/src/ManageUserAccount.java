@@ -173,7 +173,7 @@ public class ManageUserAccount extends javax.swing.JDialog {
         } else if (userEmailField.getText().length() < "a@a.com".length()) {
             JOptionPane.showMessageDialog(null, "Please insert a valid email.");
             userEmailField.requestFocus();
-        } else if (currentPasswordField.getPassword().length > 0 && newPasswordField.getPassword().length > 0 && confirmPasswordField.getPassword().length > 0) {
+        } else if (currentPasswordField.getPassword().length > 6 && newPasswordField.getPassword().length > 6 && confirmPasswordField.getPassword().length > 6) {
             if ((new String(currentPasswordField.getPassword()).equals(connectedUser.getPassword())) && (Arrays.equals(newPasswordField.getPassword(), confirmPasswordField.getPassword()))) {
                 hiProject.editUserProfileAndSerialize(connectedUser, userNameField.getText(), userEmailField.getText(), new String(newPasswordField.getPassword()));
             } else {
