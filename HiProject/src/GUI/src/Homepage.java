@@ -712,16 +712,27 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_markAsCompleteButtonMouseClicked
 
     private void editTasksListsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editTasksListsButtonMouseClicked
-        // TODO add your handling code here:
+        hiProject = serialization.load();
+        JTextArea ta = new JTextArea(1, 25);
+        Object[] options = {"Change Name", "Cancel"};
+        switch (JOptionPane.showOptionDialog (null, new JScrollPane(ta), "Input the new name of the selected Tasks List.", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
+            case JOptionPane.OK_OPTION:
+                // check do email e adicionar
+                serialization.save(hiProject);
+                break;
+        }
     }//GEN-LAST:event_editTasksListsButtonMouseClicked
 
     private void addTasksListsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTasksListsButtonMouseClicked
-        ArrayList<TasksList> tempArray = getSelectedProject().getLists();
-        tempArray.add(new TasksList());
-        getSelectedProject().setLists(tempArray);
-        serialization.save(hiProject);
-        updateHomepage();
-
+        hiProject = serialization.load();
+        JTextArea ta = new JTextArea(1, 25);
+        Object[] options = {"Create List", "Cancel"};
+        switch (JOptionPane.showOptionDialog (null, new JScrollPane(ta), "Input the name of your new Tasks List.", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, null)) {
+            case JOptionPane.OK_OPTION:
+                // check do email e adicionar
+                serialization.save(hiProject);
+                break;
+        }
     }//GEN-LAST:event_addTasksListsButtonMouseClicked
 
     private void removeTasksListsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeTasksListsButtonMouseClicked
