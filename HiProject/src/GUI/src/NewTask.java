@@ -3,12 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package GUI.src;
+
+import Backend.*;
+
+import javax.swing.*;
+import java.time.LocalDate;
 
 /**
  *
  * @author joaod
  */
 public class NewTask extends javax.swing.JDialog {
+
 
     /**
      * Creates new form NewTask
@@ -27,33 +34,117 @@ public class NewTask extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        createNewTaskLabel = new javax.swing.JLabel();
+        newTaskTitleLabel = new javax.swing.JLabel();
+        newTaskTitleValueField = new javax.swing.JTextField();
+        newTaskDescriptionLabel = new javax.swing.JLabel();
+        newTaskEndDateLabel = new javax.swing.JLabel();
+        newTaskLimitDateValueField = new com.github.lgooddatepicker.components.DatePicker();
+        newTaskDescriptionScrollPane = new javax.swing.JScrollPane();
+        newTaskDescriptionValueField = new javax.swing.JTextArea();
+        newTaskStartDateLabel = new javax.swing.JLabel();
+        newTaskStartDateValueField = new com.github.lgooddatepicker.components.DatePicker();
+        newTaskPriorityDateCombobox = new javax.swing.JComboBox<>();
+        newTaskPriorityDateLabel = new javax.swing.JLabel();
+        exitButton = new javax.swing.JButton();
+        createProjectButton = new javax.swing.JButton();
+        defaultBackground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Create New Task");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-        );
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel2.setLayout(null);
+
+        createNewTaskLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        createNewTaskLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        createNewTaskLabel.setText("Create a New Task");
+        jPanel2.add(createNewTaskLabel);
+        createNewTaskLabel.setBounds(1, 20, 410, 50);
+
+        newTaskTitleLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        newTaskTitleLabel.setText("Title");
+        jPanel2.add(newTaskTitleLabel);
+        newTaskTitleLabel.setBounds(68, 95, 26, 17);
+        jPanel2.add(newTaskTitleValueField);
+        newTaskTitleValueField.setBounds(112, 91, 270, 30);
+
+        newTaskDescriptionLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        newTaskDescriptionLabel.setText("Description");
+        jPanel2.add(newTaskDescriptionLabel);
+        newTaskDescriptionLabel.setBounds(25, 132, 69, 17);
+
+        newTaskEndDateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        newTaskEndDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        newTaskEndDateLabel.setText("Limit Date");
+        jPanel2.add(newTaskEndDateLabel);
+        newTaskEndDateLabel.setBounds(24, 290, 70, 17);
+
+        newTaskLimitDateValueField.setDate(LocalDate.now().plusDays(1));
+        jPanel2.add(newTaskLimitDateValueField);
+        newTaskLimitDateValueField.setBounds(112, 285, 270, 30);
+
+        newTaskDescriptionValueField.setColumns(20);
+        newTaskDescriptionValueField.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        newTaskDescriptionValueField.setLineWrap(true);
+        newTaskDescriptionValueField.setRows(5);
+        newTaskDescriptionScrollPane.setViewportView(newTaskDescriptionValueField);
+
+        jPanel2.add(newTaskDescriptionScrollPane);
+        newTaskDescriptionScrollPane.setBounds(112, 129, 270, 98);
+
+        newTaskStartDateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        newTaskStartDateLabel.setText("Start Date");
+        jPanel2.add(newTaskStartDateLabel);
+        newTaskStartDateLabel.setBounds(31, 250, 63, 17);
+
+        newTaskStartDateValueField.setDate(LocalDate.now());
+        jPanel2.add(newTaskStartDateValueField);
+        newTaskStartDateValueField.setBounds(112, 246, 270, 30);
+
+        newTaskPriorityDateCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Low", "Medium", "High" }));
+        newTaskPriorityDateCombobox.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jPanel2.add(newTaskPriorityDateCombobox);
+        newTaskPriorityDateCombobox.setBounds(190, 330, 110, 30);
+
+        newTaskPriorityDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        newTaskPriorityDateLabel.setText("Priority");
+        newTaskPriorityDateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPanel2.add(newTaskPriorityDateLabel);
+        newTaskPriorityDateLabel.setBounds(110, 330, 60, 30);
+
+        exitButton.setText("Exit");
+        jPanel2.add(exitButton);
+        exitButton.setBounds(270, 400, 51, 23);
+
+        createProjectButton.setText("Create");
+        jPanel2.add(createProjectButton);
+        createProjectButton.setBounds(90, 400, 65, 23);
+
+        defaultBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DefaultBackground.png", System.getProperty("user.dir"))));
+        jPanel2.add(defaultBackground);
+        defaultBackground.setBounds(0, 0, 420, 450);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 413, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 449, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(429, 488));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -99,6 +190,21 @@ public class NewTask extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel createNewTaskLabel;
+    private javax.swing.JButton createProjectButton;
+    private javax.swing.JLabel defaultBackground;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel newTaskDescriptionLabel;
+    private javax.swing.JScrollPane newTaskDescriptionScrollPane;
+    private javax.swing.JTextArea newTaskDescriptionValueField;
+    private javax.swing.JLabel newTaskEndDateLabel;
+    private com.github.lgooddatepicker.components.DatePicker newTaskLimitDateValueField;
+    private javax.swing.JComboBox<String> newTaskPriorityDateCombobox;
+    private javax.swing.JLabel newTaskPriorityDateLabel;
+    private javax.swing.JLabel newTaskStartDateLabel;
+    private com.github.lgooddatepicker.components.DatePicker newTaskStartDateValueField;
+    private javax.swing.JLabel newTaskTitleLabel;
+    private javax.swing.JTextField newTaskTitleValueField;
     // End of variables declaration//GEN-END:variables
 }

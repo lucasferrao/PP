@@ -78,7 +78,7 @@ public class NewProject extends javax.swing.JDialog {
         newProjectEndDateLabel.setText("End Date");
         newProjectEndDateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel1.add(newProjectEndDateLabel);
-        newProjectEndDateLabel.setBounds(37, 284, 57, 17);
+        newProjectEndDateLabel.setBounds(37, 290, 57, 17);
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -114,7 +114,7 @@ public class NewProject extends javax.swing.JDialog {
         newProjectStartDateLabel.setText("Start Date");
         newProjectStartDateLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel1.add(newProjectStartDateLabel);
-        newProjectStartDateLabel.setBounds(31, 245, 63, 17);
+        newProjectStartDateLabel.setBounds(31, 250, 63, 17);
 
         newProjectStartDateValueField.setDate(LocalDate.now());
         jPanel1.add(newProjectStartDateValueField);

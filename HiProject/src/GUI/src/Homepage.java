@@ -114,8 +114,8 @@ public class Homepage extends javax.swing.JFrame {
         tasksTableLabel = new javax.swing.JLabel();
         removeTasksListsButton = new javax.swing.JLabel();
         editTasksListsButton = new javax.swing.JLabel();
-        addTaskButton = new javax.swing.JLabel();
         removeTaskButton = new javax.swing.JLabel();
+        addTaskButton = new javax.swing.JLabel();
         viewTaskButton = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -152,6 +152,12 @@ public class Homepage extends javax.swing.JFrame {
         projectListComboBox.addItemListener (new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
+                if (projectListComboBox.getSelectedIndex() == 0) {
+                    dashboardPanel.setVisible(true);
+                    selectedProjectPanel.setVisible(false);
+                    viewProjectButton.setVisible(true);
+                    viewDashboardButton.setVisible(false);
+                }
                 setSelectedProjectValuesText();
                 disableEditIfNotOwner(connectedUser);
             }
@@ -256,103 +262,103 @@ public class Homepage extends javax.swing.JFrame {
         completedProjectsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         completedProjectsLabel.setText("Completed Projects");
         dashboardPanel.add(completedProjectsLabel);
-        completedProjectsLabel.setBounds(90, 630, 326, 29);
+        completedProjectsLabel.setBounds(90, 90, 326, 29);
 
         completedProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         completedProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         completedProjectsValueLabel.setText("completedProjectsValueLabel");
         dashboardPanel.add(completedProjectsValueLabel);
-        completedProjectsValueLabel.setBounds(90, 690, 326, 25);
+        completedProjectsValueLabel.setBounds(90, 150, 326, 25);
 
         ongoingProjectsLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         ongoingProjectsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ongoingProjectsLabel.setText("Ongoing Projects");
         dashboardPanel.add(ongoingProjectsLabel);
-        ongoingProjectsLabel.setBounds(500, 630, 326, 29);
+        ongoingProjectsLabel.setBounds(500, 90, 326, 29);
 
         ongoingProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ongoingProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ongoingProjectsValueLabel.setText("ongoingProjectsValueLabel");
         dashboardPanel.add(ongoingProjectsValueLabel);
-        ongoingProjectsValueLabel.setBounds(500, 680, 326, 25);
+        ongoingProjectsValueLabel.setBounds(500, 140, 326, 25);
 
         lateProjectsLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lateProjectsLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lateProjectsLabel.setText("Late Projects");
         dashboardPanel.add(lateProjectsLabel);
-        lateProjectsLabel.setBounds(890, 630, 326, 29);
+        lateProjectsLabel.setBounds(890, 90, 326, 29);
 
         lateProjectsValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         lateProjectsValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lateProjectsValueLabel.setText("lateProjectsValueLabel");
         dashboardPanel.add(lateProjectsValueLabel);
-        lateProjectsValueLabel.setBounds(890, 680, 326, 25);
+        lateProjectsValueLabel.setBounds(890, 140, 326, 25);
 
         inNeedOfAttentionLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         inNeedOfAttentionLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         inNeedOfAttentionLabel.setText("In Need of Attention");
         dashboardPanel.add(inNeedOfAttentionLabel);
-        inNeedOfAttentionLabel.setBounds(170, 120, 326, 29);
+        inNeedOfAttentionLabel.setBounds(170, 320, 326, 29);
 
         inoaProject2ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject2ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         inoaProject2ValueLabel.setText("inoaProject2ValueLabel");
         dashboardPanel.add(inoaProject2ValueLabel);
-        inoaProject2ValueLabel.setBounds(130, 320, 420, 40);
+        inoaProject2ValueLabel.setBounds(130, 520, 420, 40);
 
         inoaProject3ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject3ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         inoaProject3ValueLabel.setText("inoaProject3ValueLabel");
         dashboardPanel.add(inoaProject3ValueLabel);
-        inoaProject3ValueLabel.setBounds(130, 430, 420, 40);
+        inoaProject3ValueLabel.setBounds(130, 630, 420, 40);
 
         inoaProject1ValueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         inoaProject1ValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         inoaProject1ValueLabel.setText("inoaProject1ValueLabel");
         dashboardPanel.add(inoaProject1ValueLabel);
-        inoaProject1ValueLabel.setBounds(130, 220, 420, 40);
+        inoaProject1ValueLabel.setBounds(130, 420, 420, 40);
 
         biggestProjectLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         biggestProjectLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         biggestProjectLabel.setText("Biggest Project");
         dashboardPanel.add(biggestProjectLabel);
-        biggestProjectLabel.setBounds(790, 90, 326, 29);
+        biggestProjectLabel.setBounds(820, 320, 326, 29);
 
         bpPeopleInvolvedLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         bpPeopleInvolvedLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bpPeopleInvolvedLabel.setText("People Involved in Project:");
         dashboardPanel.add(bpPeopleInvolvedLabel);
-        bpPeopleInvolvedLabel.setBounds(800, 260, 326, 28);
+        bpPeopleInvolvedLabel.setBounds(830, 490, 326, 28);
 
         bpPeopleInvolvedValueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bpPeopleInvolvedValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bpPeopleInvolvedValueLabel.setText("bpPeopleInvolvedValueLabel");
         dashboardPanel.add(bpPeopleInvolvedValueLabel);
-        bpPeopleInvolvedValueLabel.setBounds(800, 320, 326, 22);
+        bpPeopleInvolvedValueLabel.setBounds(830, 550, 326, 22);
 
         bpCompletedTasksLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         bpCompletedTasksLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bpCompletedTasksLabel.setText("Completed Tasks in Project:");
         dashboardPanel.add(bpCompletedTasksLabel);
-        bpCompletedTasksLabel.setBounds(800, 390, 326, 25);
+        bpCompletedTasksLabel.setBounds(830, 620, 326, 25);
 
-        bpNameValueLabel.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        bpNameValueLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         bpNameValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bpNameValueLabel.setText("bpNameValueLabel");
         dashboardPanel.add(bpNameValueLabel);
-        bpNameValueLabel.setBounds(790, 170, 326, 22);
+        bpNameValueLabel.setBounds(820, 390, 326, 40);
 
         bpCompletedTasksValueLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         bpCompletedTasksValueLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bpCompletedTasksValueLabel.setText("bpCompletedTasksValueLabel");
         dashboardPanel.add(bpCompletedTasksValueLabel);
-        bpCompletedTasksValueLabel.setBounds(800, 460, 326, 22);
+        bpCompletedTasksValueLabel.setBounds(830, 690, 326, 22);
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         dashboardPanel.add(jSeparator2);
-        jSeparator2.setBounds(630, 30, 10, 510);
+        jSeparator2.setBounds(640, 240, 10, 540);
         dashboardPanel.add(jSeparator3);
-        jSeparator3.setBounds(20, 540, 1280, 10);
+        jSeparator3.setBounds(20, 240, 1280, 10);
 
         dashboardBackground.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\DashboardBackground.png", System.getProperty("user.dir"))));
         dashboardPanel.add(dashboardBackground);
@@ -375,6 +381,7 @@ public class Homepage extends javax.swing.JFrame {
 
         sppSelectedProjectDescriptionValue.setColumns(20);
         sppSelectedProjectDescriptionValue.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        sppSelectedProjectDescriptionValue.setLineWrap(true);
         sppSelectedProjectDescriptionValue.setRows(5);
         sppSelectedProjectDescriptionValue.setText("codigo get description\n");
         sppSelectedProjectDescriptionValue.setBorder(null);
@@ -531,28 +538,28 @@ public class Homepage extends javax.swing.JFrame {
         selectedProjectPanel.add(editTasksListsButton);
         editTasksListsButton.setBounds(186, 720, 40, 40);
 
-        addTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\MinusCircle64.png", System.getProperty("user.dir"))));
-        addTaskButton.setToolTipText("Delete selected Task");
-        addTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addTaskButtonMouseClicked(evt);
-            }
-        });
-        selectedProjectPanel.add(addTaskButton);
-        addTaskButton.setBounds(1180, 680, 70, 80);
-
-        removeTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\PlusCircle64.png", System.getProperty("user.dir"))));
-        removeTaskButton.setToolTipText("Create a new Task");
+        removeTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\MinusCircle64.png", System.getProperty("user.dir"))));
+        removeTaskButton.setToolTipText("Delete selected Task");
         removeTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeTaskButtonMouseClicked(evt);
             }
         });
         selectedProjectPanel.add(removeTaskButton);
-        removeTaskButton.setBounds(1180, 470, 70, 80);
+        removeTaskButton.setBounds(1180, 680, 70, 80);
+
+        addTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\PlusCircle64.png", System.getProperty("user.dir"))));
+        addTaskButton.setToolTipText("Create a new Task");
+        addTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addTaskButtonMouseClicked(evt);
+            }
+        });
+        selectedProjectPanel.add(addTaskButton);
+        addTaskButton.setBounds(1180, 470, 70, 80);
 
         viewTaskButton.setIcon(new javax.swing.ImageIcon(String.format("%s\\Images\\View64.png", System.getProperty("user.dir"))));
-        viewTaskButton.setToolTipText("View selected Task");
+        viewTaskButton.setToolTipText("View and edit the selected Task");
         viewTaskButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 viewTaskButtonMouseClicked(evt);
@@ -642,10 +649,14 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_sppSelectedProjectEditProjectButtonMouseClicked
 
     private void viewProjectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewProjectButtonMouseClicked
-        this.selectedProjectPanel.setVisible(true);
-        this.dashboardPanel.setVisible(false);
-        this.viewDashboardButton.setVisible(true);
-        this.viewProjectButton.setVisible(false);
+        if (projectListComboBox.getSelectedIndex() != 0) {
+            this.selectedProjectPanel.setVisible(true);
+            this.dashboardPanel.setVisible(false);
+            this.viewDashboardButton.setVisible(true);
+            this.viewProjectButton.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a project before switching view.");
+        }
     }//GEN-LAST:event_viewProjectButtonMouseClicked
 
     private void viewDashboardButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewDashboardButtonMouseClicked
@@ -662,7 +673,7 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_editProfileButtonMouseClicked
 
     private void switchUserButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_switchUserButtonMouseClicked
-        int switchConfirmation = JOptionPane.showConfirmDialog(null, "You are about to end your session. Are you sure you want to continue?");
+        int switchConfirmation = JOptionPane.showConfirmDialog(null, "You are about to end your session. Are you sure you want to continue?", "Switch user account", 0);
         switch (switchConfirmation) {
             case 0:
                 this.dispose();
@@ -677,7 +688,7 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_switchUserButtonMouseClicked
 
     private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
-        int exitConfirmation = JOptionPane.showConfirmDialog(null, "You are about to exit the application. Are you sure you want to continue?");
+        int exitConfirmation = JOptionPane.showConfirmDialog(null, "You are about to exit the application. Are you sure you want to continue?", "Exit Application", 0);
         switch (exitConfirmation) {
             case 0:
                 System.exit(-1);
@@ -746,17 +757,21 @@ public class Homepage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_removeTasksListsButtonMouseClicked
 
-    private void removeTaskButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeTaskButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeTaskButtonMouseClicked
+    private void addTaskButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTaskButtonMouseClicked
+        NewTask newt = new NewTask(this, true);
+        newt.setVisible(true);
+        updateHomepage();
+    }//GEN-LAST:event_addTaskButtonMouseClicked
 
     private void viewTaskButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewTaskButtonMouseClicked
-        // TODO add your handling code here:
+        ViewAndEditTask newvet = new ViewAndEditTask(this, true);
+        newvet.setVisible(true);
+        updateHomepage();
     }//GEN-LAST:event_viewTaskButtonMouseClicked
 
-    private void addTaskButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTaskButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addTaskButtonMouseClicked
+    private void removeTaskButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeTaskButtonMouseClicked
+
+    }//GEN-LAST:event_removeTaskButtonMouseClicked
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         posX = evt.getX();
@@ -833,11 +848,9 @@ public class Homepage extends javax.swing.JFrame {
         if (projectListComboBox.getSelectedIndex() == 0) {
             sppSelectedProjectName.setText("Please select a project.");
             sppSelectedProjectOwner.setText("");
-            //selectedProjectPeopleInvolvedValue.setText(Integer.toString(ee.getValue().getContributors().size()));
             sppSelectedProjectEndDateValue.setText("");
             sppSelectedProjectStartDateValue.setText("");
             sppSelectedProjectStateValue.setText("");
-            //selectedProjectTasksNumberValue.setText( Integer.toString(ee.getValue().getLists().size()));
             sppSelectedProjectDescriptionValue.setText("");
         } else {
             sppSelectedProjectName.setText(String.valueOf(getSelectedProject().getTitle()));
@@ -861,7 +874,7 @@ public class Homepage extends javax.swing.JFrame {
         inoaProject3ValueLabel.setText(inoaProjects3GetText(connectedUser.getProjects().biggestProject().completedTasks()));
 
         bpPeopleInvolvedValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().getContributors().size()));
-        bpNameValueLabel.setText(connectedUser.getProjects().biggestProject().getTitle());
+        bpNameValueLabel.setText("\"" + connectedUser.getProjects().biggestProject().getTitle() + "\"");
         bpCompletedTasksValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().completedTasks().size()));
     }
 

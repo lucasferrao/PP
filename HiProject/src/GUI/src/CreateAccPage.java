@@ -168,13 +168,13 @@ public class CreateAccPage extends javax.swing.JFrame {
     private void createAccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccButtonActionPerformed
         checkForSerializationFile();
         if (nameTextField.getText().length() < 3) {
-            JOptionPane.showMessageDialog(null, "Please insert a valid name (>= 3 characters).");
+            JOptionPane.showMessageDialog(null, "Please insert name with at least 3 characters.");
             nameTextField.requestFocus();
         } else if (emailTextField.getText().length() < "a@a.com".length()) {
-            JOptionPane.showMessageDialog(null, "Please insert a valid email.");
+            JOptionPane.showMessageDialog(null, "Please insert a valid email address.");
             emailTextField.requestFocus();
         } else if (passwordField.getPassword().length < 7) {
-            JOptionPane.showMessageDialog(null, "Please insert a password.");
+            JOptionPane.showMessageDialog(null, "Please insert a password with at least 7 characters.");
             passwordField.requestFocus();
         } else if (!Arrays.equals(confirmPasswordField.getPassword(), passwordField.getPassword())) {
             JOptionPane.showMessageDialog(null, "The passwords have to be the same!", "Authentication", JOptionPane.WARNING_MESSAGE);
