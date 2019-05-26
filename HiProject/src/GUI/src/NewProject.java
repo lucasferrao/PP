@@ -53,7 +53,6 @@ public class NewProject extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Create New Project");
-        setUndecorated(true);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jPanel1.setLayout(null);
@@ -142,7 +141,7 @@ public class NewProject extends javax.swing.JDialog {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(415, 410));
+        setSize(new java.awt.Dimension(431, 449));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
