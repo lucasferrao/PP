@@ -161,4 +161,8 @@ public class UsersList implements Serializable {
             throw new UserDoesntExistException("This user doesn't exist.");
         }
     }
+
+    public void remove(String email) {
+        this.users.remove(email);
+    }
 }

@@ -256,8 +256,9 @@ public class HiProject implements Serializable {
         try {
             User u = this.users.getUser(user.getEmail());
             User newUser = new User(name, email, password, u.getProjects());
-            this.users.getUsers().remove(u.getEmail());
+            this.users.remove(u.getEmail());
             this.users.addUser(newUser);
+            this.setConnectedUser(newUser);
             serialization.save(this);
         } catch (UserDoesntExistException e) {
             e.printStackTrace();

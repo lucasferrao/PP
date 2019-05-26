@@ -289,7 +289,7 @@ public class Project implements Serializable {
 		for(TasksList t: this.lists){
 			s.append(" - " + t.toString() + ".\n");
 		}
-		s.append("Project's owner: " + this.owner.toString() + ".\n");
+		s.append("Project's owner: " + this.owner.getName() + ".\n");
 		s.append("Project's state: " + this.projectState + ".\n");
 		s.append("Project's contributors:\n");
 		for(Contributor c: this.contributors){

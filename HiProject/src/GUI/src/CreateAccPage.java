@@ -1,12 +1,10 @@
 package GUI.src;
 
-import Backend.HiProject;
-import Backend.Project;
-import Backend.User;
-import Backend.UsersList;
+import Backend.*;
 import Exceptions.UserDoesntExistException;
 
 import javax.swing.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -22,6 +20,8 @@ import java.util.Arrays;
  * @author Raphael
  */
 public class CreateAccPage extends javax.swing.JFrame {
+    private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
+    private HiProject hiProject;
 
     /**
      * Creates new form Homepage
@@ -166,19 +166,22 @@ public class CreateAccPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void createAccButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccButtonActionPerformed
-        HiProject hiProject = new HiProject();
-        if (nameTextField.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please insert a name.");
+        checkForSerializationFile();
+        if (nameTextField.getText().length() < 3) {
+            JOptionPane.showMessageDialog(null, "Please insert a valid name (>= 3 characters).");
             nameTextField.requestFocus();
-        } else if (emailTextField.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please insert an email.");
+        } else if (emailTextField.getText().length() < "a@a.com".length()) {
+            JOptionPane.showMessageDialog(null, "Please insert a valid email.");
             emailTextField.requestFocus();
-        } else if (passwordField.getPassword().length == 0) {
+        } else if (passwordField.getPassword().length < 7) {
             JOptionPane.showMessageDialog(null, "Please insert a password.");
             passwordField.requestFocus();
         } else if (!Arrays.equals(confirmPasswordField.getPassword(), passwordField.getPassword())) {
             JOptionPane.showMessageDialog(null, "The passwords have to be the same!", "Authentication", JOptionPane.WARNING_MESSAGE);
             confirmPasswordField.requestFocus();
+        } else if (hiProject.getUsers().exists(emailTextField.getText())) {
+            JOptionPane.showMessageDialog(null, "An user with this email already exists, please try again with a different one.", "User Already Exists", JOptionPane.WARNING_MESSAGE);
+            emailTextField.requestFocus();
         } else {
             hiProject.registerNewUser(nameTextField.getText(), emailTextField.getText(), new String(passwordField.getPassword()));
             dispose();
@@ -195,6 +198,15 @@ public class CreateAccPage extends javax.swing.JFrame {
     private void confirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordFieldActionPerformed
         createAccButtonActionPerformed(evt);
     }//GEN-LAST:event_confirmPasswordFieldActionPerformed
+
+    private void checkForSerializationFile() {
+        if (new File(String.format("%s\\HiProject.data", System.getProperty("user.dir"))).exists()) {
+            hiProject = serialization.load();
+        } else {
+            hiProject = new HiProject();
+            serialization.save(hiProject);
+        }
+    }
 
     /**
      * @param args the command line arguments

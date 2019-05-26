@@ -29,13 +29,13 @@ public class ProjectPage extends javax.swing.JFrame {
         initComponents();
     }
 
-    public ProjectPage(Project selectedProject, User connectedUser) {
+    public ProjectPage(Project selectedProject) {
         try {
             ProjectPage.selectedProject = hiProject.getUsers().getUser(connectedUser.getEmail()).getProjects().getProject(selectedProject.getProjectID());
         } catch (UserDoesntExistException e) {
             e.printStackTrace();
         }
-        ProjectPage.connectedUser = connectedUser;
+        ProjectPage.connectedUser = hiProject.getConnectedUser();
         initComponents();
     }
 
@@ -683,7 +683,7 @@ public class ProjectPage extends javax.swing.JFrame {
     }//GEN-LAST:event_sortEndDateButtonActionPerformed
 
     private void goBackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackButtonActionPerformed
-        new Homepage(connectedUser).setVisible(true);
+        new Homepage(hiProject.getConnectedUser()).setVisible(true);
         dispose();
     }//GEN-LAST:event_goBackButtonActionPerformed
 

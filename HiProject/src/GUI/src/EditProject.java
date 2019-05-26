@@ -5,17 +5,29 @@
  */
 package GUI.src;
 
+import Backend.HiProject;
+import Backend.Project;
+import Backend.ProjectsList;
+import Backend.Serialization;
+
+import javax.swing.*;
+import java.time.LocalDate;
+
 /**
  *
  * @author joaod
  */
 public class EditProject extends javax.swing.JDialog {
+    private Project selectedProject;
+    private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
+    private HiProject hiProject = serialization.load();
 
     /**
      * Creates new form EditProject
      */
-    public EditProject(java.awt.Frame parent, boolean modal) {
+    public EditProject(java.awt.Frame parent, boolean modal, Project project) {
         super(parent, modal);
+        selectedProject = hiProject.getProjects().getProject(project.getProjectID());
         initComponents();
     }
 
@@ -129,50 +141,30 @@ public class EditProject extends javax.swing.JDialog {
     }//GEN-LAST:event_projectTitleValueActionPerformed
 
     private void saveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_saveChangesButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        if (hiProject.getConnectedUser().getProjects().exists(projectTitleValue.getText())) {
+            JOptionPane.showMessageDialog(null, "A project with this title already exists, please try again with a different one.", "Project Already Exists", JOptionPane.WARNING_MESSAGE);
+            projectTitleValue.requestFocus();
+        } else if (projectEndDateValue.getDate().isBefore(LocalDate.now())) {
+            JOptionPane.showMessageDialog(null, "Please insert a valid project end date.");
+            projectTitleValue.requestFocus();
+        } else if (projectDescriptionValue.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Please insert a project description.", "Project Description", JOptionPane.WARNING_MESSAGE);
+            projectDescriptionValue.requestFocus();
+        } else {
+            ProjectsList updatedProjects = hiProject.getProjects();
+            updatedProjects.getProject(selectedProject.getProjectID()).setTitle(projectTitleValue.getText());
+            updatedProjects.getProject(selectedProject.getProjectID()).setEndDate(projectEndDateValue.getDate());
+            updatedProjects.getProject(selectedProject.getProjectID()).setDescription(projectDescriptionValue.getText());
+            hiProject.setProjects(updatedProjects);
+            updatedProjects = hiProject.getConnectedUser().getProjects();
+            updatedProjects.getProject(selectedProject.getProjectID()).setTitle(projectTitleValue.getText());
+            updatedProjects.getProject(selectedProject.getProjectID()).setEndDate(projectEndDateValue.getDate());
+            updatedProjects.getProject(selectedProject.getProjectID()).setDescription(projectDescriptionValue.getText());
+            hiProject.getConnectedUser().setProjects(updatedProjects);
+            serialization.save(hiProject);
+            dispose();
         }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                EditProject dialog = new EditProject(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_saveChangesButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel editYourSelectedProjectLabel;

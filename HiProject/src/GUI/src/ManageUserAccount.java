@@ -4,24 +4,28 @@
  * and open the template in the editor.
  */
 package GUI.src;
+
 import Backend.*;
+import Exceptions.UserDoesntExistException;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 /**
- *
  * @author joaod
  */
-public class ManageUserAccount extends javax.swing.JFrame {
+public class ManageUserAccount extends javax.swing.JDialog {
     private static User connectedUser;
     private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
+    private HiProject hiProject = serialization.load();
 
     /**
      * Creates new form ManageUserAccount
      */
-    public ManageUserAccount(User connectedUser) {
-        ManageUserAccount.connectedUser = connectedUser;
+    public ManageUserAccount() {
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        ManageUserAccount.connectedUser = hiProject.getConnectedUser();
         initComponents();
     }
 
@@ -134,7 +138,6 @@ public class ManageUserAccount extends javax.swing.JFrame {
         jPanel1.add(currentPasswordLabel);
         currentPasswordLabel.setBounds(36, 320, 108, 17);
 
-        currentPasswordField.setText("jPasswordField1");
         currentPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 currentPasswordFieldActionPerformed(evt);
@@ -150,12 +153,12 @@ public class ManageUserAccount extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(434, 565));
@@ -164,7 +167,22 @@ public class ManageUserAccount extends javax.swing.JFrame {
 
     private void saveChangesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveChangesButtonActionPerformed
         HiProject hiProject = serialization.load();
-        hiProject.editUserProfileAndSerialize(connectedUser, userNameField.getText(), userEmailField.getText(), new String(confirmPasswordField.getPassword()));
+        if (userNameField.getText().length() < 3) {
+            JOptionPane.showMessageDialog(null, "Please insert a valid name (>= 3 characters).");
+            userNameField.requestFocus();
+        } else if (userEmailField.getText().length() < "a@a.com".length()) {
+            JOptionPane.showMessageDialog(null, "Please insert a valid email.");
+            userEmailField.requestFocus();
+        } else if (currentPasswordField.getPassword().length > 0 && newPasswordField.getPassword().length > 0 && confirmPasswordField.getPassword().length > 0) {
+            if ((new String(currentPasswordField.getPassword()).equals(connectedUser.getPassword())) && (Arrays.equals(newPasswordField.getPassword(), confirmPasswordField.getPassword()))) {
+                hiProject.editUserProfileAndSerialize(connectedUser, userNameField.getText(), userEmailField.getText(), new String(newPasswordField.getPassword()));
+            } else {
+                JOptionPane.showMessageDialog(null, "Please re-enter the password.");
+                userEmailField.requestFocus();
+            }
+        } else {
+            hiProject.editUserProfileAndSerialize(connectedUser, userNameField.getText(), userEmailField.getText(), connectedUser.getPassword());
+        }
         dispose();
     }//GEN-LAST:event_saveChangesButtonActionPerformed
 
@@ -179,42 +197,6 @@ public class ManageUserAccount extends javax.swing.JFrame {
     private void currentPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_currentPasswordFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_currentPasswordFieldActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManageUserAccount(connectedUser).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField confirmPasswordField;

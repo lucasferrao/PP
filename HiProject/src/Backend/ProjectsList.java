@@ -78,13 +78,13 @@ public class ProjectsList implements Serializable {
             return true;
         }
 
-        if(o instanceof Contributor){
+        /*if(o instanceof Contributor){
             return true;
         }
 
         if(o instanceof Manager){
             return true;
-        }
+        }*/
 
         if(o == null || getClass() != o.getClass()){
             return false;
@@ -92,7 +92,8 @@ public class ProjectsList implements Serializable {
 
         ProjectsList that = (ProjectsList) o;
 
-        return Objects.equals(projects, that.projects);
+        //return Objects.equals(projects, that.projects);
+        return projects.equals(((ProjectsList) o).getProjects());
     }
 
     /**
@@ -292,5 +293,13 @@ public class ProjectsList implements Serializable {
             }
         }
         return null;
+    }
+
+    public boolean exists(String title) {
+        return getProjectByTitle(title) != null;
+    }
+
+    public void remove(int key) {
+        this.projects.remove(key);
     }
 }

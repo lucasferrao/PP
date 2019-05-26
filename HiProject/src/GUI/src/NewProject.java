@@ -15,15 +15,15 @@ import java.time.LocalDate;
  */
 public class NewProject extends javax.swing.JDialog {
     private static User connectedUser;
-    private HiProject hiProject;
     private Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
+    private HiProject hiProject = serialization.load();
 
     /**
      * Creates new form NewProject
      */
-    public NewProject(User connectedUser) {
+    public NewProject() {
         setModalityType(ModalityType.APPLICATION_MODAL);
-        NewProject.connectedUser = connectedUser;
+        NewProject.connectedUser = hiProject.getConnectedUser();
         initComponents();
     }
 
@@ -172,48 +172,15 @@ public class NewProject extends javax.swing.JDialog {
         } else if (newProjectEndDateValueField.getDate().isBefore(newProjectStartDateValueField.getDate().plusDays(1))) {
             JOptionPane.showMessageDialog(null, "Please insert a valid project end date.\nThe project cannot end before or on the same day it starts.");
             newProjectTitleValueField.requestFocus();
+        } else if (hiProject.getProjects().exists(newProjectTitleValueField.getText())) {
+            JOptionPane.showMessageDialog(null, "A project with this title already exists, please try again with a different one.", "Project Already Exists", JOptionPane.WARNING_MESSAGE);
+            newProjectTitleValueField.requestFocus();
         } else {
             hiProject.addProjectAndSerialize(connectedUser, new Project(hiProject.getProjectID(), newProjectTitleValueField.getText(), newProjectDescriptionValueField.getText(),
                     newProjectStartDateValueField.getDate(), newProjectEndDateValueField.getDate(), new Manager(connectedUser)));
             dispose();
         }
     }//GEN-LAST:event_createProjectButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewProject.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewProject(connectedUser).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel createNewProjectLabel;

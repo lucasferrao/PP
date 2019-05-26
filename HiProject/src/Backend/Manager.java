@@ -84,7 +84,7 @@ public class Manager extends User implements Serializable {
 
         Manager test = (Manager) o;
 
-        return super.equals(test);
+        return this.getEmail().equals(((Manager) o).getEmail());
     }
 
     /**

@@ -21,17 +21,26 @@ import javax.swing.*;
  * @author joaod
  */
 public class Homepage extends javax.swing.JFrame {
+    private static Serialization serialization = new Serialization(String.format("%s\\HiProject.data", System.getProperty("user.dir")));
+    private static HiProject hiProject = serialization.load();
     private static User connectedUser;
     private Map<Integer, Project> projectsList;
     private static ArrayList<String> titles = new ArrayList<>();
+    private DefaultListModel listModel;
 
     /**
      * Creates new form Homepage
      */
     public Homepage(User connectedUser) {
-        Homepage.connectedUser = connectedUser;
+        try {
+            Homepage.connectedUser = hiProject.getUsers().getUser(connectedUser.getEmail());
+        } catch (UserDoesntExistException e) {
+            e.printStackTrace();
+        }
         projectsList = connectedUser.getProjects().getProjects();
         initComponents();
+        setSelectedProjectValuesText();
+        setDashboardValues();
     }
 
     /**
@@ -124,10 +133,10 @@ public class Homepage extends javax.swing.JFrame {
         mainMenuPanel.setLayout(null);
 
         projectListComboBox.setModel(new javax.swing.DefaultComboBoxModel(projectsmta(titles).toArray()));
-        projectListComboBox.addItemListener (new ItemListener() {
+        projectListComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                String ptitle = projectListComboBox.getItemAt(projectListComboBox.getSelectedIndex());
+                /*String ptitle = projectListComboBox.getItemAt(projectListComboBox.getSelectedIndex());
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     for (Map.Entry<Integer, Project> ee : projectsList.entrySet()) {
                         if (ptitle.equals(ee.getValue().getTitle())) {
@@ -140,7 +149,9 @@ public class Homepage extends javax.swing.JFrame {
                             //selectedProjectTasksNumberValue.setText( Integer.toString(ee.getValue().getLists().size()));
                         }
                     }
-                }
+                }*/
+                setSelectedProjectValuesText();
+                disableEditIfNotOwner(connectedUser);
             }
         });
         mainMenuPanel.add(projectListComboBox);
@@ -168,6 +179,7 @@ public class Homepage extends javax.swing.JFrame {
         editProfileButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 editProfileButtonMouseClicked(evt);
+                updateHomepage();
             }
         });
         mainMenuPanel.add(editProfileButton);
@@ -540,13 +552,13 @@ public class Homepage extends javax.swing.JFrame {
 
         jTable1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
+                new Object[][]{
                         {null, null, null, null},
                         {null, null, null, null},
                         {null, null, null, null},
                         {null, null, null, null}
                 },
-                new String [] {
+                new String[]{
                         "Title 1", "Title 2", "Title 3", "Title 4"
                 }
         ));
@@ -562,11 +574,7 @@ public class Homepage extends javax.swing.JFrame {
         tasksListsLabel.setBounds(120, 430, 160, 22);
 
         tasksListsList.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        tasksListsList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        tasksListsList.setModel(fillListModel());
         tasksListsScrollPane.setViewportView(tasksListsList);
 
         selectedProjectPanel.add(tasksListsScrollPane);
@@ -574,9 +582,15 @@ public class Homepage extends javax.swing.JFrame {
 
         associatedUsersList.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         associatedUsersList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+
+            public int getSize() {
+                return strings.length;
+            }
+
+            public String getElementAt(int i) {
+                return strings[i];
+            }
         });
         associatedUsersScrollPane.setViewportView(associatedUsersList);
 
@@ -601,19 +615,24 @@ public class Homepage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addProjectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addProjectButtonMouseClicked
-        NewProject newp = new NewProject(connectedUser);
+        NewProject newp = new NewProject();
         newp.setModal(true);
         newp.setVisible(true);
         updateHomepage();
     }//GEN-LAST:event_addProjectButtonMouseClicked
 
     private void removeProjectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeProjectButtonMouseClicked
-        // TODO add your handling code here:
+        if (projectListComboBox.getSelectedIndex() == 0) {
+            JOptionPane.showConfirmDialog(null, "Please select a project first.");
+        } else {
+            removeProject();
+        }
     }//GEN-LAST:event_removeProjectButtonMouseClicked
 
     private void sppSelectedProjectEditProjectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sppSelectedProjectEditProjectButtonMouseClicked
-        EditProject newep = new EditProject(this, rootPaneCheckingEnabled);
+        EditProject newep = new EditProject(this, rootPaneCheckingEnabled, getSelectedProject());
         newep.setVisible(true);
+        updateHomepage();
     }//GEN-LAST:event_sppSelectedProjectEditProjectButtonMouseClicked
 
     private void viewProjectButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewProjectButtonMouseClicked
@@ -631,18 +650,37 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_viewDashboardButtonMouseClicked
 
     private void editProfileButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProfileButtonMouseClicked
-        ManageUserAccount mua = new ManageUserAccount(connectedUser);
+        ManageUserAccount mua = new ManageUserAccount();
+        mua.setModal(true);
         mua.setVisible(true);
     }//GEN-LAST:event_editProfileButtonMouseClicked
 
     private void switchUserButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_switchUserButtonMouseClicked
-        LogInPage newlogin = new LogInPage();
-        newlogin.setVisible(true);
-        this.dispose();
+        int switchConfirmation = JOptionPane.showConfirmDialog(null, "You are about to end your session. Are you sure you want to continue?");
+        switch (switchConfirmation) {
+            case 0:
+                LogInPage newlogin = new LogInPage();
+                newlogin.setVisible(true);
+                this.dispose();
+                break;
+            case 1:
+            case 2:
+                this.requestFocus();
+                break;
+        }
     }//GEN-LAST:event_switchUserButtonMouseClicked
 
     private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
-        System.exit(-1);
+        int exitConfirmation = JOptionPane.showConfirmDialog(null, "You are about to exit the application. Are you sure you want to continue?");
+        switch (exitConfirmation) {
+            case 0:
+                System.exit(-1);
+                break;
+            case 1:
+            case 2:
+                this.requestFocus();
+                break;
+        }
     }//GEN-LAST:event_exitButtonMouseClicked
 
     private void addUserToProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUserToProjectMouseClicked
@@ -654,7 +692,14 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_removeUserFromProjectMouseClicked
 
     private void markAsCompleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_markAsCompleteButtonMouseClicked
-        // TODO add your handling code here:
+        ProjectsList tempProjectsList = hiProject.getProjects();
+        tempProjectsList.getProject(getSelectedProject().getProjectID()).setProjectState(State.Finished);
+        hiProject.setProjects(tempProjectsList);
+        tempProjectsList = connectedUser.getProjects();
+        tempProjectsList.getProject(getSelectedProject().getProjectID()).setProjectState(State.Finished);
+        connectedUser.setProjects(tempProjectsList);
+        serialization.save(hiProject);
+        updateHomepage();
     }//GEN-LAST:event_markAsCompleteButtonMouseClicked
 
     private void editTasksListsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editTasksListsButtonMouseClicked
@@ -662,7 +707,12 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_editTasksListsButtonMouseClicked
 
     private void addTasksListsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTasksListsButtonMouseClicked
-        // TODO add your handling code here:
+        ArrayList<TasksList> tempArray = getSelectedProject().getLists();
+        tempArray.add(new TasksList());
+        getSelectedProject().setLists(tempArray);
+        serialization.save(hiProject);
+        updateHomepage();
+
     }//GEN-LAST:event_addTasksListsButtonMouseClicked
 
     private void removeTasksListsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeTasksListsButtonMouseClicked
@@ -682,7 +732,7 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_addTaskButtonMouseClicked
 
     private void newProjectMenuItemActionPerformed(java.awt.event.ActionEvent evt) {
-        NewProject newp = new NewProject(connectedUser);
+        NewProject newp = new NewProject();
         newp.setModal(true);
         newp.setVisible(true);
         updateHomepage();
@@ -724,7 +774,11 @@ public class Homepage extends javax.swing.JFrame {
         } catch (UserDoesntExistException e) {
             e.printStackTrace();
         }
+        if (this.selectedProjectPanel.isVisible()) {
+
+        }
     }
+
 
     private ArrayList<Project> projectsToArray(ArrayList<Project> projectArrayList) {
         projectArrayList.clear();
@@ -747,13 +801,29 @@ public class Homepage extends javax.swing.JFrame {
             sppSelectedProjectStartDateValue.setText("");
             sppSelectedProjectStateValue.setText("");
             //selectedProjectTasksNumberValue.setText( Integer.toString(ee.getValue().getLists().size()));
+            sppSelectedProjectDescriptionValue.setText("");
         } else {
             sppSelectedProjectName.setText(String.valueOf(getSelectedProject().getTitle()));
             sppSelectedProjectOwner.setText(String.valueOf(getSelectedProject().getOwner().getName()));
             sppSelectedProjectEndDateValue.setText(String.valueOf(getSelectedProject().getEndDate()));
             sppSelectedProjectStartDateValue.setText(String.valueOf(getSelectedProject().getBeginDate()));
             sppSelectedProjectStateValue.setText(String.valueOf(getSelectedProject().getProjectState()));
+            sppSelectedProjectDescriptionValue.setText(getSelectedProject().getDescription());
         }
+    }
+
+    private void setDashboardValues() {
+        completedProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().getProjects().size()));
+        ongoingProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().getProjects().size()));
+        lateProjectsValueLabel.setText(String.format("%d/%d", 0, Homepage.connectedUser.getProjects().getProjects().size()));
+
+        inoaProject1ValueLabel.setText(inoaProjects1GetText(connectedUser.getProjects().biggestProject().completedTasks()));
+        inoaProject2ValueLabel.setText(inoaProjects2GetText(connectedUser.getProjects().biggestProject().completedTasks()));
+        inoaProject3ValueLabel.setText(inoaProjects3GetText(connectedUser.getProjects().biggestProject().completedTasks()));
+
+        bpPeopleInvolvedValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().getContributors().size()));
+        bpNameValueLabel.setText(connectedUser.getProjects().biggestProject().getTitle());
+        bpCompletedTasksValueLabel.setText(String.valueOf(connectedUser.getProjects().biggestProject().completedTasks().size()));
     }
 
     private ArrayList<String> projectsmta(ArrayList<String> ptitles) {
@@ -765,39 +835,46 @@ public class Homepage extends javax.swing.JFrame {
         return ptitles;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    public void disableEditIfNotOwner(User user) {
+        if (projectListComboBox.getSelectedIndex() != 0) {
+            if (!getSelectedProject().getOwner().equals(new Manager(user))) {
+                sppSelectedProjectEditProjectButton.setVisible(false);
+                sppSelectedProjectEditProjectButtonLabel.setVisible(false);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Homepage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+    }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Homepage(connectedUser).setVisible(true);
+    public void removeProject() {
+        System.out.println(connectedUser.getProjects());
+        int projectKey = hiProject.getProjects().getProjectByTitle(projectListComboBox.getItemAt(projectListComboBox.getSelectedIndex())).getProjectID();
+        ProjectsList updatedProjects = hiProject.getProjects();
+        updatedProjects.remove(projectKey);
+        hiProject.setProjects(updatedProjects);
+
+        updatedProjects = connectedUser.getProjects();
+        updatedProjects.remove(projectKey);
+        connectedUser.setProjects(updatedProjects);
+        serialization.save(hiProject);
+
+        System.out.println(connectedUser.getProjects());
+        updateHomepage();
+    }
+
+    private DefaultListModel fillListModel() {
+        if (projectListComboBox.getSelectedIndex() == 0) {
+            return new javax.swing.DefaultListModel<String>() {
+                String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+                public int getSize() { return strings.length; }
+                public String getElementAt(int i) { return strings[i]; }
+            };
+        } else {
+            listModel = new DefaultListModel();
+            for (int i = 0; i < getSelectedProject().getLists().size(); i++)
+            {
+                listModel.addElement(getSelectedProject().getLists().get(i));
             }
-        });
+            return listModel;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

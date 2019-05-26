@@ -182,8 +182,9 @@ public class User implements Serializable {
 
         User test = (User) o;
 
-        return test.name.equals(this.name) && test.email.equals(this.email) && test.password.equals(this.password)
-                && test.projects.equals(projects);
+        /*return test.name.equals(this.name) && test.email.equals(this.email) && test.password.equals(this.password)
+                && test.projects.equals(projects);*/
+        return this.email.equals(((User) o).getEmail());
     }
 
     /**
