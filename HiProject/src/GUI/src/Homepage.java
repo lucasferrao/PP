@@ -26,7 +26,8 @@ public class Homepage extends javax.swing.JFrame {
     private static User connectedUser;
     private Map<Integer, Project> projectsList;
     private static ArrayList<String> titles = new ArrayList<>();
-    private DefaultListModel listModel;
+    private DefaultListModel listModelTasks;
+    private DefaultListModel listModelUsers;
 
     /**
      * Creates new form Homepage
@@ -41,6 +42,7 @@ public class Homepage extends javax.swing.JFrame {
         initComponents();
         setSelectedProjectValuesText();
         setDashboardValues();
+        checksToFillTasksLists();
     }
 
     /**
@@ -574,7 +576,7 @@ public class Homepage extends javax.swing.JFrame {
         tasksListsLabel.setBounds(120, 430, 160, 22);
 
         tasksListsList.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        tasksListsList.setModel(fillListModel());
+        tasksListsList.setModel(fillTasksListModel());
         tasksListsScrollPane.setViewportView(tasksListsList);
 
         selectedProjectPanel.add(tasksListsScrollPane);
@@ -659,9 +661,9 @@ public class Homepage extends javax.swing.JFrame {
         int switchConfirmation = JOptionPane.showConfirmDialog(null, "You are about to end your session. Are you sure you want to continue?");
         switch (switchConfirmation) {
             case 0:
+                this.dispose();
                 LogInPage newlogin = new LogInPage();
                 newlogin.setVisible(true);
-                this.dispose();
                 break;
             case 1:
             case 2:
@@ -684,7 +686,11 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonMouseClicked
 
     private void addUserToProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUserToProjectMouseClicked
-        // TODO add your handling code here:
+        ArrayList<Contributor> tempArray = getSelectedProject().getContributors();
+        tempArray.add(new Contributor("Teste", "Email", "password", new ProjectsList()));
+        getSelectedProject().setContributors(tempArray);
+        serialization.save(hiProject);
+        updateHomepage();
     }//GEN-LAST:event_addUserToProjectMouseClicked
 
     private void removeUserFromProjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeUserFromProjectMouseClicked
@@ -708,7 +714,7 @@ public class Homepage extends javax.swing.JFrame {
 
     private void addTasksListsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTasksListsButtonMouseClicked
         ArrayList<TasksList> tempArray = getSelectedProject().getLists();
-        tempArray.add(new TasksList());
+        tempArray.add(new TasksList("Teste", connectedUser, new ArrayList<Task>()));
         getSelectedProject().setLists(tempArray);
         serialization.save(hiProject);
         updateHomepage();
@@ -809,6 +815,8 @@ public class Homepage extends javax.swing.JFrame {
             sppSelectedProjectStartDateValue.setText(String.valueOf(getSelectedProject().getBeginDate()));
             sppSelectedProjectStateValue.setText(String.valueOf(getSelectedProject().getProjectState()));
             sppSelectedProjectDescriptionValue.setText(getSelectedProject().getDescription());
+            tasksListsList.setModel(fillTasksListModel());
+            associatedUsersList.setModel(fillUsersListModel());
         }
     }
 
@@ -860,20 +868,61 @@ public class Homepage extends javax.swing.JFrame {
         updateHomepage();
     }
 
-    private DefaultListModel fillListModel() {
+    private DefaultListModel fillTasksListModel() {
         if (projectListComboBox.getSelectedIndex() == 0) {
             return new javax.swing.DefaultListModel<String>() {
-                String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+                String[] strings = {""};
                 public int getSize() { return strings.length; }
                 public String getElementAt(int i) { return strings[i]; }
             };
         } else {
-            listModel = new DefaultListModel();
+            listModelTasks = new DefaultListModel();
             for (int i = 0; i < getSelectedProject().getLists().size(); i++)
             {
-                listModel.addElement(getSelectedProject().getLists().get(i));
+                listModelTasks.addElement(getSelectedProject().getLists().get(i).getDescription());
             }
-            return listModel;
+            return listModelTasks;
+        }
+    }
+
+    private DefaultListModel fillUsersListModel() {
+        if (projectListComboBox.getSelectedIndex() == 0) {
+            return new javax.swing.DefaultListModel<String>() {
+                String[] strings = {""};
+                public int getSize() { return strings.length; }
+                public String getElementAt(int i) { return strings[i]; }
+            };
+        } else {
+            listModelUsers = new DefaultListModel();
+            for (int i = 0; i < getSelectedProject().getContributors().size(); i++)
+            {
+                listModelUsers.addElement(getSelectedProject().getContributors().get(i).getName());
+            }
+            return listModelUsers;
+        }
+    }
+
+    public void fillTasksListList(ArrayList<TasksList> tasksLists) {
+        listModelTasks = new DefaultListModel();
+        for (int i = 0; i < tasksLists.size(); i++) {
+            listModelTasks.addElement(tasksLists.get(i).getDescription());
+        }
+        this.tasksListsList = new JList(listModelTasks);
+    }
+
+    public void fillUsersLists(ArrayList<Contributor> contributorsList) {
+        listModelUsers = new DefaultListModel();
+        for (int i = 0; i < contributorsList.size(); i++) {
+            listModelTasks.addElement(contributorsList.get(i).getName());
+        }
+        this.tasksListsList = new JList(listModelUsers);
+    }
+
+    public void checksToFillTasksLists() {
+        if (projectListComboBox.getSelectedIndex() == 0) {
+            return;
+        } else {
+            fillTasksListList(getSelectedProject().getLists());
         }
     }
 
